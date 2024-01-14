@@ -1,0 +1,83 @@
+is_global = true
+build_property.TargetFramework = net7.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ClientObserver
+build_property.ProjectDir = /Users/cole/Projects/ClientObserver/ClientObserver/
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Colors.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/CreateConfigView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.CreateConfigView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/CreateConfigView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/CreateConfigView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConfigView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConfigView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerConfigView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerConfigView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/LogView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.LogView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/LogView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/LogView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/MqttConnectionView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.MqttConnectionView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/MqttConnectionView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/MqttConnectionView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/PhotoView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.PhotoView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/PhotoView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/PhotoView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/ServerPageView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.ServerPageView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/ServerPageView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/ServerPageView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/VideoStreamView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.VideoStreamView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/VideoStreamView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/VideoStreamView.xaml

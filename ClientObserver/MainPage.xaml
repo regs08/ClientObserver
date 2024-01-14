@@ -1,0 +1,12 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientObserver.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout x:Name="myButtonContainer" Padding="10">
+            <!-- Dynamic buttons will be added here -->
+            <Button Text="Load Config" Command="{Binding LoadConfigCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

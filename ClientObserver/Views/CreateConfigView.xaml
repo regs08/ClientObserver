@@ -1,0 +1,220 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientObserver.Views.CreateConfigView"
+             Title="CreateConfigView">
+ <ScrollView>
+
+    <VerticalStackLayout>
+        <!-- Title for the IP selection section -->
+        <Label Text="IP Configuration"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,20,0,20"/>
+
+        <!-- Picker for predefined IPs -->
+        <Picker x:Name="ipPicker"
+                Title="Select IP"
+                ItemsSource="{Binding AvailableConfigData.AvailableIPs}"
+                SelectedItem="{Binding MyUserEntry.SelectedIP, Mode=TwoWay}" />
+
+        <!-- Entry for custom IP -->
+        <Entry x:Name="customIpEntry"
+               Placeholder="Enter Custom IP"
+               Text="{Binding MyUserEntry.SelectedIP, Mode=TwoWay}" />
+
+        <!-- Label to display "IP Selected: " and the selected or entered IP -->
+        <Label Text="{Binding MyUserEntry.SelectedIP, StringFormat='IP Selected: {0}'}"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+
+        <!-- ##################### -->
+        <!-- Title for the StreamIP selection section -->
+        <Label Text="Stream IP Configuration"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0,20,0,20"/>
+
+        <!-- Picker for predefined StramIPs -->
+        <Picker x:Name="streamIpPicker"
+                Title="Select Stream IP"
+                ItemsSource="{Binding AvailableConfigData.AvailableStreamIPs}"
+                SelectedItem="{Binding MyUserEntry.SelectedStreamIP, Mode=TwoWay}" />
+
+        <!-- Entry for custom StreamIP -->
+        <Entry x:Name="customStreamIpEntry"
+               Placeholder="Enter Custom IP"
+               Text="{Binding MyUserEntry.SelectedStreamIP, Mode=TwoWay}" />
+
+        <!-- Label to display "StreamIP Selected: " and the selected or entered IP -->
+        <Label Text="{Binding MyUserEntry.SelectedStreamIP, StringFormat='Stream IP Selected: {0}'}"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+        <!-- ##################### -->
+        <Label Text="Server Name Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+            <Picker x:Name="serverNamePicker"
+                    Title="Select Server Name"
+                    ItemsSource="{Binding AvailableConfigData.AvailableServerNames}"
+                    SelectedItem="{Binding MyUserEntry.SelectedServerName, Mode=TwoWay}" />
+            <Entry x:Name="customServerNameEntry"
+                   Placeholder="Enter Custom Server Name"
+                   Text="{Binding MyUserEntry.SelectedServerName, Mode=TwoWay}" />
+
+            <Label Text="{Binding MyUserEntry.SelectedServerName, StringFormat='Server Name Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+                <!-- ##################### -->
+
+            <!-- Stream Port Number Configuration Section -->
+            <Label Text="Stream Port Number Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+            <Picker x:Name="streamPortNumberPicker"
+                    Title="Select Stream Port Number"
+                    ItemsSource="{Binding AvailableConfigData.AvailableStreamPortNumbers}"
+                    SelectedItem="{Binding MyUserEntry.SelectedStreamPortNumber, Mode=TwoWay}" />
+            <Entry x:Name="customStreamPortNumberEntry"
+                   Placeholder="Enter Custom Stream Port Number"
+                   Text="{Binding MyUserEntry.SelectedStreamPortNumber, Mode=TwoWay}" />
+            <Label Text="{Binding MyUserEntry.SelectedStreamPortNumber, StringFormat='Stream Port Number Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+                <!-- ##################### -->
+
+            <!-- MQTT Port Number Configuration Section -->
+            <Label Text="MQTT Port Number Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+            <Picker x:Name="mqttPortNumberPicker"
+                    Title="Select MQTT Port Number"
+                    ItemsSource="{Binding AvailableConfigData.AvailableMqttPortNumbers}"
+                    SelectedItem="{Binding MyUserEntry.SelectedMqttPortNumber, Mode=TwoWay}" />
+            <Entry x:Name="customMqttPortNumberEntry"
+                   Placeholder="Enter Custom MQTT Port Number"
+                   Text="{Binding MyUserEntry.SelectedMqttPortNumber, Mode=TwoWay}" />
+
+            <Label Text="{Binding MyUserEntry.SelectedMqttPortNumber, StringFormat='MQTT Port Number Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+                <!-- ##################### -->
+
+            <!-- Confidence Threshold Configuration Section -->
+            <Label Text="Confidence Threshold Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+            <Picker x:Name="confidenceThresholdPicker"
+                    Title="Select Confidence Threshold"
+                    ItemsSource="{Binding AvailableConfigData.AvailableConfidenceThresholds}"
+                    SelectedItem="{Binding MyUserEntry.SelectedConfidenceThreshold, Mode=TwoWay}" />
+
+            <Entry x:Name="customConfidenceThresholdEntry"
+                   Placeholder="Enter Custom Confidence Threshold"
+                   Text="{Binding MyUserEntry.SelectedConfidenceThreshold, Mode=TwoWay}" />
+
+            <Label Text="{Binding MyUserEntry.SelectedConfidenceThreshold, StringFormat='Confidence Threshold Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+                <!-- ##################### -->
+
+            <!--  Selected Labels Configuration Section -->
+            <Label Text="Selected Labels Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+
+            <CollectionView x:Name="labelsCollectionView"
+                            ItemsSource="{Binding MyAvailableLabels}"
+                            SelectionMode="Multiple"
+                            SelectionChanged="OnLabelSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Entry x:Name="customSelectedLabelsEntry"
+                   Placeholder="Enter Custom Labels"
+                   Completed="OnNewEntryCompleted"/>
+
+            <Label Text="{Binding MyUserEntry.SelectedLabelsText, StringFormat='Labels Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+            <!-- ##################### -->
+
+            <!--  Selected Topics Configuration Section -->
+            <Label Text="Selected Sub Topics Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+
+            <CollectionView x:Name="subTopicsCollectionView"
+                            ItemsSource="{Binding MyAvailableSubTopics.Topics}"
+                            SelectionMode="Multiple"
+                            SelectionChanged="OnSubTopicSelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Entry x:Name="customSelectedSubTopicsEntry"
+                   Placeholder="Enter Custom Sub Topics"
+                   Completed="OnNewEntryCompleted"/>
+
+            <Label Text="{Binding MyUserEntry.SelectedSubTopicsText, StringFormat='Topics Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+            <!-- ##################### -->
+
+            <!--  Selected Pub Topics Configuration Section -->
+            <Label Text="Selected Pub Topics Configuration"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+
+            <CollectionView x:Name="pubTopicsCollectionView"
+                            ItemsSource="{Binding MyAvailablePubTopics.Topics}"
+                            SelectionMode="Multiple"
+                            SelectionChanged="OnPubTopicSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <Entry x:Name="customSelectedPubTopicsEntry"
+                   Placeholder="Enter Custom Pub Topcis"
+                   Completed="OnNewEntryCompleted"/>
+
+            <Label Text="{Binding MyUserEntry.SelectedPubTopicsText, StringFormat='Pub Topics Selected: {0}'}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand" />
+            <Button Text="Create Config" Command="{Binding CreateConfigCommand}" />
+
+        </VerticalStackLayout>
+        </ScrollView>
+
+</ContentPage>

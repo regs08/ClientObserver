@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using ClientObserver.Models.TopicList;
+namespace ClientObserver
+{
+    public class MqttClientModel
+    {
+        public string BrokerAddress { get; private set; }
+        public int BrokerPort { get; private set; }
+        public SubTopicList SubscriptionTopics { get; private set; }
+        public PubTopicList PubTopics { get; private set;}
+        // Additional properties for MQTT
+        public string ClientId { get; private set; }
+        public string Username { get; private set; }
+        public string Password { get; private set; }
+        public bool CleanSession { get; private set; }
+        public int KeepAlivePeriod { get; private set; }
+
+        public MqttClientModel(ServerConfig config)
+        {
+            // Extract information from ServerConfig
+            BrokerAddress = config.IP;
+            BrokerPort = int.Parse(config.MqttPortNumber); 
+            SubscriptionTopics = config.SubscriptionTopics;
+            PubTopics = config.PublishTopics;
+
+            // Initialize other properties
+            ClientId = Guid.NewGuid().ToString(); // Or any other logic for client ID
+            CleanSession = true;
+            KeepAlivePeriod = 60; // Default value in seconds
+            // Username and Password can be set as needed
+        }
+
+    }
+}

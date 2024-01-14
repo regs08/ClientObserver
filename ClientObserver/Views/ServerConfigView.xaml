@@ -1,0 +1,28 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientObserver.Views.ServerConfigView"
+             Shell.NavBarIsVisible="True"
+             Title="Server Configurations">
+
+    <VerticalStackLayout>
+        <Label Text="Available Configurations" 
+               VerticalOptions="Center" 
+               HorizontalOptions="Center" />
+
+        <ListView ItemsSource="{Binding AvailableConfigs}" 
+                  HasUnevenRows="True"
+                  ItemTapped="OnItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding FormattedDisplay}"
+                               LineBreakMode="WordWrap" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Create Config" Command="{Binding CreateConfigCommand}" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

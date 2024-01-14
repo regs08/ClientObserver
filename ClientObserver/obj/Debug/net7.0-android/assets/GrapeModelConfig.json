@@ -1,0 +1,16 @@
+﻿{
+  "ServerName": "GrapeModel",
+  "IP": "172.20.10.8",
+  "StreamIP": "172.20.10.8",
+  "StreamPortNumber": "8000",
+  "MqttPortNumber": "1883",
+  "SelectedLabels": [ "grape", "trunk" ],
+  "AvailableLabels": [ "grape", "trunk" ],
+  "SubscriptionTopics": {
+    "Topics": [ "vehicle/detections", "vehicle/image", "test/pong", "test/image", "test/config" ]
+  },
+  "PublishTopics": {
+    "Topics": [ "test/ping" ]
+  },
+  "ConfidenceThreshold": 0.4
+}

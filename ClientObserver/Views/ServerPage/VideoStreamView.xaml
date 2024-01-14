@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientObserver.Views.VideoStreamView"
+             Title="Video Stream">
+
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0" Spacing="15">
+            <!-- Connect Button -->
+            <Button Text="Connect" 
+                    Command="{Binding ConnectCommand}"
+                    BackgroundColor="{Binding IsConnected, Converter={StaticResource BoolToColorConverter}}" />
+
+            <!-- Disconnect Button -->
+            <Button Text="Disconnect" Command="{Binding DisconnectCommand}" />
+
+            <!-- Toggle View Stream Button -->
+            <Button Text="Toggle Stream" Command="{Binding ToggleStreamViewCommand}" />
+        </VerticalStackLayout>
+
+        <!-- WebView for Video Stream -->
+    <WebView Grid.Row="1"
+                Source="{Binding VideoUrl}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                HeightRequest="200"
+                WidthRequest="300"
+                Margin="20" />
+
+    </Grid>
+</ContentPage>
