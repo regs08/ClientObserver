@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ClientObserver.Views;
+using ClientObserver.Services;
 
 namespace ClientObserver.ViewModels
 {
@@ -10,11 +11,11 @@ namespace ClientObserver.ViewModels
 
     public class MainPageViewModel
     {
-
         public ObservableCollection<ServerConfig> SelectedConfigs { get; private set; } = new ObservableCollection<ServerConfig>();
         private ConfigService configService;
+        public ObservableCollection<ServerConfigButtonViewModel> ServerConfigButtons { get; private set; } = new ObservableCollection<ServerConfigButtonViewModel>();
+
         public ICommand LoadConfigCommand { get; private set; }
-        public ICommand DeleteAllConfigsCommand { get; private set; } // New command for deleting configs
 
         public MainPageViewModel()
         {
@@ -23,7 +24,6 @@ namespace ClientObserver.ViewModels
             MessagingCenter.Subscribe<ServerConfigViewModel, ServerConfig>(this, "UpdateSelectedConfigs", (sender, config) =>
             {
                 UpdateSelectedConfigs(config);
-                MessagingCenter.Send(this, "RefreshUI");
             });
         }
 
@@ -38,8 +38,32 @@ namespace ClientObserver.ViewModels
             SelectedConfigs.Add(config);
 
             // Notify UI to refresh
-            MessagingCenter.Send(this, "RefreshUI");
+            UpdateServerConfigButtons();
         }
+
+        private void UpdateServerConfigButtons()
+        {
+            foreach (var config in SelectedConfigs)
+            {
+                // Check if a ViewModel for the current config already exists
+                var existingVm = ServerConfigButtons.FirstOrDefault(vm => vm.ServerName == config.ServerName);
+                if (existingVm == null)
+                {
+                    // If it doesn't exist, create a new ViewModel and add it to the collection
+                    var newVm = new ServerConfigButtonViewModel(config, new Command(async () =>
+                    {
+                        // Navigation logic or other action
+                        ServiceManager serverServices = new ServiceManager(config);
+                        var page = new ServerPageView(serverServices);
+                        await Shell.Current.Navigation.PushAsync(page);
+                    }));
+
+                    ServerConfigButtons.Add(newVm);
+                }
+                // If the ViewModel already exists, no action is taken.
+            }
+        }
+
         private async Task NavigateToConfigView()
         {
             var configPage = new ServerConfigView(configService);
