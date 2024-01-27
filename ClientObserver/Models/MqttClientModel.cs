@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using ClientObserver.Models.TopicList;
 namespace ClientObserver
 {
+    // Mqtt client model
+
+    //todo find out what clean session is? maybe this is why im getting connection issues
+    // todo crreate a brokert port class and broker address to get better typing 
+
     public class MqttClientModel
     {
         public string BrokerAddress { get; private set; }

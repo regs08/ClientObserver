@@ -92,15 +92,21 @@
 	<ItemGroup>
 	  <None Remove="Views\" />
 	  <None Remove="Views\ServerPage\" />
-	  <None Remove="Models\MessageEvents\" />
 	  <None Remove="Resources\xml\" />
 	  <None Remove="Resources\xml\network_security_config.xml" />
+	  <None Remove="Models\Events\" />
+	  <None Remove="Models\Events\MessageEvents\" />
+	  <None Remove="Models\Events\Enums\" />
+	  <None Remove="Models\Events\MessageEvents\Args\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
 	  <Folder Include="Views\ServerPage\" />
-	  <Folder Include="Models\MessageEvents\" />
 	  <Folder Include="Resources\xml\" />
+	  <Folder Include="Models\Events\" />
+	  <Folder Include="Models\Events\MessageEvents\" />
+	  <Folder Include="Models\Events\Enums\" />
+	  <Folder Include="Models\Events\MessageEvents\Args\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">

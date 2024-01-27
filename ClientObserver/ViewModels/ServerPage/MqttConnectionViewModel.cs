@@ -99,7 +99,7 @@ namespace ClientObserver
 
         private void OnMqttPingReceived(object sender, TextMessageEventArgs e)
         {
-            ReceivedText = e.Text;
+            ReceivedText = e.Data;
             if (ReceivedText == "pong")
             {
                 OnPropertyChanged(nameof(ReceivedText));

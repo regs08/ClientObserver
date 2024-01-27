@@ -1,4 +1,6 @@
-﻿using System;
+﻿// config for connencting to our 'server' 
+// todo break this up into mqtt config, video stream config, and detection config 
+using System;
 using Microsoft.Maui.Controls;
 using ClientObserver.Models.TopicList;
 // todo use Uri obecjt for videoIp address 

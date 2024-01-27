@@ -1,7 +1,7 @@
 ﻿{
-  "ServerName": "DefaultServer(Local Host)",
-  "IP": "10.0.2.2",
-  "StreamIP": "10.0.2.2",
+  "ServerName": "DefaultServer",
+  "IP": "192.168.0.69",
+  "StreamIP": "192.168.0.69",
   "StreamPortNumber": "8000",
   "MqttPortNumber": "1883",
   "SelectedLabels": [ "person", "couch", "dog" ],

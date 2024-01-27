@@ -1,4 +1,6 @@
-﻿using System;
+﻿//format for the log format. note must be identical to expected log from the server 
+
+using System;
 using Newtonsoft.Json.Linq;
 
 namespace ClientObserver.Models

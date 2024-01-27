@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Generic Topic list for the pub and sub topic list classes 
+
+using System;
 using System.Collections.ObjectModel;
 
 namespace ClientObserver.Models.TopicList

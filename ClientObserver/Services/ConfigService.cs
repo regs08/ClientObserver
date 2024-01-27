@@ -1,13 +1,20 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 using ClientObserver.Services;
-// Config service responsible for loading available and providing a list of selcted configs 
+// Config service responsible for loading available and providing a list of selcted configs
+// intialized on main page and is responsible for adding new configs,
+// and tracking selected configs from the user 
+
 namespace ClientObserver
 {
     public class ConfigService
     {
+        // list of available configs, dynamically updated. defautls are loadded locally from resources 
         public ObservableCollection<ServerConfig> AvailableConfigs { get; private set; }
+        // list of selected configs, dynamically updated 
         public ObservableCollection<ServerConfig> SelectedConfigs { get; private set; }
+
+        // Aggregates data from available conigs 
         public AggregateConfigService AggregatedData;
         public ConfigService()
         {

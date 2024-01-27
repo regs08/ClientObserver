@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿// combines all available configs to provide default values for creating configs
+// displays the unique values of all of them and provides the user with those as default choices 
+
+using System.Collections.ObjectModel;
 using ClientObserver.Models.TopicList;
 namespace ClientObserver.Services
 {
@@ -30,6 +33,7 @@ namespace ClientObserver.Services
             _severConfigs = serverConfigs;
             AggregateData();
         }
+        // Aggregates data from the available server configs 
         private void AggregateData()
         {
             AvailableIPs = _severConfigs?.Select(c => c.IP).Distinct().ToList() ?? new List<string>();

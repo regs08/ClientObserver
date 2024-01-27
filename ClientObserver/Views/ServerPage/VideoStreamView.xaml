@@ -28,8 +28,8 @@
                 Source="{Binding VideoUrl}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                HeightRequest="200"
-                WidthRequest="300"
+                HeightRequest="400"
+                WidthRequest="400"
                 Margin="20" />
 
     </Grid>

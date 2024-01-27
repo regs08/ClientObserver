@@ -1,4 +1,7 @@
-﻿namespace ClientObserver.Models;
+﻿// Class for the labels in our server config
+// todo update the config to use this 
+
+namespace ClientObserver.Models;
 
 public class LabelItem
 {

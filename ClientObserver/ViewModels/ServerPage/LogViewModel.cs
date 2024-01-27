@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using ClientObserver.Models;
 using ClientObserver.Services;
 
 namespace ClientObserver.ViewModels
@@ -15,7 +14,22 @@ namespace ClientObserver.ViewModels
         public LogViewModel(LogService logService)
         {
             _logService = logService;
-            DisplayLogs = new ObservableCollection<string>(_logService.GetDisplayLogs());
+            InitializeDisplayLogs();
+        }
+
+        private void InitializeDisplayLogs()
+        {
+            var logs = _logService.GetDisplayLogs();
+            if (logs != null)
+            {
+                DisplayLogs = new ObservableCollection<string>(logs);
+            }
+            else
+            {
+                // Handle null or empty logs appropriately
+                DisplayLogs = new ObservableCollection<string>();
+                // Optionally, add a placeholder or log a message
+            }
 
             // Subscribe to LogUpdated event
             _logService.LogUpdated += OnLogUpdated;
@@ -23,14 +37,22 @@ namespace ClientObserver.ViewModels
 
         private void OnLogUpdated(object sender, System.EventArgs e)
         {
-            // Update DisplayLogs collection
-            DisplayLogs.Clear();
-            foreach (var log in _logService.GetDisplayLogs())
+            var updatedLogs = _logService.GetDisplayLogs();
+            if (updatedLogs != null)
             {
-                DisplayLogs.Add(log);
+                DisplayLogs.Clear();
+                foreach (var log in updatedLogs)
+                {
+                    DisplayLogs.Add(log);
+                }
+            }
+            else
+            {
+                // Handle the case where updated logs are null or empty
+                DisplayLogs.Clear();
+                // Optionally, add a placeholder or log a message
             }
 
-            // Notify the UI that the DisplayLogs collection has been updated
             OnPropertyChanged(nameof(DisplayLogs));
         }
 
@@ -39,61 +61,5 @@ namespace ClientObserver.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        // Add other methods to interact with the log service if necessary
     }
 }
-
-
-
-/*
-using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using ClientObserver.Services;
-
-namespace ClientObserver.ViewModels
-{
-    public class LogViewModel : INotifyPropertyChanged
-    {
-        private LogService _logService;
-        public ObservableCollection<string> DisplayLogs { get; private set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public LogViewModel(LogService logService)
-        {
-            _logService = logService;
-            DisplayLogs = new ObservableCollection<string>();
-
-            // Subscribe to the LogUpdated event
-            _logService.LogUpdated += LogService_LogUpdated;
-            LoadLogs();
-        }
-
-        private void LogService_LogUpdated(object sender, EventArgs e)
-        {
-            // Ensure UI updates happen on the main thread
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                LoadLogs();
-            });
-        }
-
-        private void LoadLogs()
-        {
-            Console.Write($"display logs: {DisplayLogs}");
-            DisplayLogs.Clear();
-            var parsedLogs = _logService.ParseLogs();
-            Console.Write($"Length of parsed logs {parsedLogs.Count}");
-            foreach (var log in parsedLogs)
-            {
-                Console.Write($"Current log entry: {log}");
-                DisplayLogs.Add(log);
-            }
-
-            // Notify the UI that DisplayLogs has been updated
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayLogs)));
-        }
-    }
-}
-*/ 

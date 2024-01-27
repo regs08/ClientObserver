@@ -1,7 +1,7 @@
 ﻿{
   "ServerName": "GrapeModel",
-  "IP": "172.20.10.8",
-  "StreamIP": "172.20.10.8",
+  "IP": "10.0.2.2",
+  "StreamIP": "10.0.2.2",
   "StreamPortNumber": "8000",
   "MqttPortNumber": "1883",
   "SelectedLabels": [ "grape", "trunk" ],

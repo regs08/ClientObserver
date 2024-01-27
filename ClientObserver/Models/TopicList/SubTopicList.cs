@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Class for a MQTT clients subscribe topics 
+
+
+using System;
 namespace ClientObserver.Models.TopicList
 {
     public class SubTopicList : TopicList

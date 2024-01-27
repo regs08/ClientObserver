@@ -1,4 +1,9 @@
-﻿namespace ClientObserver.Models
+﻿// filter model for our logs used to filter out with user selected confidence
+// labels etc ..
+
+//todo implement this properly 
+
+namespace ClientObserver.Models
 {
     public class LogFilterModel
     {

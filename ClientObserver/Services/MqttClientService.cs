@@ -6,7 +6,8 @@ using ClientObserver.Models.MessageEvents;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+// todo when navigating to and from server page the client disconnects and I no longer
+// receiving logs and photos. waiting sometimes helps and other times it reconnects by itself? 
 namespace ClientObserver.Services
 {
     public class MqttClientService

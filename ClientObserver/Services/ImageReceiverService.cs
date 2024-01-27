@@ -26,7 +26,7 @@ namespace ClientObserver.Services
             private void OnMqttImageReceived(object sender, ImageMessageEventArgs e)
             {
                 // Since imageData is already a JPEG byte array, just create an ImageSource from it
-                ImageSource imageData = ConvertToImageSource(e.ImageData);
+                ImageSource imageData = ConvertToImageSource(e.Data);
                 // Add the latest image to the start of the list
                 _receivedImages.Insert(0, imageData);
                 TimeOfMostRecentPicture = DateTime.UtcNow; // Using UTC time to avoid timezone issues
@@ -37,7 +37,7 @@ namespace ClientObserver.Services
                     _receivedImages.RemoveAt(_receivedImages.Count - 1);
                 }
 
-                ImagesUpdated?.Invoke(this, new ImageMessageEventArgs(e.ImageData));
+                ImagesUpdated?.Invoke(this, new ImageMessageEventArgs(e.Data));
             }
             private ImageSource ConvertToImageSource(byte[] imageData)
             {
@@ -46,7 +46,7 @@ namespace ClientObserver.Services
 
             private void OnMqttTestImageReceived(object sender, ImageMessageEventArgs e)
             {
-                _receviedTestImage = ConvertToImageSource(e.ImageData);
+                _receviedTestImage = ConvertToImageSource(e.Data);
             }
         }
 

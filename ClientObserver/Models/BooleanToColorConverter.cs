@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Class that should be working to change color of buttons to show connectivity
+// todo figure out why this stopped working 
+
+using System;
 using System.Globalization;
 namespace ClientObserver.Models
 {
