@@ -14,6 +14,4 @@ namespace ClientObserver
             BindingContext = new MainPageViewModel();
         }
         }
-    }
-
-
+}
