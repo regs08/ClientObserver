@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ClientObserver.Models.Configs;
 using ClientObserver.Models.TopicList;
 namespace ClientObserver
 {
@@ -21,11 +22,11 @@ namespace ClientObserver
         public bool CleanSession { get; private set; }
         public int KeepAlivePeriod { get; private set; }
 
-        public MqttClientModel(ServerConfig config)
+        public MqttClientModel(MqttClientConfig config)
         {
             // Extract information from ServerConfig
-            BrokerAddress = config.IP;
-            BrokerPort = int.Parse(config.MqttPortNumber); 
+            BrokerAddress = config.BrokerAddress;
+            BrokerPort = int.Parse(config.PortNumber); 
             SubscriptionTopics = config.SubscriptionTopics;
             PubTopics = config.PublishTopics;
 

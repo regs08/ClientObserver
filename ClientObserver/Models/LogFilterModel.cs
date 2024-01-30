@@ -2,16 +2,16 @@
 // labels etc ..
 
 //todo implement this properly 
-
+using ClientObserver.Models.Configs;
 namespace ClientObserver.Models
 {
     public class LogFilterModel
     {
-        private ServerConfig _config;
+        private ModelParamConfig _config;
         public List<string> SelectedLabels;
         public double ConfidenceThreshold;
 
-        public LogFilterModel(ServerConfig config)
+        public LogFilterModel(ModelParamConfig config)
         {
             _config = config;
             SelectedLabels = _config.SelectedLabels;
