@@ -7,12 +7,12 @@ namespace ClientObserver.Services
     public class VideoStreamService
     {
         private bool _isConnected;
-        private readonly string _streamUrl;
+        private readonly Uri _streamUrl;
         private readonly HttpClient _httpClient;
 
         public bool IsConnected => _isConnected;
 
-        public VideoStreamService(string streamUrl)
+        public VideoStreamService(Uri streamUrl)
         {
             _streamUrl = streamUrl;
             _httpClient = new HttpClient();
@@ -41,7 +41,7 @@ namespace ClientObserver.Services
             return Task.CompletedTask;
         }
 
-        public string GetStreamUrl()
+        public Uri GetStreamUrl()
         {
             return _isConnected ? _streamUrl : null;
         }

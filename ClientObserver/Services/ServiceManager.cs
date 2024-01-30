@@ -16,9 +16,11 @@ namespace ClientObserver.Services
         }
         private void GetServicesFromConfig()
         {
-            MqttService = new MqttClientService(Config);
+            MqttService = new MqttClientService(Config.MqttClientConfig);
+            // todo update the constructor for log service to not take the mqtt service 
             LogService = new LogService(MqttService);
-            VideoStreamService = new VideoStreamService(Config.VideoStreamUrl);
+             
+            VideoStreamService = new VideoStreamService(Config.VideoStreamConfig.VideoStreamUri);
             ImageReceiverService = new ImageReceiverService(MqttService);
         }
 

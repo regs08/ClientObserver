@@ -36,20 +36,20 @@ namespace ClientObserver.Services
         // Aggregates data from the available server configs 
         private void AggregateData()
         {
-            AvailableIPs = _severConfigs?.Select(c => c.IP).Distinct().ToList() ?? new List<string>();
-            AvailableStreamIPs = _severConfigs?.Select(c => c.StreamIP).Distinct().ToList() ?? new List<string>();
+            AvailableIPs = _severConfigs?.Select(c => c.MqttClientConfig.BrokerAddress).Distinct().ToList() ?? new List<string>();
+            AvailableMqttPortNumbers = _severConfigs?.Select(c => c.MqttClientConfig.PortNumber).Distinct().ToList() ?? new List<string>();
+            AvailableStreamIPs = _severConfigs?.Select(c => c.VideoStreamConfig.StreamIP).Distinct().ToList() ?? new List<string>();
             AvailableServerNames = _severConfigs?.Select(c => c.ServerName).Distinct().ToList() ?? new List<string>();
-            AvailableStreamPortNumbers = _severConfigs?.Select(c => c.StreamPortNumber).Distinct().ToList() ?? new List<string>();
-            AvailableMqttPortNumbers = _severConfigs?.Select(c => c.MqttPortNumber).Distinct().ToList() ?? new List<string>();
-            AvailableLabels = _severConfigs?.SelectMany(c => c.AvailableLabels ?? new List<string>()).Distinct().ToList() ?? new List<string>();
-            AvailableConfidenceThresholds = _severConfigs?.Select(c => c.ConfidenceThreshold).Distinct().ToList() ?? new List<double>();
+            AvailableStreamPortNumbers = _severConfigs?.Select(c => c.VideoStreamConfig.StreamPortNumber).Distinct().ToList() ?? new List<string>();
+            AvailableLabels = _severConfigs?.SelectMany(c => c.ModelParamConfig.AvailableLabels ?? new List<string>()).Distinct().ToList() ?? new List<string>();
+            AvailableConfidenceThresholds = _severConfigs?.Select(c => c.ModelParamConfig.ConfidenceThreshold).Distinct().ToList() ?? new List<double>();
 
             AvailableSubTopics = new SubTopicList();
             AvailablePubTopics = new PubTopicList();
 
             var allUniqueSubTopics = _severConfigs?
-                .Where(config => config.SubscriptionTopics != null)
-                .SelectMany(config => config.SubscriptionTopics.Topics)
+                .Where(config => config.MqttClientConfig.SubscriptionTopics != null)
+                .SelectMany(config => config.MqttClientConfig.SubscriptionTopics.Topics)
                 .Distinct()
                 .ToList();
 
@@ -65,8 +65,8 @@ namespace ClientObserver.Services
 
 
             var allUniquePubTopics = _severConfigs?
-                .Where(config => config.PublishTopics != null)
-                .SelectMany(config => config.PublishTopics.Topics)
+                .Where(config => config.MqttClientConfig.PublishTopics != null)
+                .SelectMany(config => config.MqttClientConfig.PublishTopics.Topics)
                 .Distinct()
                 .ToList();
 

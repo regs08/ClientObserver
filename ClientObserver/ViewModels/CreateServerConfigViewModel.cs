@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using ClientObserver.Models;
+using ClientObserver.Models.Configs;
 using ClientObserver.Models.TopicList;
 using ClientObserver.Services;
 
@@ -272,20 +272,35 @@ public class UserEntry : INotifyPropertyChanged
 
         public ServerConfig CreateServerConfig()
         {
-            return new ServerConfig
+            // Create an instance of MqttClientConfig
+            var mqttClientConfig = new MqttClientConfig
             {
-                ServerName = _selectedServerName,
-                IP = _selectedIP,
-                StreamIP = _selectedStreamIP,
-                StreamPortNumber = _selectedStreamPortNumber,
-                MqttPortNumber = _selectedMqttPortNumber,
-                SelectedLabels = new List<string>(_selectedLabels),
-                AvailableLabels = new List<string>(_selectedLabels),
+                BrokerAddress = _selectedIP,
+                PortNumber = _selectedMqttPortNumber,
                 SubscriptionTopics = new SubTopicList { Topics = new ObservableCollection<string>(_selectedSubTopics) },
-                PublishTopics = new PubTopicList { Topics = new ObservableCollection<string>(_selectedPubTopics) },
+                PublishTopics = new PubTopicList { Topics = new ObservableCollection<string>(_selectedPubTopics) }
+            };
+
+            // Create an instance of VideoStreamConfig
+            var videoStreamConfig = new VideoStreamConfig
+            {
+                StreamIP = _selectedStreamIP,
+                StreamPortNumber = _selectedStreamPortNumber
+            };
+
+            // Create an instance of ModelParamConfig
+            var modelParamConfig = new ModelParamConfig
+            {
+                SelectedLabels = new List<string>(_selectedLabels),
+                AvailableLabels = new List<string>(_selectedLabels), // Assuming this is correct, though you might need a different source for AvailableLabels
                 ConfidenceThreshold = _selectedConfThreshold
             };
+
+            // Create and return the ServerConfig instance
+            return new ServerConfig(_selectedServerName, mqttClientConfig, videoStreamConfig, modelParamConfig);
+
         }
+
     }
 
 }

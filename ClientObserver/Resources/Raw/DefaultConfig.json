@@ -1,16 +1,22 @@
 ﻿{
   "ServerName": "DefaultServer",
-  "IP": "192.168.0.69",
-  "StreamIP": "192.168.0.69",
-  "StreamPortNumber": "8000",
-  "MqttPortNumber": "1883",
-  "SelectedLabels": [ "person", "couch", "dog" ],
-  "AvailableLabels": [ "person", "couch", "dog", "cellphone" ],
-  "SubscriptionTopics": {
-    "Topics": [ "vehicle/detections", "vehicle/image", "test/pong", "test/image", "test/config" ]
+  "VideoStreamConfig": {
+    "StreamIP": "192.168.0.69",
+    "StreamPortNumber": "8000"
   },
-  "PublishTopics": {
-    "Topics": [ "test/ping" ]
+  "MqttClientConfig": {
+    "BrokerAddress": "192.168.0.69",
+    "PortNumber": "1883",
+    "SubscriptionTopics": {
+      "Topics": [ "vehicle/detections", "vehicle/image", "test/pong", "test/image", "test/config" ]
+    },
+    "PublishTopics": {
+      "Topics": [ "test/ping" ]
+    }
   },
-  "ConfidenceThreshold": 0.2
+  "ModelParamConfig": {
+    "SelectedLabels": [ "person", "couch", "dog" ],
+    "AvailableLabels": [ "person", "couch", "dog", "cellphone" ],
+    "ConfidenceThreshold": 0.2
+  }
 }

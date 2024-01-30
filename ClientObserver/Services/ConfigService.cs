@@ -60,7 +60,7 @@ namespace ClientObserver
             // Logic to load configs from local files
             // Example: Reading JSON files from a local directory
             // List of file names in the Resources/ Raw folder
-            var fileNames = new List<string> { "DefaultConfig.json", "GrapeModelConfig.json" };
+            var fileNames = new List<string> { "DefaultConfig.json" }; //  "GrapeModelConfig.json" };
 
             foreach (var fileName in fileNames)
             {
@@ -71,6 +71,10 @@ namespace ClientObserver
                     {
                         var jsonContent = await reader.ReadToEndAsync();
                         ServerConfig serverConfig = JsonSerializer.Deserialize<ServerConfig>(jsonContent);
+                        if (serverConfig.VerifyConfigurations == null)
+                        {
+                            Console.WriteLine("SDFJNLAJSFNALNSDJN");
+                        }
                         if (serverConfig != null)
                         {
                             AddToAvailableConfigs(serverConfig);

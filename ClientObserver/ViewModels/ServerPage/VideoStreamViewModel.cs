@@ -53,7 +53,8 @@ namespace ClientObserver.ViewModels
                 if (string.IsNullOrEmpty(VideoUrl))
                 {
                     // If not currently viewing, start viewing the stream
-                    VideoUrl = _videoStreamService.GetStreamUrl();
+                    // Convert the Uri to a string
+                    VideoUrl = _videoStreamService.GetStreamUrl().ToString();
                 }
                 else
                 {
