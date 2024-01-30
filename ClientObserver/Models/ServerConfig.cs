@@ -3,32 +3,72 @@
 using System;
 using Microsoft.Maui.Controls;
 using ClientObserver.Models.TopicList;
-// todo use Uri obecjt for videoIp address 
+using ClientObserver.Models.Configs;
+
 namespace ClientObserver
 {
     public class ServerConfig
     {
         public string ServerName { get; set; }
-        public string IP { get; set; }
-        public string StreamIP { get; set; }
-        public string StreamPortNumber { get; set; }
-        public string MqttPortNumber { get; set; }
-        public List <string> SelectedLabels { get; set;}
-        public List <string> AvailableLabels { get; set; }
-        public SubTopicList SubscriptionTopics { get; set; }
-        public PubTopicList PublishTopics { get; set; }
-        public double ConfidenceThreshold { get; set;}
 
-        public string VideoStreamUrl
+        public MqttClientConfig MqttClientConfig { get; set; }
+        public VideoStreamConfig VideoStreamConfig { get; set; }
+        public ModelParamConfig ModelParamConfig { get; set; }
+
+
+        public ServerConfig(string serverName, MqttClientConfig mqttClientConfig, VideoStreamConfig videoStreamConfig, ModelParamConfig modelParamConfig)
         {
-            get
-            {
-                return $"http://{StreamIP}:{StreamPortNumber}/video";
-            }
+            ServerName = serverName;
+            MqttClientConfig = mqttClientConfig;
+            VideoStreamConfig = videoStreamConfig;
+            ModelParamConfig = modelParamConfig;
         }
+        public string VerifyConfigurations()
+        {
+            if (MqttClientConfig == null)
+            {
+                return "MqttClientConfig is not set.";
+            }
+            else
+            {
+                string mqttConfigNullProperty = MqttClientConfig.NullProperties();
+                if (!string.IsNullOrEmpty(mqttConfigNullProperty))
+                {
+                    return $"MqttClientConfig: {mqttConfigNullProperty} is not set.";
+                }
+            }
 
+            if (VideoStreamConfig == null)
+            {
+                return "VideoStreamConfig is not set.";
+            }
+            else
+            {
+                string videoConfigNullProperty = VideoStreamConfig.NullProperties();
+                if (!string.IsNullOrEmpty(videoConfigNullProperty))
+                {
+                    return $"VideoStreamConfig: {videoConfigNullProperty} is not set.";
+                }
+            }
 
-        public string FormattedDisplay
+            if (ModelParamConfig == null)
+            {
+                return "ModelParamConfig is not set.";
+            }
+            else
+            {
+                string modelConfigNullProperty = ModelParamConfig.NullProperties();
+                if (!string.IsNullOrEmpty(modelConfigNullProperty))
+                {
+                    return $"ModelParamConfig: {modelConfigNullProperty} is not set.";
+                }
+            }
+
+            // If all configurations are complete
+            return null;
+        }
+    
+    public string FormattedDisplay
         {
             get
             {
@@ -38,50 +78,50 @@ namespace ClientObserver
         public string FormatForDisplay()
         {
             return $"Server Name: {ServerName}\n" +
-                   $"IP Address: {IP}\n" +
-                   $"Stream IP Address: {StreamIP}\n" +
-                   $"MQTT Port Number: {MqttPortNumber}\n" +
-                   $"Video Stream Port Number: {StreamPortNumber}\n" +
-                   $"Selected Labels: {string.Join(", ", SelectedLabels)}\n" +
-                   $"Available Labels: {string.Join(", ", AvailableLabels)}\n" +
-                   $"Subscription Topics: {SubscriptionTopics.ToString()}\n" +
-                   $"Pub Topics: {PublishTopics.ToString()}\n" +
-                   $"Confidence Threshold: {ConfidenceThreshold}";
+                   $"BrokerAddress Address: {MqttClientConfig.BrokerAddress}\n" +
+                   $"MQTT Port Number: {MqttClientConfig.PortNumber}\n" +
+                   $"Subscription Topics: {MqttClientConfig.SubscriptionTopics}\n" +
+                   $"Pub Topics: {MqttClientConfig.PublishTopics}\n" +
+                   $"Stream IP Address: {VideoStreamConfig.StreamIP}\n" +
+                   $"Video Stream Port Number: {VideoStreamConfig.StreamPortNumber}\n" +
+                   $"Selected Labels: {string.Join(", ", ModelParamConfig.SelectedLabels)}\n" +
+                   $"Available Labels: {string.Join(", ", ModelParamConfig.AvailableLabels)}\n" +
+                   $"Confidence Threshold: {ModelParamConfig.ConfidenceThreshold}";
         }
         public bool IsValid()
         {
             // Validate string properties
             if (string.IsNullOrWhiteSpace(ServerName) ||
-                string.IsNullOrWhiteSpace(IP) ||
-                string.IsNullOrWhiteSpace(StreamIP) ||
-                string.IsNullOrWhiteSpace(StreamPortNumber) ||
-                string.IsNullOrWhiteSpace(MqttPortNumber))
+                string.IsNullOrWhiteSpace(MqttClientConfig.BrokerAddress) ||
+                string.IsNullOrWhiteSpace(VideoStreamConfig.StreamIP) ||
+                string.IsNullOrWhiteSpace(VideoStreamConfig.StreamPortNumber) ||
+                string.IsNullOrWhiteSpace(MqttClientConfig.PortNumber))
             {
                 return false;
             }
 
             // Validate port numbers as positive integers
-            if (!IsPositiveInteger(StreamPortNumber) || !IsPositiveInteger(MqttPortNumber))
+            if (!IsPositiveInteger(VideoStreamConfig.StreamPortNumber) || !IsPositiveInteger(MqttClientConfig.PortNumber))
             {
                 return false;
             }
 
             // Validate lists
-            if (SelectedLabels == null || !SelectedLabels.Any() ||
-                AvailableLabels == null || !AvailableLabels.Any())
+            if (ModelParamConfig.SelectedLabels == null || !ModelParamConfig.SelectedLabels.Any() ||
+                ModelParamConfig.AvailableLabels == null || !ModelParamConfig.AvailableLabels.Any())
             {
                 return false;
             }
 
             // Validate topic lists
-            if (SubscriptionTopics == null || SubscriptionTopics.Topics == null || !SubscriptionTopics.Topics.Any() ||
-                PublishTopics == null || PublishTopics.Topics == null || !PublishTopics.Topics.Any())
+            if (MqttClientConfig.SubscriptionTopics == null || MqttClientConfig.SubscriptionTopics.Topics == null || !MqttClientConfig.SubscriptionTopics.Topics.Any() ||
+                MqttClientConfig.PublishTopics == null || MqttClientConfig.PublishTopics.Topics == null || !MqttClientConfig.PublishTopics.Topics.Any())
             {
                 return false;
             }
 
             // Validate numeric values
-            if (ConfidenceThreshold < 0)
+            if (ModelParamConfig.ConfidenceThreshold < 0)
             {
                 return false;
             }
