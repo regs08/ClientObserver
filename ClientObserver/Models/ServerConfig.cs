@@ -1,20 +1,41 @@
 ﻿// config for connencting to our 'server' 
-// todo break this up into mqtt config, video stream config, and detection config 
-using System;
-using Microsoft.Maui.Controls;
-using ClientObserver.Models.TopicList;
+
 using ClientObserver.Models.Configs;
 
 namespace ClientObserver
 {
     public class ServerConfig
     {
+        /// <summary>
+        /// Configuration settings for connecting to a server with various components like MQTT, video streaming, and model parameters.
+        /// </summary>
+        /// <summary>
+        /// Name of the server.
+        /// </summary>
         public string ServerName { get; set; }
 
+        /// <summary>
+        /// Configuration settings for the MQTT client.
+        /// </summary>
         public MqttClientConfig MqttClientConfig { get; set; }
+
+        /// <summary>
+        /// Configuration settings for the video stream.
+        /// </summary>
         public VideoStreamConfig VideoStreamConfig { get; set; }
+
+        /// <summary>
+        /// Configuration settings for model parameters.
+        /// </summary>
         public ModelParamConfig ModelParamConfig { get; set; }
 
+        /// <summary>
+        /// Constructor to initialize the ServerConfig with specific configurations.
+        /// </summary>
+        /// <param name="serverName">Name of the server.</param>
+        /// <param name="mqttClientConfig">MQTT client configuration.</param>
+        /// <param name="videoStreamConfig">Video stream configuration.</param>
+        /// <param name="modelParamConfig">Model parameters configuration.</param>
 
         public ServerConfig(string serverName, MqttClientConfig mqttClientConfig, VideoStreamConfig videoStreamConfig, ModelParamConfig modelParamConfig)
         {
@@ -23,6 +44,10 @@ namespace ClientObserver
             VideoStreamConfig = videoStreamConfig;
             ModelParamConfig = modelParamConfig;
         }
+        /// <summary>
+        /// Verifies if all configurations are properly set.
+        /// </summary>
+        /// <returns>A string indicating which configuration is not set, or null if all are set.</returns>
         public string VerifyConfigurations()
         {
             if (MqttClientConfig == null)
@@ -67,8 +92,10 @@ namespace ClientObserver
             // If all configurations are complete
             return null;
         }
-    
-    public string FormattedDisplay
+        /// <summary>
+        /// Gets a formatted string displaying the configuration details.
+        /// </summary>
+        public string FormattedDisplay
         {
             get
             {
@@ -88,6 +115,11 @@ namespace ClientObserver
                    $"Available Labels: {string.Join(", ", ModelParamConfig.AvailableLabels)}\n" +
                    $"Confidence Threshold: {ModelParamConfig.ConfidenceThreshold}";
         }
+
+        /// <summary>
+        /// Validates the ServerConfig object to ensure all configurations are valid.
+        /// </summary>
+        /// <returns>True if the configuration is valid, otherwise false.</returns>
         public bool IsValid()
         {
             // Validate string properties
@@ -128,7 +160,11 @@ namespace ClientObserver
 
             return true;
         }
-
+        /// <summary>
+        /// Checks if a given string represents a positive integer.
+        /// </summary>
+        /// <param name="value">The string to check.</param>
+        /// <returns>True if the string is a positive integer, otherwise false.</returns>
         private bool IsPositiveInteger(string value)
         {
             return int.TryParse(value, out int result) && result > 0;
