@@ -1,20 +1,21 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
 using System.Text;
-using ClientObserver.Models;
+using ClientObserver.Models.Configs;
 using ClientObserver.Models.MessageEvents;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 // todo when navigating to and from server page the client disconnects and I no longer
-// receiving logs and photos. waiting sometimes helps and other times it reconnects by itself? 
+// receiving logs and photos. waiting sometimes helps and other times it reconnects by itself?
+//todo update how we classify mqtt messages 
 namespace ClientObserver.Services
 {
     public class MqttClientService
     {
         private IMqttClient _mqttClient;
         private MqttClientModel _mqttClientModel;
-        public ServerConfig Config;
+        public MqttClientConfig Config;
 
 
         public event EventHandler<ImageMessageEventArgs> ImageReceived;
@@ -23,7 +24,7 @@ namespace ClientObserver.Services
         public event EventHandler<TextMessageEventArgs> PongReceived;
         public event EventHandler<LogMessageEventArgs> LogReceived;
 
-        public MqttClientService(ServerConfig config)
+        public MqttClientService(MqttClientConfig config)
         {
             Config = config;
             var factory = new MqttFactory();
@@ -111,7 +112,10 @@ namespace ClientObserver.Services
 
             return await _mqttClient.PublishAsync(message);
         }
-
+        // i think all messages should be sent as 'logs'
+        // before categorizing the message into text, log, image we should first parse it. get relevent info from the
+        // payload being sent e.g type
+        // need to look into if this is better? too many messages coming in on the same topic? 
         private void OnMqttMessageReceived(object sender, MqttMessageEventArgs e)
         {
             Console.WriteLine($"Message received on topic {e.Topic}");
