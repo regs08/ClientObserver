@@ -1,5 +1,5 @@
 ﻿//format for the log format. note must be identical to expected log from the server 
-
+//todo maybe create msg id for easy pairing with photos.
 using System;
 using Newtonsoft.Json.Linq;
 
