@@ -42,13 +42,10 @@ namespace ClientObserver.Services
             byte[] payload = e.ApplicationMessage.PayloadSegment.ToArray();
 
             OnMqttMessageReceived(this, new MqttMessageEventArgs(topic, payload));
-            Task.CompletedTask;
 
         }
-
-
         public async Task ConnectAsync()
-        {
+        { 
             if (_mqttClient.IsConnected)
             {
                 Console.WriteLine("Client already connected");
@@ -116,7 +113,8 @@ namespace ClientObserver.Services
         // i think all messages should be sent as 'logs'
         // before categorizing the message into text, log, image we should first parse it. get relevent info from the
         // payload being sent e.g type
-        // need to look into if this is better? too many messages coming in on the same topic? 
+        // need to look into if this is better? too many messages coming in on the same topic?
+
         private void OnMqttMessageReceived(object sender, MqttMessageEventArgs e)
         {
             Console.WriteLine($"Message received on topic {e.Topic}");
@@ -151,11 +149,8 @@ namespace ClientObserver.Services
                 // Handle as regular text message if array is empty
                 TextReceived?.Invoke(this, new TextMessageEventArgs(messagePayload));
             }
-            
+
         }
-
-
-
     }
 
 }
