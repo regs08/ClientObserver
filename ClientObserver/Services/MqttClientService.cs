@@ -39,10 +39,11 @@ namespace ClientObserver.Services
         private async Task HandleReceivedApplicationMessage(MqttApplicationMessageReceivedEventArgs e)
         {
             string topic = e.ApplicationMessage.Topic;
-            // Use PayloadSegment instead of Payload
             byte[] payload = e.ApplicationMessage.PayloadSegment.ToArray();
 
-             OnMqttMessageReceived(this, new MqttMessageEventArgs(topic, payload));
+            OnMqttMessageReceived(this, new MqttMessageEventArgs(topic, payload));
+            Task.CompletedTask;
+
         }
 
 

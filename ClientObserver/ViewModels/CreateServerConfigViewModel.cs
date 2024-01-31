@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ClientObserver.Models.Configs;
 using ClientObserver.Models.TopicList;
 using ClientObserver.Services;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ClientObserver.ViewModels
 {
@@ -69,7 +70,7 @@ namespace ClientObserver.ViewModels
             if (config.IsValid())
             {
                 Console.Write(config.FormattedDisplay);
-                MessagingCenter.Send(this, "UpdateAvailableConfigs", config);
+                WeakReferenceMessenger.Default.Send(new UpdateServerConfigMessage(config));
             }
             // Here you can add logic to handle the newly created config, like adding it to a list, etc.
         }

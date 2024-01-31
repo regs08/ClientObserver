@@ -71,10 +71,6 @@ namespace ClientObserver
                     {
                         var jsonContent = await reader.ReadToEndAsync();
                         ServerConfig serverConfig = JsonSerializer.Deserialize<ServerConfig>(jsonContent);
-                        if (serverConfig.VerifyConfigurations == null)
-                        {
-                            Console.WriteLine("SDFJNLAJSFNALNSDJN");
-                        }
                         if (serverConfig != null)
                         {
                             AddToAvailableConfigs(serverConfig);

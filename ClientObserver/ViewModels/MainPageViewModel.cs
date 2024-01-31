@@ -1,9 +1,9 @@
-﻿using Microsoft.Maui.Controls;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ClientObserver.Views;
 using ClientObserver.Services;
+using ClientObserver.ViewModels;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ClientObserver.ViewModels
 {
@@ -21,10 +21,16 @@ namespace ClientObserver.ViewModels
         {
             LoadConfigCommand = new Command(async () => await NavigateToConfigView());
             configService = new ConfigService();
-            MessagingCenter.Subscribe<ServerConfigViewModel, ServerConfig>(this, "UpdateSelectedConfigs", (sender, config) =>
+            // Subscribe
+            WeakReferenceMessenger.Default.Register<UpdateServerConfigMessage>(this, (recipient, message) =>
             {
-                UpdateSelectedConfigs(config);
+                UpdateSelectedConfigs(message.NewConfig);
             });
+            /* MessagingCenter.Subscribe<ServerConfigViewModel, ServerConfig>(this, "UpdateSelectedConfigs", (sender, config) =>
+             {
+                 UpdateSelectedConfigs(config);
+             });
+            */
         }
 
         private void UpdateSelectedConfigs(ServerConfig config)
@@ -69,7 +75,5 @@ namespace ClientObserver.ViewModels
             var configPage = new ServerConfigView(configService);
             await Shell.Current.Navigation.PushAsync(configPage);
         }
-
-
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ClientObserver.ViewModels;
 using ClientObserver.Views;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace ClientObserver
 {
@@ -27,11 +28,18 @@ namespace ClientObserver
                 AvailableConfigs = _configService.AvailableConfigs;
                 SelectedConfigs = _configService.SelectedConfigs;
                 CreateConfigCommand = new Command(async () => await NavigateToConfigCreationView());
-
+                /*
                 MessagingCenter.Subscribe<CreateServerConfigViewModel, ServerConfig>(this, "UpdateAvailableConfigs", (sender, config) =>
                 {
                     UpdateAvailableConfigs(config);
                     MessagingCenter.Send(this, "RefreshUI");
+                });
+                */
+
+                // Subscribe
+                WeakReferenceMessenger.Default.Register<UpdateServerConfigMessage>(this, (recipient, message) =>
+                {
+                    UpdateAvailableConfigs(message.NewConfig);
                 });
 
             }
@@ -48,12 +56,14 @@ namespace ClientObserver
             {
                 _configService.AddToSelectedConfigs(config);
                 // Notify MainPageViewModel that SelectedConfigs has been updated
-                MessagingCenter.Send(this, "UpdateSelectedConfigs", config);
+                //MessagingCenter.Send(this, "UpdateSelectedConfigs", config);
+                WeakReferenceMessenger.Default.Send(new UpdateServerConfigMessage(config));
+
             }
         }
         private void UpdateAvailableConfigs(ServerConfig config)
         {
-            Console.Write($"Messahe to update config received{config.FormattedDisplay} {AvailableConfigs}");
+            Console.Write($"Message to update config received{config.FormattedDisplay} {AvailableConfigs}");
             var existingConfig = AvailableConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);
             if (existingConfig != null)
             {
@@ -62,7 +72,9 @@ namespace ClientObserver
             AvailableConfigs.Add(config);
 
             // Notify UI to refresh
-            MessagingCenter.Send(this, "RefreshUI");
+            //MessagingCenter.Send(this, "RefreshUI");
+            WeakReferenceMessenger.Default.Send(new RefreshUIMessage());
+
         }
         private async Task NavigateToConfigCreationView()
         {
