@@ -1,12 +1,22 @@
 ﻿using System.ComponentModel;
 using ClientObserver.Services;
-using ClientObserver.ViewModels;
-namespace ClientObserver.Views
+using ClientObserver.Views;
+using System.Threading.Tasks;
+
+namespace ClientObserver.ViewModels
 {
     public class ServerPageViewModel : INotifyPropertyChanged
     {
+        // Server configuration used throughout the application
         private ServerConfig _serverConfig;
+        private LogService _logService;
+        private VideoStreamService _videoStreamService;
+        private ImageReceiverService _imageReceiverService;
+
+        // MQTT client service for MQTT communication
         private MqttClientService _mqttClientService;
+
+        // Property for server configuration
         public ServerConfig ServerConfig
         {
             get => _serverConfig;
@@ -16,6 +26,8 @@ namespace ClientObserver.Views
                 OnPropertyChanged(nameof(ServerConfig));
             }
         }
+
+        // Property for MQTT client service
         public MqttClientService MqttClientService
         {
             get => _mqttClientService;
@@ -26,48 +38,53 @@ namespace ClientObserver.Views
             }
         }
 
+        // Constructor initializes the ViewModel with services from ServiceManager
         public ServerPageViewModel(ServiceManager serviceManager)
         {
             ServerConfig = serviceManager.Config;
             MqttClientService = serviceManager.MqttService;
+
+            // Other services initialized from the service manager
             _logService = serviceManager.LogService;
             _videoStreamService = serviceManager.VideoStreamService;
             _imageReceiverService = serviceManager.ImageReceiverService;
         }
-        // update to the property change, its needed to update the UI in rreal time 
-        private LogService _logService;
-        private VideoStreamService _videoStreamService;
-        private ImageReceiverService _imageReceiverService;
 
+        // Commands for navigation to different views
         public Command NavigateToMQTTCommand => new Command(async () => await NavigateToMQTT());
         public Command NavigateToLogViewCommand => new Command(async () => await NavigateToLogView());
         public Command NavigateToPhotoViewCommand => new Command(async () => await NavigateToPhotoView());
         public Command NavigateToStreamViewCommand => new Command(async () => await NavigateToStreamView());
 
-
+        // Method for navigating to the MQTT connection view
         private async Task NavigateToMQTT()
         {
-            var mqttPage = new MqttConnectionView(_mqttClientService); 
+            var mqttPage = new MqttConnectionView(_mqttClientService);
             await Shell.Current.Navigation.PushAsync(mqttPage);
         }
+
+        // Method for navigating to the log view
         private async Task NavigateToLogView()
         {
-            // look into creating logService as class param or here
             var logPage = new LogView(_logService);
             await Shell.Current.Navigation.PushAsync(logPage);
         }
+
+        // Method for navigating to the photo view
         private async Task NavigateToPhotoView()
         {
             var photoPage = new PhotoView(_imageReceiverService);
             await Shell.Current.Navigation.PushAsync(photoPage);
         }
+
+        // Method for navigating to the video stream view
         private async Task NavigateToStreamView()
         {
             var viewModel = new VideoStreamViewModel(_videoStreamService);
             await Shell.Current.Navigation.PushAsync(new VideoStreamView(viewModel));
-
         }
-        // Implement INotifyPropertyChanged
+
+        // Implementation of INotifyPropertyChanged to update the UI on property changes
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

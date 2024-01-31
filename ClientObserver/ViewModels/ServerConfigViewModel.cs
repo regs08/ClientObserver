@@ -5,6 +5,7 @@ using ClientObserver.ViewModels;
 using ClientObserver.Views;
 using CommunityToolkit.Mvvm.Messaging;
 
+// Logic responsible for updating selected servers and showing availible ones. 
 namespace ClientObserver
 {
     public class ServerConfigViewModel
@@ -28,13 +29,7 @@ namespace ClientObserver
                 AvailableConfigs = _configService.AvailableConfigs;
                 SelectedConfigs = _configService.SelectedConfigs;
                 CreateConfigCommand = new Command(async () => await NavigateToConfigCreationView());
-                /*
-                MessagingCenter.Subscribe<CreateServerConfigViewModel, ServerConfig>(this, "UpdateAvailableConfigs", (sender, config) =>
-                {
-                    UpdateAvailableConfigs(config);
-                    MessagingCenter.Send(this, "RefreshUI");
-                });
-                */
+
 
                 // Subscribe
                 WeakReferenceMessenger.Default.Register<UpdateServerConfigMessage>(this, (recipient, message) =>
@@ -55,8 +50,6 @@ namespace ClientObserver
             if (config != null && !SelectedConfigs.Contains(config))
             {
                 _configService.AddToSelectedConfigs(config);
-                // Notify MainPageViewModel that SelectedConfigs has been updated
-                //MessagingCenter.Send(this, "UpdateSelectedConfigs", config);
                 WeakReferenceMessenger.Default.Send(new UpdateServerConfigMessage(config));
 
             }
@@ -72,7 +65,6 @@ namespace ClientObserver
             AvailableConfigs.Add(config);
 
             // Notify UI to refresh
-            //MessagingCenter.Send(this, "RefreshUI");
             WeakReferenceMessenger.Default.Send(new RefreshUIMessage());
 
         }
