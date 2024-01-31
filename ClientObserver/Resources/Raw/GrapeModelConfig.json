@@ -1,16 +1,22 @@
 ﻿{
-  "ServerName": "GrapeModel",
-  "IP": "10.0.2.2",
-  "StreamIP": "10.0.2.2",
-  "StreamPortNumber": "8000",
-  "MqttPortNumber": "1883",
-  "SelectedLabels": [ "grape", "trunk" ],
-  "AvailableLabels": [ "grape", "trunk" ],
-  "SubscriptionTopics": {
-    "Topics": [ "vehicle/detections", "vehicle/image", "test/pong", "test/image", "test/config" ]
+  "ServerName": "LocalAddress",
+  "VideoStreamConfig": {
+    "StreamIP": "10.0.2.2",
+    "StreamPortNumber": "8000"
   },
-  "PublishTopics": {
-    "Topics": [ "test/ping" ]
+  "MqttClientConfig": {
+    "BrokerAddress": "10.0.2.2",
+    "PortNumber": "1883",
+    "SubscriptionTopics": {
+      "Topics": [ "vehicle/detections", "vehicle/image", "test/pong", "test/image", "test/config" ]
+    },
+    "PublishTopics": {
+      "Topics": [ "test/ping" ]
+    }
   },
-  "ConfidenceThreshold": 0.4
+  "ModelParamConfig": {
+    "SelectedLabels": [ "person", "couch", "dog", "grape", "trunk" ],
+    "AvailableLabels": [ "person", "couch", "dog", "cellphone", "grape", "trunk" ],
+    "ConfidenceThreshold": 0.2
+  }
 }
