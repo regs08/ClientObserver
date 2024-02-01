@@ -13,13 +13,13 @@ namespace ClientObserver
         private ConfigService _configService;
 
         // Holds the list of available server configurations
-        public ObservableCollection<ServerConfig> AvailableConfigs { get; private set; }
+        public ObservableCollection<ConfigController> AvailableConfigs { get; private set; }
 
         // Command to navigate to the configuration creation view
         public ICommand CreateConfigCommand { get; private set; }
 
         // Holds the list of user-selected server configurations
-        public ObservableCollection<ServerConfig> SelectedConfigs { get; private set; }
+        public ObservableCollection<ConfigController> SelectedConfigs { get; private set; }
 
         // Constructor initializes the ViewModel with a configuration service
         public ServerConfigViewModel(ConfigService configService)
@@ -53,7 +53,7 @@ namespace ClientObserver
         }
 
         // Adds a configuration to the list of selected configurations if it's not already selected
-        public void AddToSelectedConfigs(ServerConfig config)
+        public void AddToSelectedConfigs(ConfigController config)
         {
             if (config != null && !SelectedConfigs.Contains(config))
             {
@@ -64,7 +64,7 @@ namespace ClientObserver
         }
 
         // Updates the list of available configurations with new or updated configurations
-        private void UpdateAvailableConfigs(ServerConfig config)
+        private void UpdateAvailableConfigs(ConfigController config)
         {
             Console.Write($"Message to update config received: {config.FormattedDisplay}");
             var existingConfig = AvailableConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);

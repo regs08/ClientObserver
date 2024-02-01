@@ -8,7 +8,7 @@ namespace ClientObserver.ViewModels
     public class ServerPageViewModel : INotifyPropertyChanged
     {
         // Server configuration used throughout the application
-        private ServerConfig _serverConfig;
+        private ConfigController _serverConfig;
         private LogService _logService;
         private VideoStreamService _videoStreamService;
         private ImageReceiverService _imageReceiverService;
@@ -17,7 +17,7 @@ namespace ClientObserver.ViewModels
         private MqttClientService _mqttClientService;
 
         // Property for server configuration
-        public ServerConfig ServerConfig
+        public ConfigController ServerConfig
         {
             get => _serverConfig;
             set

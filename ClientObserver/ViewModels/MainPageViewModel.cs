@@ -10,7 +10,7 @@ namespace ClientObserver.ViewModels
     public class MainPageViewModel
     {
         // Collection to store the selected server configurations
-        public ObservableCollection<ServerConfig> SelectedConfigs { get; private set; } = new ObservableCollection<ServerConfig>();
+        public ObservableCollection<ConfigController> SelectedConfigs { get; private set; } = new ObservableCollection<ConfigController>();
 
         // Service for configuration management
         private ConfigService configService;
@@ -39,7 +39,7 @@ namespace ClientObserver.ViewModels
         }
 
         // Updates the selected server configurations
-        private void UpdateSelectedConfigs(ServerConfig config)
+        private void UpdateSelectedConfigs(ConfigController config)
         {
             // Checks if the configuration already exists and updates or adds accordingly
             var existingConfig = SelectedConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);

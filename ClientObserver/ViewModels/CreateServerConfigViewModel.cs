@@ -18,7 +18,7 @@ namespace ClientObserver.ViewModels
 
         #region Properties
 
-        public ObservableCollection<ServerConfig> AvailableConfigs { get; private set; }
+        public ObservableCollection<ConfigController> AvailableConfigs { get; private set; }
         public ConfigService MyConfigService;
         public AggregateConfigService AvailableConfigData { get; private set; }
         public UserEntry MyUserEntry { get; private set; }
@@ -67,7 +67,7 @@ namespace ClientObserver.ViewModels
         }
         private void ExecuteCreateConfig()
         {
-            ServerConfig config = MyUserEntry.CreateServerConfig();
+            ConfigController config = MyUserEntry.CreateServerConfig();
             if (config.IsValid())
             {
                 Console.Write(config.FormattedDisplay);
@@ -272,7 +272,7 @@ public class UserEntry : INotifyPropertyChanged
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ServerConfig CreateServerConfig()
+        public ConfigController CreateServerConfig()
         {
             // Create an instance of MqttClientConfig
             var mqttClientConfig = new MqttClientConfig
@@ -299,7 +299,7 @@ public class UserEntry : INotifyPropertyChanged
             };
 
             // Create and return the ServerConfig instance
-            return new ServerConfig(_selectedServerName, mqttClientConfig, videoStreamConfig, modelParamConfig);
+            return new ConfigController(_selectedServerName, mqttClientConfig, videoStreamConfig, modelParamConfig);
 
         }
 

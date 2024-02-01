@@ -1,48 +1,37 @@
 ﻿using ClientObserver.Models.TopicList;
+using ClientObserver.Models.Configs;
 
 namespace ClientObserver.Models.Configs
 {
     /// <summary>
     /// Represents the configuration settings for an MQTT client.
     /// </summary>
-    public class MqttClientConfig
+    public class MqttClientConfig : BaseConfig // Inherits from BaseConfig
     {
-        /// <summary>
-        /// IP address or hostname of the MQTT broker.
-        /// </summary>
+        // Properties...
         public string BrokerAddress { get; set; }
-
-        /// <summary>
-        /// Port number on which the MQTT broker is running.
-        /// </summary>
         public string PortNumber { get; set; }
-
-        /// <summary>
-        /// List of topics that the client should subscribe to.
-        /// </summary>
         public SubTopicList SubscriptionTopics { get; set; }
-
-        /// <summary>
-        /// List of topics that the client will publish messages to.
-        /// </summary>
         public PubTopicList PublishTopics { get; set; }
-
-        /// <summary>
-        /// Optional username for connecting to the MQTT broker.
-        /// </summary>
         public string Username { get; set; }
-
-        /// <summary>
-        /// Optional password for connecting to the MQTT broker.
-        /// </summary>
         public string Password { get; set; }
 
         /// <summary>
-        /// Checks for any null or empty properties in the configuration.
+        /// Overrides the Validate method to check for null or empty properties in MqttClientConfig.
         /// </summary>
-        /// <returns>The name of the first property found to be null or empty, or null if all properties are set.</returns>
-        public string NullProperties()
+        /// <returns>
+        /// The name of the first property found to be null or empty, or null if all properties are set.
+        /// </returns>
+        public override string Validate()
         {
+            // Use the base class's validation method first
+            var baseValidationResult = base.Validate();
+            if (!string.IsNullOrEmpty(baseValidationResult))
+            {
+                return baseValidationResult;
+            }
+
+            // Specific validations for MqttClientConfig
             if (string.IsNullOrEmpty(BrokerAddress))
             {
                 return nameof(BrokerAddress);
@@ -59,9 +48,9 @@ namespace ClientObserver.Models.Configs
             {
                 return nameof(PublishTopics);
             }
-            // Username and Password are optional, so no need to check them
+            // Username and Password are optional and not checked here
 
-            return null;
+            return null; // No null or empty properties found
         }
     }
 }

@@ -13,7 +13,7 @@ namespace ClientObserver.Views
         }
         private async void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (e.Item != null && e.Item is ServerConfig selectedConfig)
+            if (e.Item != null && e.Item is ConfigController selectedConfig)
             {
                 bool answer = await DisplayAlert("Select Configuration", $"Do you want to select this configuration: {selectedConfig.ServerName}?", "Yes", "No");
                 if (answer)

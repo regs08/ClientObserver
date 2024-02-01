@@ -12,7 +12,7 @@ namespace ClientObserver.ViewModels
         public ServiceManager ServerServices { get; private set;}
         public ICommand NavigateCommand { get; set; }
 
-        public ServerConfigButtonViewModel(ServerConfig config, ICommand navigateCommand)
+        public ServerConfigButtonViewModel(ConfigController config, ICommand navigateCommand)
         {
             ServerServices = new ServiceManager(config);
             ServerName = config.ServerName;

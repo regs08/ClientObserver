@@ -7,7 +7,7 @@ namespace ClientObserver.Services
 {
     public class AggregateConfigService
     {
-        private ObservableCollection<ServerConfig> _severConfigs;
+        private ObservableCollection<ConfigController> _severConfigs;
         // ###
         // Video Stream
         public List<string> AvailableStreamIPs { get; private set; }
@@ -28,7 +28,7 @@ namespace ClientObserver.Services
         public List<double> AvailableConfidenceThresholds { get; private set; }
         // ###
 
-        public AggregateConfigService(ObservableCollection<ServerConfig> serverConfigs)
+        public AggregateConfigService(ObservableCollection<ConfigController> serverConfigs)
         {
             _severConfigs = serverConfigs;
             AggregateData();

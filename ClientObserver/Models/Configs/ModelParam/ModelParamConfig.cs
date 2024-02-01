@@ -1,20 +1,47 @@
-﻿// Config to store params relevant to the model processing input data
-// In the future I want this to be able to be configured by the user and act as a filter for incoming data.
-// I want to send this as a package to the backend in order to modify which data is sent
-// eg i want only images with a 80% confidence 
+﻿using System;
+using System.Collections.Generic; // Required for List<>
+using ClientObserver.Models.Configs; // Required if BaseConfig is in a different namespace
 
-using System;
 namespace ClientObserver.Models.Configs
 {
-	public class ModelParamConfig
-	{
+    /// <summary>
+    /// Config to store parameters relevant to the model processing input data.
+    /// In the future, this can be configured by the user and act as a filter for incoming data.
+    /// For example, to only process images with a certain confidence level.
+    /// </summary>
+    public class ModelParamConfig : BaseConfig
+    {
+        /// <summary>
+        /// List of labels selected by the user.
+        /// </summary>
         public List<string> SelectedLabels { get; set; }
+
+        /// <summary>
+        /// List of available labels for selection.
+        /// </summary>
         public List<string> AvailableLabels { get; set; }
+
+        /// <summary>
+        /// Confidence threshold for processing data.
+        /// </summary>
         public double ConfidenceThreshold { get; set; }
 
-        // Method to check for null properties
-        public string NullProperties()
+        /// <summary>
+        /// Overrides the Validate method to check for null properties specific to ModelParamConfig.
+        /// </summary>
+        /// <returns>
+        /// A string representing the name of the first property found to be null, or null if all properties are valid.
+        /// </returns>
+        public override string Validate()
         {
+            // First, use the base class validation to check for null or empty string properties
+            var baseValidationResult = base.Validate();
+            if (!string.IsNullOrEmpty(baseValidationResult))
+            {
+                return baseValidationResult;
+            }
+
+            // Then, perform specific validations for ModelParamConfig
             if (SelectedLabels == null)
             {
                 return nameof(SelectedLabels);
@@ -23,11 +50,8 @@ namespace ClientObserver.Models.Configs
             {
                 return nameof(AvailableLabels);
             }
-            // No need to check ConfidenceThreshold as it's a value type and cannot be null
 
-            return null; // or return String.Empty if you prefer
+            return null; // All properties are valid
         }
     }
-
 }
-

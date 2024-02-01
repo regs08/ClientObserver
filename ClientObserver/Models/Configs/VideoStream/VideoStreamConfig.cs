@@ -1,11 +1,12 @@
 ﻿using System;
+using ClientObserver.Models.Configs; // Assuming BaseConfig is in this namespace
 
 namespace ClientObserver.Models.Configs
 {
     /// <summary>
     /// Configuration settings for a video stream.
     /// </summary>
-    public class VideoStreamConfig
+    public class VideoStreamConfig : BaseConfig // Inherits from BaseConfig
     {
         /// <summary>
         /// The port number on which the video stream is accessible.
@@ -30,26 +31,31 @@ namespace ClientObserver.Models.Configs
         }
 
         /// <summary>
-        /// Checks for any null or empty properties in the video stream configuration.
+        /// Overrides the Validate method to check for null or empty properties in VideoStreamConfig.
         /// </summary>
         /// <returns>
         /// The name of the first property found to be null or empty, or null if all properties are set.
         /// </returns>
-        public string NullProperties()
+        public override string Validate()
         {
-            // Check if StreamIP is null or empty
+            // Use the base class's validation method first
+            var baseValidationResult = base.Validate();
+            if (!string.IsNullOrEmpty(baseValidationResult))
+            {
+                return baseValidationResult;
+            }
+
+            // Specific validations for VideoStreamConfig
             if (string.IsNullOrEmpty(StreamIP))
             {
                 return nameof(StreamIP);
             }
-            // Check if StreamPortNumber is null or empty
             if (string.IsNullOrEmpty(StreamPortNumber))
             {
                 return nameof(StreamPortNumber);
             }
 
-            // All properties are set
-            return null;
+            return null; // No null or empty properties found
         }
     }
 }

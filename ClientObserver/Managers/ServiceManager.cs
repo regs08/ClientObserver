@@ -5,7 +5,7 @@ namespace ClientObserver.Services
     public class ServiceManager
     {
         // Holds the configuration for the server
-        public ServerConfig Config { get; private set; }
+        public ConfigController Config { get; private set; }
 
         // Services used by the application
         public MqttClientService MqttService { get; private set; }
@@ -14,7 +14,7 @@ namespace ClientObserver.Services
         public ImageReceiverService ImageReceiverService { get; private set; }
 
         // Constructor initializes the ServiceManager with a server configuration
-        public ServiceManager(ServerConfig serverConfig)
+        public ServiceManager(ConfigController serverConfig)
         {
             Config = serverConfig;
             ImplementServiceManager();

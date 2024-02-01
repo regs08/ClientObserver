@@ -10,16 +10,16 @@ namespace ClientObserver
     public class ConfigService
     {
         // list of available configs, dynamically updated. defautls are loadded locally from resources 
-        public ObservableCollection<ServerConfig> AvailableConfigs { get; private set; }
+        public ObservableCollection<ConfigController> AvailableConfigs { get; private set; }
         // list of selected configs, dynamically updated 
-        public ObservableCollection<ServerConfig> SelectedConfigs { get; private set; }
+        public ObservableCollection<ConfigController> SelectedConfigs { get; private set; }
 
         // Aggregates data from available conigs 
         public AggregateConfigService AggregatedData;
         public ConfigService()
         {
-            AvailableConfigs = new ObservableCollection<ServerConfig>();
-            SelectedConfigs = new ObservableCollection<ServerConfig>();
+            AvailableConfigs = new ObservableCollection<ConfigController>();
+            SelectedConfigs = new ObservableCollection<ConfigController>();
             LoadConfigsFromSource();
          
         }
@@ -70,7 +70,7 @@ namespace ClientObserver
                     using (var reader = new StreamReader(stream))
                     {
                         var jsonContent = await reader.ReadToEndAsync();
-                        ServerConfig serverConfig = JsonSerializer.Deserialize<ServerConfig>(jsonContent);
+                        ConfigController serverConfig = JsonSerializer.Deserialize<ConfigController>(jsonContent);
                         if (serverConfig != null)
                         {
                             AddToAvailableConfigs(serverConfig);
@@ -85,7 +85,7 @@ namespace ClientObserver
 
         }
     
-        public void AddToAvailableConfigs(ServerConfig config)
+        public void AddToAvailableConfigs(ConfigController config)
         {
             // Logic to add config
             if (config != null)
@@ -93,7 +93,7 @@ namespace ClientObserver
                 AvailableConfigs.Add(config);
             }
         }
-        public void AddToSelectedConfigs(ServerConfig config)
+        public void AddToSelectedConfigs(ConfigController config)
         {
             // Logic to add config
             if (config != null)
@@ -101,7 +101,7 @@ namespace ClientObserver
                 SelectedConfigs.Add(config);
             }
         }
-        public void RemoveConfig(ServerConfig config)
+        public void RemoveConfig(ConfigController config)
         {
             // Logic to remove config
             if (config != null && AvailableConfigs.Contains(config))
