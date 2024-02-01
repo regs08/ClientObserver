@@ -5,7 +5,8 @@ using ClientObserver.Models.Configs;
 using ClientObserver.Models.TopicList;
 using ClientObserver.Services;
 using CommunityToolkit.Mvvm.Messaging;
-
+// view model respnsible for creating a custom config.
+// todo split and edit this to reflect changes in the server config 
 namespace ClientObserver.ViewModels
 {
     public class CreateServerConfigViewModel : INotifyPropertyChanged
