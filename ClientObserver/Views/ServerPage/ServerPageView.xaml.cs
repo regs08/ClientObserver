@@ -1,4 +1,5 @@
 ﻿using ClientObserver.Services;
+using ClientObserver.ViewModels;
 namespace ClientObserver.Views
 {
 

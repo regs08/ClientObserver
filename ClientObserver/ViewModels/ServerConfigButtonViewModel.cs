@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
-using ClientObserver.Models;
 using ClientObserver.Services;
+using ClientObserver.Configs;
+
 // Used to dynamically add buttons to our main page. These buttons represent
 // servers we can connect to 
 namespace ClientObserver.ViewModels
@@ -12,7 +13,7 @@ namespace ClientObserver.ViewModels
         public ServiceManager ServerServices { get; private set;}
         public ICommand NavigateCommand { get; set; }
 
-        public ServerConfigButtonViewModel(ConfigController config, ICommand navigateCommand)
+        public ServerConfigButtonViewModel(ServerConfigs config, ICommand navigateCommand)
         {
             ServerServices = new ServiceManager(config);
             ServerName = config.ServerName;

@@ -2,15 +2,15 @@
 using System.Windows.Input;
 using ClientObserver.Views;
 using ClientObserver.Services;
-using ClientObserver.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
+using ClientObserver.Configs;
 
 namespace ClientObserver.ViewModels
 {
     public class MainPageViewModel
     {
         // Collection to store the selected server configurations
-        public ObservableCollection<ConfigController> SelectedConfigs { get; private set; } = new ObservableCollection<ConfigController>();
+        public ObservableCollection<ServerConfigs> SelectedConfigs { get; private set; } = new ObservableCollection<ServerConfigs>();
 
         // Service for configuration management
         private ConfigService configService;
@@ -39,7 +39,7 @@ namespace ClientObserver.ViewModels
         }
 
         // Updates the selected server configurations
-        private void UpdateSelectedConfigs(ConfigController config)
+        private void UpdateSelectedConfigs(ServerConfigs config)
         {
             // Checks if the configuration already exists and updates or adds accordingly
             var existingConfig = SelectedConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);

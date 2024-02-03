@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json;
 using ClientObserver.Services;
+using ClientObserver.Managers;
+using ClientObserver.Configs;
+
 // Config service responsible for loading available and providing a list of selcted configs
 // intialized on main page and is responsible for adding new configs,
 // and tracking selected configs from the user 
@@ -9,18 +12,24 @@ namespace ClientObserver
 {
     public class ConfigService
     {
+        private List<string> _localConfigPaths;
+        private ConfigLoader _configLoader;
         // list of available configs, dynamically updated. defautls are loadded locally from resources 
-        public ObservableCollection<ConfigController> AvailableConfigs { get; private set; }
+        public ObservableCollection<ServerConfigs> AvailableConfigs { get; private set; }
         // list of selected configs, dynamically updated 
-        public ObservableCollection<ConfigController> SelectedConfigs { get; private set; }
+        public ObservableCollection<ServerConfigs> SelectedConfigs { get; private set; }
 
         // Aggregates data from available conigs 
         public AggregateConfigService AggregatedData;
         public ConfigService()
         {
-            AvailableConfigs = new ObservableCollection<ConfigController>();
-            SelectedConfigs = new ObservableCollection<ConfigController>();
-            LoadConfigsFromSource();
+            ConfigLoader configLoader = _configLoader; 
+            _localConfigPaths = new List<string> { "DefaultConfig.json", "GrapeModelConfig.json" };
+
+            AvailableConfigs = new ObservableCollection<ServerConfigs>();
+            SelectedConfigs = new ObservableCollection<ServerConfigs>();
+            //_configLoader.LoadConfigsFromJson();
+            //LoadConfigsFromSource();
          
         }
         public void IntializeAggregateConfigService()
@@ -53,7 +62,6 @@ namespace ClientObserver
             }
 
         }
-
         private async Task LoadLocalConfigs()
         {
 
@@ -62,20 +70,12 @@ namespace ClientObserver
             // List of file names in the Resources/ Raw folder
             var fileNames = new List<string> { "DefaultConfig.json", "GrapeModelConfig.json" };
 
-            foreach (var fileName in fileNames)
+            foreach (var fileName in _localConfigPaths)
             {
                 try
                 {
-                    var stream = await FileSystem.OpenAppPackageFileAsync(fileName);
-                    using (var reader = new StreamReader(stream))
-                    {
-                        var jsonContent = await reader.ReadToEndAsync();
-                        ConfigController serverConfig = JsonSerializer.Deserialize<ConfigController>(jsonContent);
-                        if (serverConfig != null)
-                        {
-                            AddToAvailableConfigs(serverConfig);
-                        }
-                    }
+                    Configs.ServerConfigs serverConfigs = _configLoader.LoadConfigsFromJson(fileName);
+
                 }
                 catch (Exception ex)
                     {
@@ -85,7 +85,7 @@ namespace ClientObserver
 
         }
     
-        public void AddToAvailableConfigs(ConfigController config)
+        public void AddToAvailableConfigs(ServerConfigs config)
         {
             // Logic to add config
             if (config != null)
@@ -93,7 +93,7 @@ namespace ClientObserver
                 AvailableConfigs.Add(config);
             }
         }
-        public void AddToSelectedConfigs(ConfigController config)
+        public void AddToSelectedConfigs(ServerConfigs config)
         {
             // Logic to add config
             if (config != null)
@@ -101,7 +101,7 @@ namespace ClientObserver
                 SelectedConfigs.Add(config);
             }
         }
-        public void RemoveConfig(ConfigController config)
+        public void RemoveConfig(ServerConfigs config)
         {
             // Logic to remove config
             if (config != null && AvailableConfigs.Contains(config))

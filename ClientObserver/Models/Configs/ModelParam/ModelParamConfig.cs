@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic; // Required for List<>
-using ClientObserver.Models.Configs; // Required if BaseConfig is in a different namespace
+using ClientObserver.Configs; // Required if BaseConfig is in a different namespace
 
-namespace ClientObserver.Models.Configs
+namespace ClientObserver.Configs
 {
     /// <summary>
     /// Config to store parameters relevant to the model processing input data.

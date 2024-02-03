@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using ClientObserver.Models.Configs;
 using ClientObserver.Models.TopicList;
 using ClientObserver.Services;
+using ClientObserver.Managers;
+using ClientObserver.Configs;
+
 using CommunityToolkit.Mvvm.Messaging;
 // view model respnsible for creating a custom config.
 // todo split and edit this to reflect changes in the server config 
@@ -18,7 +20,7 @@ namespace ClientObserver.ViewModels
 
         #region Properties
 
-        public ObservableCollection<ConfigController> AvailableConfigs { get; private set; }
+        public ObservableCollection<ServerConfigs> AvailableConfigs { get; private set; }
         public ConfigService MyConfigService;
         public AggregateConfigService AvailableConfigData { get; private set; }
         public UserEntry MyUserEntry { get; private set; }
@@ -67,10 +69,11 @@ namespace ClientObserver.ViewModels
         }
         private void ExecuteCreateConfig()
         {
-            ConfigController config = MyUserEntry.CreateServerConfig();
-            if (config.IsValid())
+            ServerConfigs config = MyUserEntry.CreateServerConfig();
+
+            if (config.ValidateAllConfigs())
             {
-                Console.Write(config.FormattedDisplay);
+                Console.Write(config.FormatForDisplay());
                 WeakReferenceMessenger.Default.Send(new UpdateServerConfigMessage(config));
             }
             // Here you can add logic to handle the newly created config, like adding it to a list, etc.
@@ -272,7 +275,7 @@ public class UserEntry : INotifyPropertyChanged
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ConfigController CreateServerConfig()
+        public ServerConfigs CreateServerConfig()
         {
             // Create an instance of MqttClientConfig
             var mqttClientConfig = new MqttClientConfig
@@ -299,7 +302,13 @@ public class UserEntry : INotifyPropertyChanged
             };
 
             // Create and return the ServerConfig instance
-            return new ConfigController(_selectedServerName, mqttClientConfig, videoStreamConfig, modelParamConfig);
+            // add in these methods 
+            ServerConfigs serverConfigs = new ServerConfigs();
+            serverConfigs.SetServerName(_selectedServerName);
+            serverConfigs.AddConfig(mqttClientConfig);
+            serverConfigs.AddConfig(videoStreamConfig);
+            serverConfigs.AddConfig(modelParamConfig);
+            return serverConfigs;
 
         }
 

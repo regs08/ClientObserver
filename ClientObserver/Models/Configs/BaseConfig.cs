@@ -1,5 +1,5 @@
 ﻿
-namespace ClientObserver.Models.Configs
+namespace ClientObserver.Configs
 {
     /// <summary>
     /// Represents the base class for all configuration types in the application.

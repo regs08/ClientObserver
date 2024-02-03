@@ -1,7 +1,7 @@
 ﻿using System;
-using ClientObserver.Models.Configs; // Assuming BaseConfig is in this namespace
+using ClientObserver.Configs; // Assuming BaseConfig is in this namespace
 
-namespace ClientObserver.Models.Configs
+namespace ClientObserver.Configs
 {
     /// <summary>
     /// Configuration settings for a video stream.

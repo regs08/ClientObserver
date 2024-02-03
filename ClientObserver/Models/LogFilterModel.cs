@@ -1,8 +1,9 @@
 ﻿// filter model for our logs used to filter out with user selected confidence
 // labels etc ..
 
-//todo implement this properly 
-using ClientObserver.Models.Configs;
+//todo implement this properly
+using ClientObserver.Configs;
+
 namespace ClientObserver.Models
 {
     public class LogFilterModel

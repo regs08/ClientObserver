@@ -1,13 +1,16 @@
 ﻿// combines all available configs to provide default values for creating configs
 // displays the unique values of all of them and provides the user with those as default choices 
-
+// todo needs a further rework based on the new config rerwork 
 using System.Collections.ObjectModel;
 using ClientObserver.Models.TopicList;
+using ClientObserver.Managers;
+using ClientObserver.Configs;
+
 namespace ClientObserver.Services
 {
     public class AggregateConfigService
     {
-        private ObservableCollection<ConfigController> _severConfigs;
+        private ObservableCollection<ServerConfigs> _severConfigs;
         // ###
         // Video Stream
         public List<string> AvailableStreamIPs { get; private set; }
@@ -28,7 +31,7 @@ namespace ClientObserver.Services
         public List<double> AvailableConfidenceThresholds { get; private set; }
         // ###
 
-        public AggregateConfigService(ObservableCollection<ConfigController> serverConfigs)
+        public AggregateConfigService(ObservableCollection<ServerConfigs> serverConfigs)
         {
             _severConfigs = serverConfigs;
             AggregateData();

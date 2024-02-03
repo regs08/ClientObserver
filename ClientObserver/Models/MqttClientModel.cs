@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClientObserver.Models.Configs;
+using ClientObserver.Configs;
 using ClientObserver.Models.TopicList;
 namespace ClientObserver
 {

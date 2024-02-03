@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using ClientObserver.Services;
 using ClientObserver.Views;
-using System.Threading.Tasks;
+using ClientObserver.Configs;
 
 namespace ClientObserver.ViewModels
 {
     public class ServerPageViewModel : INotifyPropertyChanged
     {
         // Server configuration used throughout the application
-        private ConfigController _serverConfig;
+        private ServerConfigs _serverConfig;
         private LogService _logService;
         private VideoStreamService _videoStreamService;
         private ImageReceiverService _imageReceiverService;
@@ -17,7 +17,7 @@ namespace ClientObserver.ViewModels
         private MqttClientService _mqttClientService;
 
         // Property for server configuration
-        public ConfigController ServerConfig
+        public ServerConfigs ServerConfig
         {
             get => _serverConfig;
             set

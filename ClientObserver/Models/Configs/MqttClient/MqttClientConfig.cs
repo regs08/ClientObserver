@@ -1,7 +1,7 @@
 ﻿using ClientObserver.Models.TopicList;
-using ClientObserver.Models.Configs;
+using ClientObserver.Configs;
 
-namespace ClientObserver.Models.Configs
+namespace ClientObserver.Configs
 {
     /// <summary>
     /// Represents the configuration settings for an MQTT client.
