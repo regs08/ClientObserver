@@ -5,7 +5,6 @@ using ClientObserver.Services;
 using CommunityToolkit.Mvvm.Messaging;
 using ClientObserver.Configs;
 using ClientObserver.Managers;
-
 namespace ClientObserver.ViewModels
 {
     public class MainPageViewModel
@@ -19,15 +18,16 @@ namespace ClientObserver.ViewModels
         // Collection of ViewModels for each server configuration button
         public ObservableCollection<ServerConfigButtonViewModel> ServerConfigButtons { get; private set; } = new ObservableCollection<ServerConfigButtonViewModel>();
 
-        // Command to load configuration view
-        public ICommand LoadConfigCommand { get; private set; }
-
+        // Command to select configuration view
+        public ICommand SelectFromAvailableConfigsCommand { get; private set; }
+        // Command to navigate to the setup ServerConfigConnection
+        public ICommand SetupServerConfigConenction { get; private set; }
         // Constructor
         public MainPageViewModel()
         {
             // Initialize command to navigate to the configuration view
-            LoadConfigCommand = new Command(async () => await NavigateToConfigView());
-
+            SelectFromAvailableConfigsCommand = new Command(async () => await NavigateToConfigSelection());
+            SetupServerConfigConenction = new Command(async () => await NavigateToSetUpServerConfigConnection());
             // Instantiate the config service. Local configs are loaded on intialization
             appConfigManager = AppConfigManager.Instance;
             // Register to listen for update messages for server configurations
@@ -87,12 +87,18 @@ namespace ClientObserver.ViewModels
         }
 
         // Navigates to the server configuration view
-        private async Task NavigateToConfigView()
+        private async Task NavigateToConfigSelection()
         {
             // Create and navigate to the server configuration page
-            ServerConfigViewModel viewModel = new ServerConfigViewModel(appConfigManager);
-            var configPage = new ServerConfigView(viewModel);
+            SelectConfigViewModel viewModel = new SelectConfigViewModel(appConfigManager);
+            var configPage = new ConfigSelectionView(viewModel);
             await Shell.Current.Navigation.PushAsync(configPage);
+        }
+        private async Task NavigateToSetUpServerConfigConnection()
+        {
+            ConnectionSetupViewModel viewModel = new ConnectionSetupViewModel(appConfigManager);
+            var connectionSetUpPage = new ConnectionSetupView(viewModel);
+            await Shell.Current.Navigation.PushAsync(connectionSetUpPage);
         }
     }
 }
