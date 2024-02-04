@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientObserver.MainPage">
 <StackLayout>
-    <Button Text="Load Config" Command="{Binding LoadConfigCommand}" Margin="5"/>
+    <Button Text="Select Configs" Command="{Binding SelectFromAvailableConfigsCommand}" Margin="5"/>
 
     <CollectionView ItemsSource="{Binding ServerConfigButtons}">
         <CollectionView.ItemTemplate>
@@ -12,6 +12,7 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+    <Button Text="Connection Setup" Command="{Binding SetupServerConfigConenction}" Margin="5"/>
 </StackLayout>
 
 
