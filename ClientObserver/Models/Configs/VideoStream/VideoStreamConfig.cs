@@ -29,7 +29,9 @@ namespace ClientObserver.Configs
                 return new Uri($"http://{StreamIP}:{StreamPortNumber}/video");
             }
         }
-
+        public VideoStreamConfig() : base("VideoStreamConfig")
+        {
+        }
         /// <summary>
         /// Overrides the Validate method to check for null or empty properties in VideoStreamConfig.
         /// </summary>
@@ -56,6 +58,13 @@ namespace ClientObserver.Configs
             }
 
             return null; // No null or empty properties found
+        }
+        protected override string FormatForDisplay()
+        {
+            return $"Configuration Name: {Name}\n" +
+                   $"Stream IP: {StreamIP}\n" +
+                   $"Stream Port Number: {StreamPortNumber}\n" +
+                   $"Video Stream URI: {VideoStreamUri}\n";
         }
     }
 }

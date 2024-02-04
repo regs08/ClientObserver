@@ -1,5 +1,7 @@
 ﻿using ClientObserver.Models.TopicList;
 using ClientObserver.Configs;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace ClientObserver.Configs
 {
@@ -16,6 +18,11 @@ namespace ClientObserver.Configs
         public string Username { get; set; }
         public string Password { get; set; }
 
+
+        //Initialize constructoir with the given config name 
+        public MqttClientConfig() : base("MqttClientConfig")
+        {
+        }
         /// <summary>
         /// Overrides the Validate method to check for null or empty properties in MqttClientConfig.
         /// </summary>
@@ -52,5 +59,19 @@ namespace ClientObserver.Configs
 
             return null; // No null or empty properties found
         }
+
+        protected override string FormatForDisplay()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(base.ToString()); // Calls ToString on BaseConfig to include the name
+            sb.AppendLine($"Broker Address: {BrokerAddress}");
+            sb.AppendLine($"Port Number: {PortNumber}");
+            sb.AppendLine($"Subscription Topics: {(SubscriptionTopics != null ? JsonConvert.SerializeObject(SubscriptionTopics, Formatting.Indented) : "null")}");
+            sb.AppendLine($"Publish Topics: {(PublishTopics != null ? JsonConvert.SerializeObject(PublishTopics, Formatting.Indented) : "null")}");
+            sb.AppendLine($"Username: {Username ?? "not set"}");
+            // Password is not printed for security reasons
+            return sb.ToString();
+        }
+        
     }
 }

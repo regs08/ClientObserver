@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿/*
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using ClientObserver.Services;
 using ClientObserver.Managers;
@@ -10,7 +11,7 @@ using ClientObserver.Configs;
 
 namespace ClientObserver
 {
-    public class ConfigService
+    public class ClientService
     {
         private List<string> _localConfigPaths;
         private ConfigLoader _configLoader;
@@ -21,7 +22,7 @@ namespace ClientObserver
 
         // Aggregates data from available conigs 
         public AggregateConfigService AggregatedData;
-        public ConfigService()
+        public ClientService()
         {
             ConfigLoader configLoader = _configLoader; 
             _localConfigPaths = new List<string> { "DefaultConfig.json", "GrapeModelConfig.json" };
@@ -112,3 +113,4 @@ namespace ClientObserver
 
     }
 }
+*/

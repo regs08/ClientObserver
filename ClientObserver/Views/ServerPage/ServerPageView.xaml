@@ -4,16 +4,18 @@
              x:Class="ClientObserver.Views.ServerPageView"
              Title="Server Page">
 
-    <StackLayout>
-        <Label Text="{Binding ServerConfig.FormattedDisplay}" />
-        <Button Text="Configure MQTT Connection"
-                Command="{Binding NavigateToMQTTCommand}" />
-        <Button Text="View Logs"
-                Command="{Binding NavigateToLogViewCommand}" />
-        <Button Text="View Photos"
-                Command="{Binding NavigateToPhotoViewCommand}" />
-        <Button Text="View Stream"
-                Command="{Binding NavigateToStreamViewCommand}" />
-    </StackLayout>
+    <ScrollView>
+        <StackLayout>
+            <Label Text="{Binding ServerConfig}" />
+            <Button Text="Configure MQTT Connection"
+                    Command="{Binding NavigateToMQTTCommand}" />
+            <Button Text="View Logs"
+                    Command="{Binding NavigateToLogViewCommand}" />
+            <Button Text="View Photos"
+                    Command="{Binding NavigateToPhotoViewCommand}" />
+            <Button Text="View Stream"
+                    Command="{Binding NavigateToStreamViewCommand}" />
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>

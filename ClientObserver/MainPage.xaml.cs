@@ -7,11 +7,20 @@ namespace ClientObserver
 
     public partial class MainPage : ContentPage
     {
+        private MainPageViewModel _viewModel;
+
         public MainPage()
         {
-
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
+            _viewModel = new MainPageViewModel();
+            BindingContext = _viewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _viewModel.InitializeAppConfigManagerAsync();
         }
+    }
+
 }

@@ -4,6 +4,7 @@ using ClientObserver.Views;
 using ClientObserver.Services;
 using CommunityToolkit.Mvvm.Messaging;
 using ClientObserver.Configs;
+using ClientObserver.Managers;
 
 namespace ClientObserver.ViewModels
 {
@@ -13,7 +14,7 @@ namespace ClientObserver.ViewModels
         public ObservableCollection<ServerConfigs> SelectedConfigs { get; private set; } = new ObservableCollection<ServerConfigs>();
 
         // Service for configuration management
-        private ConfigService configService;
+        private AppConfigManager appConfigManager;
 
         // Collection of ViewModels for each server configuration button
         public ObservableCollection<ServerConfigButtonViewModel> ServerConfigButtons { get; private set; } = new ObservableCollection<ServerConfigButtonViewModel>();
@@ -27,17 +28,22 @@ namespace ClientObserver.ViewModels
             // Initialize command to navigate to the configuration view
             LoadConfigCommand = new Command(async () => await NavigateToConfigView());
 
-            // Instantiate the config service
-            configService = new ConfigService();
-
+            // Instantiate the config service. Local configs are loaded on intialization
+            appConfigManager = AppConfigManager.Instance;
             // Register to listen for update messages for server configurations
-            WeakReferenceMessenger.Default.Register<UpdateServerConfigMessage>(this, (recipient, message) =>
+            WeakReferenceMessenger.Default.Register<UpdateSelectedServerConfigMessage>(this, (recipient, message) =>
             {
                 // Update the selected configurations when a message is received
                 UpdateSelectedConfigs(message.NewConfig);
             });
         }
 
+
+        public async Task InitializeAppConfigManagerAsync()
+        {
+            await AppConfigManager.Instance.InitializeAsync();
+            // Now AppConfigManager is initialized, and local configs are loaded once.
+        }
         // Updates the selected server configurations
         private void UpdateSelectedConfigs(ServerConfigs config)
         {
@@ -84,7 +90,8 @@ namespace ClientObserver.ViewModels
         private async Task NavigateToConfigView()
         {
             // Create and navigate to the server configuration page
-            var configPage = new ServerConfigView(configService);
+            ServerConfigViewModel viewModel = new ServerConfigViewModel(appConfigManager);
+            var configPage = new ServerConfigView(viewModel);
             await Shell.Current.Navigation.PushAsync(configPage);
         }
     }

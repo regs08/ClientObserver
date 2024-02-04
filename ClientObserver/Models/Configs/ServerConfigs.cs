@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,7 +16,7 @@ namespace ClientObserver.Configs
         public VideoStreamConfig VideoStreamConfig { get; set; }
         public ModelParamConfig ModelParamConfig { get; set; }
         public CloudConfig CloudConfig { get; set; }
-
+       
         /// <summary>
         /// A dictionary mapping configuration object types to their JSON keys. Used for dynamic deserialization.
         /// </summary>
@@ -27,10 +27,6 @@ namespace ClientObserver.Configs
             { typeof(ModelParamConfig), "ModelParamConfig" },
             { typeof(CloudConfig), "CloudConfig" }
         };
-
-        public ServerConfigs()
-        {
-        }
 
         /// <summary>
         /// Sets the server name, ensuring it is not null or whitespace.
@@ -85,16 +81,7 @@ namespace ClientObserver.Configs
         /// Formats server and configuration details for display.
         /// </summary>
         /// <returns>A formatted string of server and configuration details.</returns>
-        public string FormatForDisplay()
-        {
-            var displayString = $"Server Name: {ServerName}\n";
-            foreach (var propertyInfo in this.GetType().GetProperties())
-            {
-                var value = propertyInfo.GetValue(this, null);
-                displayString += $"{propertyInfo.Name}: {JsonConvert.SerializeObject(value, Formatting.Indented)}\n";
-            }
-            return displayString;
-        }
+
 
         /// <summary>
         /// Provides an enumerator for iterating over BaseConfig objects.
@@ -108,6 +95,23 @@ namespace ClientObserver.Configs
             if (CloudConfig != null) yield return CloudConfig;
         }
 
+        //property to aggregate FormattedDisplay properties
+        public string CombinedFormattedDisplay
+        {
+            get
+            {
+                var displayString = $"Server Name: {ServerName}\n";
+                foreach (var config in this)
+                {
+                    displayString += config.FormattedDisplay + "\n";
+                }
+                return displayString.TrimEnd('\n'); // Remove the last newline character for cleanliness
+            }
+        }
+        public override string ToString()
+        {
+            return CombinedFormattedDisplay;
+        }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

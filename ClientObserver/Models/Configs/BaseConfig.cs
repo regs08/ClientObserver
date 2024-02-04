@@ -1,4 +1,6 @@
-﻿
+﻿using System.Text;
+using Newtonsoft.Json;
+
 namespace ClientObserver.Configs
 {
     /// <summary>
@@ -10,8 +12,23 @@ namespace ClientObserver.Configs
         /// <summary>
         /// Gets or sets the name of the configuration.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; protected set; }
+        protected BaseConfig(string name)
+        {
+            Name = name;
+        }
+        /// <summary>
+        /// Provides a formatted display string of the configuration's details.
+        /// </summary>
+        public string FormattedDisplay => FormatForDisplay();
 
+        /// <summary>
+        /// Method to format the display string. Can be overridden in derived classes.
+        /// </summary>
+        protected virtual string FormatForDisplay()
+        {
+            return $"Configuration Name: {Name}";
+        }
         /// <summary>
         /// Validates the configuration properties.
         /// This method uses the NullPropertyChecker to dynamically check for null or empty string properties.
@@ -27,6 +44,15 @@ namespace ClientObserver.Configs
             // and returns the name of the first property that is null or an empty string.
             return NullPropertyChecker.CheckForNullProperties(this);
         }
-    }
 
+        public override string ToString()
+        {
+            return $"Configuration Name: {Name}";
+        }
+
+
+        //public string FormattedDisplay => FormatForDisplay();
+    }
 }
+
+

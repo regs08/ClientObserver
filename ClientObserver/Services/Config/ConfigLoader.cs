@@ -2,6 +2,9 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using ClientObserver.Configs;
+using System.IO;
+using System.Text.Json;
+using Microsoft.Maui.Storage;
 
 namespace ClientObserver.Services
 {
@@ -13,43 +16,56 @@ namespace ClientObserver.Services
         }
 
         // loads and validates configs from a json file 
-        public ServerConfigs LoadConfigsFromJson(string json)
+        public async Task<ServerConfigs> LoadConfigsFromJson(string jsonFile)
         {
             ServerConfigs serverConfigs = new();
-            dynamic fullConfig = JsonConvert.DeserializeObject<dynamic>(json);
-
-            serverConfigs.ServerName = fullConfig["ServerName"];
-
-            //iterate through our configs 
-            foreach (var configPair in ServerConfigs.ConfigKeys)
+            try
             {
-                var configType = configPair.Key;
-                var configKey = configPair.Value;
-                var configJson = Convert.ToString(fullConfig[configKey]);
 
-                try
-                {
-                    BaseConfig config = JsonConvert.DeserializeObject(configJson, configType);
-                    config.Validate();
+                using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFile);
+                using var reader = new StreamReader(stream);
+                var jsonContent = await reader.ReadToEndAsync();
 
-                    serverConfigs.GetType().GetProperty(configKey)?.SetValue(serverConfigs, config);
-                }
-                catch (JsonException jsonEx)
+                dynamic fullConfig = JsonConvert.DeserializeObject<dynamic>(jsonContent);
+
+                serverConfigs.ServerName = fullConfig["ServerName"];
+
+                //iterate through our configs 
+                foreach (var configPair in ServerConfigs.ConfigKeys)
                 {
-                    // Handle JSON-related errors (e.g., deserialization issues)
-                    Console.WriteLine($"Error deserializing config for '{configKey}': {jsonEx.Message}");
-                }
-                catch (Exception ex)
-                {
-                    // Handle other exceptions
-                    Console.WriteLine($"Error setting config for '{configKey}': {ex.Message}");
+                    var configType = configPair.Key;
+                    var configKey = configPair.Value;
+                    var configJson = Convert.ToString(fullConfig[configKey]);
+
+                    try
+                    {
+                        BaseConfig config = JsonConvert.DeserializeObject(configJson, configType);
+                        config.Validate();
+
+                        serverConfigs.GetType().GetProperty(configKey)?.SetValue(serverConfigs, config);
+                    }
+                    catch (Newtonsoft.Json.JsonException jsonEx)
+                    {
+                        // Handle JSON-related errors (e.g., deserialization issues)
+                        Console.WriteLine($"Error deserializing config for '{configKey}': {jsonEx.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle other exceptions
+                        Console.WriteLine($"Error setting config for '{configKey}': {ex.Message}");
+                    }
                 }
             }
-            // Dynamically deserialize based on the type
-            
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading configuration file: {ex.Message}");
+                // Handle errors related to file access or reading
+            }
             return serverConfigs;
         }
     }
+
 }
     /*
      * 

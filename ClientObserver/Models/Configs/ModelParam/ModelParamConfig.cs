@@ -1,6 +1,7 @@
-﻿using System;
+﻿using System.Text;
 using System.Collections.Generic; // Required for List<>
 using ClientObserver.Configs; // Required if BaseConfig is in a different namespace
+using Newtonsoft.Json;
 
 namespace ClientObserver.Configs
 {
@@ -27,6 +28,14 @@ namespace ClientObserver.Configs
         public double ConfidenceThreshold { get; set; }
 
         /// <summary>
+        /// Provides a formatted display string of the configuration's details.
+        /// </summary>
+
+        //Initialize constructoir with the given config name 
+        public ModelParamConfig() : base("ModelParamConfig")
+        {
+        }
+        /// <summary>
         /// Overrides the Validate method to check for null properties specific to ModelParamConfig.
         /// </summary>
         /// <returns>
@@ -52,6 +61,27 @@ namespace ClientObserver.Configs
             }
 
             return null; // All properties are valid
+        }
+        /// <summary>
+        /// Formats the configuration details for display.
+        /// </summary>
+        /// <returns>A formatted string of the configuration details.</returns>
+        protected override string FormatForDisplay()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"Configuration Name: {Name}");
+            sb.AppendLine($"Selected Labels: {string.Join(", ", SelectedLabels)}");
+            sb.AppendLine($"Confidence Threshold: {ConfidenceThreshold}");
+
+            // Optionally, use JsonConvert to pretty-print complex properties
+            // Ensure you have a reference to Newtonsoft.Json
+            if (AvailableLabels != null && AvailableLabels.Count > 0)
+            {
+                sb.AppendLine("Available Labels:");
+                sb.AppendLine(JsonConvert.SerializeObject(AvailableLabels, Formatting.Indented));
+            }
+
+            return sb.ToString().TrimEnd(); // Removes the last newline for cleanliness
         }
     }
 }

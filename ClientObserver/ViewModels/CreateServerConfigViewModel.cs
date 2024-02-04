@@ -21,7 +21,7 @@ namespace ClientObserver.ViewModels
         #region Properties
 
         public ObservableCollection<ServerConfigs> AvailableConfigs { get; private set; }
-        public ConfigService MyConfigService;
+        public AppConfigManager MyConfigService;
         public AggregateConfigService AvailableConfigData { get; private set; }
         public UserEntry MyUserEntry { get; private set; }
 
@@ -40,7 +40,7 @@ namespace ClientObserver.ViewModels
 
         #region Constructor
 
-        public CreateServerConfigViewModel(ConfigService configService)
+        public CreateServerConfigViewModel(AppConfigManager configService)
         {
             InitializeViewModel(configService);
         }
@@ -48,9 +48,10 @@ namespace ClientObserver.ViewModels
         #endregion
         #region Private Methods
 
-        private void InitializeViewModel(ConfigService configService)
+        private void InitializeViewModel(AppConfigManager configService)
 
         {
+            /*
             MyConfigService = configService;
             // aggregates data from the configs 
             MyConfigService.IntializeAggregateConfigService();
@@ -65,7 +66,7 @@ namespace ClientObserver.ViewModels
             MyAvailableSubTopics = AvailableConfigData.AvailableSubTopics;
 
             CreateConfigCommand = new Command(ExecuteCreateConfig);
-
+            */
         }
         private void ExecuteCreateConfig()
         {
@@ -73,8 +74,8 @@ namespace ClientObserver.ViewModels
 
             if (config.ValidateAllConfigs())
             {
-                Console.Write(config.FormatForDisplay());
-                WeakReferenceMessenger.Default.Send(new UpdateServerConfigMessage(config));
+                //Console.Write(config.FormattedDisplay);
+                WeakReferenceMessenger.Default.Send(new UpdateAvailableServerConfigMessage(config));
             }
             // Here you can add logic to handle the newly created config, like adding it to a list, etc.
         }
