@@ -12,7 +12,10 @@ namespace ClientObserver.Configs
         /// <summary>
         /// Gets or sets the name of the configuration.
         /// </summary>
+    
         public string Name { get; protected set; }
+        public bool ConnectionStatus { get; set; } = false;
+
         protected BaseConfig(string name)
         {
             Name = name;
