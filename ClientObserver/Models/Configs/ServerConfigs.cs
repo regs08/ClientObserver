@@ -27,7 +27,45 @@ namespace ClientObserver.Configs
             { typeof(ModelParamConfig), "ModelParamConfig" },
             { typeof(CloudConfig), "CloudConfig" }
         };
+        /// <summary>
+        /// A property to get the names of the configurations that are present.
+        /// </summary>
+        public List<string> ConfigNames
+        {
+            get
+            {
+                var configValues = GetBaseConfigValues();
+                var presentConfigs = configValues
+                    //.Where(c => c.Value != null) // Select only those configurations that are present (not null)
+                    .Select(c => ConfigKeys[c.Key]) // Transform the type keys into their string representation
+                    .ToList();
+                return presentConfigs;
+            }
+        }
 
+        // New property to get configuration details including connection status
+        public List<ConfigDetail> ConfigDetails
+        {
+            get
+            {
+                var details = new List<ConfigDetail>();
+
+                foreach (var config in GetBaseConfigValues())
+                {
+                    if (config.Value != null)
+                    {
+                        details.Add(new ConfigDetail
+                        {
+                            Name = ConfigKeys[config.Key],
+                            ConnectionStatus = config.Value.ConnectionStatus, // Assuming each BaseConfig has a ConnectionStatus property
+                            Config = config.Value
+                        });
+                    }
+                }
+
+                return details;
+            }
+        }
         /// <summary>
         /// Sets the server name, ensuring it is not null or whitespace.
         /// </summary>
@@ -94,6 +132,31 @@ namespace ClientObserver.Configs
             if (ModelParamConfig != null) yield return ModelParamConfig;
             if (CloudConfig != null) yield return CloudConfig;
         }
+        /// <summary>
+        /// Gets the configuration values based on the defined ConfigKeys.
+        /// </summary>
+        /// <returns>A dictionary with types as keys and actual configuration objects or null as values.</returns>
+        public Dictionary<Type, BaseConfig> GetBaseConfigValues()
+        {
+            var result = new Dictionary<Type, BaseConfig>();
+
+            foreach (var entry in ConfigKeys)
+            {
+                var property = this.GetType().GetProperty(entry.Value);
+                if (property != null)
+                {
+                    var configValue = property.GetValue(this) as BaseConfig;
+                    result.Add(entry.Key, configValue);
+                }
+                else
+                {
+                    // If the property doesn't exist on the object, add the key with a null value.
+                    result.Add(entry.Key, null);
+                }
+            }
+
+            return result;
+        }
 
         //property to aggregate FormattedDisplay properties
         public string CombinedFormattedDisplay
@@ -113,5 +176,12 @@ namespace ClientObserver.Configs
             return CombinedFormattedDisplay;
         }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+    // Helper class to hold configuration detail
+    public class ConfigDetail
+    {
+        public string Name { get; set; }
+        public bool ConnectionStatus { get; set; }
+        public BaseConfig Config { get; set; }
     }
 }
