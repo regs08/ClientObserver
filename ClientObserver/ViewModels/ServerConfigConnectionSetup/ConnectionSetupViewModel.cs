@@ -14,12 +14,14 @@ namespace ClientObserver.ViewModels
         private AppConfigManager _appConfigManager;
         
         public ObservableCollection<ServerConfigs> MyAvailableConfigs { get; set; }
+        public ObservableCollection<ServerConfigs> MySelectedConfigs { get; set; }
         public ICommand NavigateCommand { get; private set; }
 
         public ConnectionSetupViewModel(AppConfigManager appConfigManager)
         {
             _appConfigManager = appConfigManager;
             MyAvailableConfigs = _appConfigManager.AvailableConfigs;
+            MySelectedConfigs = _appConfigManager.SelectedConfigs; 
             NavigateCommand = new Command<BaseConfig>(ExecuteNavigateCommand);
         }
 

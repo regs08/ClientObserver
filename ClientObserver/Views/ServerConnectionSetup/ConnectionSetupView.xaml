@@ -10,7 +10,7 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding MyAvailableConfigs}">
+        <CollectionView ItemsSource="{Binding MySelectedConfigs}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <VerticalStackLayout>
