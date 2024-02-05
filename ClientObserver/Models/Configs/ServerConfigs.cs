@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace ClientObserver.Configs
 {
+    // todo I think we should organize our BAse config classes into that of config details 
     /// <summary>
     /// Represents server configurations including MQTT client, video stream, model parameters, and cloud configurations.
     /// Implements IEnumerable to enable iteration over its configuration objects.
@@ -27,21 +28,6 @@ namespace ClientObserver.Configs
             { typeof(ModelParamConfig), "ModelParamConfig" },
             { typeof(CloudConfig), "CloudConfig" }
         };
-        /// <summary>
-        /// A property to get the names of the configurations that are present.
-        /// </summary>
-        public List<string> ConfigNames
-        {
-            get
-            {
-                var configValues = GetBaseConfigValues();
-                var presentConfigs = configValues
-                    //.Where(c => c.Value != null) // Select only those configurations that are present (not null)
-                    .Select(c => ConfigKeys[c.Key]) // Transform the type keys into their string representation
-                    .ToList();
-                return presentConfigs;
-            }
-        }
 
         // New property to get configuration details including connection status
         public List<ConfigDetail> ConfigDetails
@@ -122,17 +108,6 @@ namespace ClientObserver.Configs
 
 
         /// <summary>
-        /// Provides an enumerator for iterating over BaseConfig objects.
-        /// </summary>
-        /// <returns>An IEnumerator of BaseConfig.</returns>
-        public IEnumerator<BaseConfig> GetEnumerator()
-        {
-            if (MqttClientConfig != null) yield return MqttClientConfig;
-            if (VideoStreamConfig != null) yield return VideoStreamConfig;
-            if (ModelParamConfig != null) yield return ModelParamConfig;
-            if (CloudConfig != null) yield return CloudConfig;
-        }
-        /// <summary>
         /// Gets the configuration values based on the defined ConfigKeys.
         /// </summary>
         /// <returns>A dictionary with types as keys and actual configuration objects or null as values.</returns>
@@ -171,9 +146,22 @@ namespace ClientObserver.Configs
                 return displayString.TrimEnd('\n'); // Remove the last newline character for cleanliness
             }
         }
+
         public override string ToString()
         {
             return CombinedFormattedDisplay;
+        }
+
+        /// <summary>
+        /// Provides an enumerator for iterating over BaseConfig objects.
+        /// </summary>
+        /// <returns>An IEnumerator of BaseConfig.</returns>
+        public IEnumerator<BaseConfig> GetEnumerator()
+        {
+            if (MqttClientConfig != null) yield return MqttClientConfig;
+            if (VideoStreamConfig != null) yield return VideoStreamConfig;
+            if (ModelParamConfig != null) yield return ModelParamConfig;
+            if (CloudConfig != null) yield return CloudConfig;
         }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
