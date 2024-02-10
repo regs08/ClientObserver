@@ -5,10 +5,10 @@ namespace ClientObserver.Views
 
     public partial class ServerPageView : ContentPage
     {
-        public ServerPageView(ServiceManager serviceManager)
+        public ServerPageView(ServerPageViewModel viewModel)
         {
             InitializeComponent();
-            BindingContext = new ServerPageViewModel(serviceManager);
+            BindingContext = viewModel;
         }
     }
 }
