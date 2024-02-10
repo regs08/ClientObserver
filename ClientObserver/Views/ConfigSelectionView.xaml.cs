@@ -24,7 +24,7 @@ namespace ClientObserver.Views
                 // Deselect item
                 ((ListView)sender).SelectedItem = null;
             }
-        }
+         }
     }
 }
 

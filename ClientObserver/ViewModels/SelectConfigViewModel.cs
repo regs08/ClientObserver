@@ -61,7 +61,6 @@ namespace ClientObserver
         {
             if (config != null && !SelectedConfigs.Contains(config))
             {
-                //_appConfigManager.AddToSelectedConfigs(config);
                 // Sends a message to notify other parts of the application about the update
                 WeakReferenceMessenger.Default.Send(new UpdateSelectedServerConfigMessage(config));
             }

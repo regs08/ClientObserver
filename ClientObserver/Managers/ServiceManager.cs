@@ -18,9 +18,9 @@ namespace ClientObserver.Services
         public ServiceManager(ServerConfigs ConfigManager)
         {
             Config = ConfigManager;
-            ImplementServiceManager();
+            ImplementServiceManager();          
         }
-
+        
         // Configures and initializes services based on the provided server configuration
         private void GetServicesFromConfig()
         {
