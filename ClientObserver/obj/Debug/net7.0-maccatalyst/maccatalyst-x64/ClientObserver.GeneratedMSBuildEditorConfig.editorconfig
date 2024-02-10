@@ -40,17 +40,29 @@ build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Resources.S
 build_metadata.AdditionalFiles.TargetPath = Resources/Styles/Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources/Styles/Styles.xaml
 
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ConfigSelectionView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ConfigSelectionView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ConfigSelectionView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ConfigSelectionView.xaml
+
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/CreateConfigView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.CreateConfigView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/CreateConfigView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/CreateConfigView.xaml
 
-[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConfigView.xaml]
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/ConnectionSetupView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConfigView.xaml
-build_metadata.AdditionalFiles.TargetPath = Views/ServerConfigView.xaml
-build_metadata.AdditionalFiles.RelativePath = Views/ServerConfigView.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConnectionSetup.ConnectionSetupView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerConnectionSetup/ConnectionSetupView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerConnectionSetup/ConnectionSetupView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/MqttConnectionView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConnectionSetup.MqttConnectionView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerConnectionSetup/MqttConnectionView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerConnectionSetup/MqttConnectionView.xaml
 
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/LogView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
@@ -58,11 +70,11 @@ build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Serve
 build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/LogView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/LogView.xaml
 
-[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/MqttConnectionView.xaml]
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/MqttDisplayView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.MqttConnectionView.xaml
-build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/MqttConnectionView.xaml
-build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/MqttConnectionView.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage.MqttDisplayView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerPage/MqttDisplayView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerPage/MqttDisplayView.xaml
 
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage/PhotoView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

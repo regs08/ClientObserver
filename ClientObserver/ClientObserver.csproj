@@ -61,9 +61,6 @@
   		<Content Include="Resources\Raw\GrapeModelConfig.json">
    		 <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   		</Content>
- 		 <Content Include="Resources\Raw\DefaultConfig.json">
-    		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,6 +95,27 @@
 	  <None Remove="Models\Events\MessageEvents\" />
 	  <None Remove="Models\Events\Enums\" />
 	  <None Remove="Models\Events\MessageEvents\Args\" />
+	  <None Remove="Models\Configs\" />
+	  <None Remove="Models\Utils\" />
+	  <None Remove="Models\Configs\ModelParam\" />
+	  <None Remove="Models\Configs\MqttClient\" />
+	  <None Remove="Models\Configs\VideoStream\" />
+	  <None Remove="Managers\" />
+	  <None Remove="Models\Configs\CloudClient\" />
+	  <None Remove="Services\Config\" />
+	  <None Remove="ViewModels\ServerConfigConnectionSetup\" />
+	  <None Remove="Views\ServerConnectionSetup\" />
+	  <None Remove="Converters\" />
+	  <None Remove="Models\Clients\" />
+	  <None Remove="Models\Clients\MqttClientModel\" />
+	  <None Remove="Services\Clients\" />
+	  <None Remove="Services\Clients\MqtttClientService\" />
+	  <None Remove="Models\Servers\" />
+	  <None Remove="Services\App\" />
+	  <None Remove="Models\Servers\Clients\" />
+	  <None Remove="Helpers\" />
+	  <None Remove="Helpers\Server\" />
+	  <None Remove="Helpers\Server\Clients\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -107,11 +125,40 @@
 	  <Folder Include="Models\Events\MessageEvents\" />
 	  <Folder Include="Models\Events\Enums\" />
 	  <Folder Include="Models\Events\MessageEvents\Args\" />
+	  <Folder Include="Models\Configs\" />
+	  <Folder Include="Models\Utils\" />
+	  <Folder Include="Models\Configs\ModelParam\" />
+	  <Folder Include="Models\Configs\MqttClient\" />
+	  <Folder Include="Models\Configs\VideoStream\" />
+	  <Folder Include="Managers\" />
+	  <Folder Include="Models\Configs\CloudClient\" />
+	  <Folder Include="Services\Config\" />
+	  <Folder Include="ViewModels\ServerConfigConnectionSetup\" />
+	  <Folder Include="Views\ServerConnectionSetup\" />
+	  <Folder Include="Converters\" />
+	  <Folder Include="Models\Clients\" />
+	  <Folder Include="Models\Clients\MqttClientModel\" />
+	  <Folder Include="Services\Clients\" />
+	  <Folder Include="Services\Clients\MqtttClientService\" />
+	  <Folder Include="Models\Servers\" />
+	  <Folder Include="Services\App\" />
+	  <Folder Include="Models\Servers\Clients\" />
+	  <Folder Include="Helpers\" />
+	  <Folder Include="Helpers\Server\" />
+	  <Folder Include="Helpers\Server\Clients\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">
 	    <SubType></SubType>
 	    <Generator></Generator>
 	  </AndroidResource>
+	  <AndroidResource Include="Resources\Raw\DefaultConfig.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <SubType></SubType>
+	    <Generator></Generator>
+	  </AndroidResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="ViewModels\ServerPage\StreamViewModel.cs" />
 	</ItemGroup>
 </Project>
