@@ -5,6 +5,7 @@ using ClientObserver.Views;
 using CommunityToolkit.Mvvm.Messaging;
 using ClientObserver.Configs;
 using ClientObserver.Managers;
+using ClientObserver.Models.Servers;
 
 
 namespace ClientObserver
@@ -60,7 +61,7 @@ namespace ClientObserver
         {
             if (config != null && !SelectedConfigs.Contains(config))
             {
-                _appConfigManager.AddToSelectedConfigs(config);
+                //_appConfigManager.AddToSelectedConfigs(config);
                 // Sends a message to notify other parts of the application about the update
                 WeakReferenceMessenger.Default.Send(new UpdateSelectedServerConfigMessage(config));
             }
