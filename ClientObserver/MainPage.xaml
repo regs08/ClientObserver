@@ -4,14 +4,16 @@
 <StackLayout>
     <Button Text="Select Configs" Command="{Binding SelectFromAvailableConfigsCommand}" Margin="5"/>
 
-    <CollectionView ItemsSource="{Binding ServerConfigButtons}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Button Text="{Binding ServerName}"
-                        Command="{Binding NavigateCommand}" />
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+<CollectionView ItemsSource="{Binding SelectedConfigs}">
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <!-- Ensure the Command Binding is correctly configured -->
+            <Button Text="{Binding ServerName}"
+                    Command="{Binding Path=BindingContext.ServerPageViewCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                    CommandParameter="{Binding}" />
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
     <Button Text="Connection Setup" Command="{Binding SetupServerConfigConenction}" Margin="5"/>
 </StackLayout>
 
