@@ -1,6 +1,8 @@
 ﻿using System;
 using ClientObserver.Managers;
 using ClientObserver.Configs;
+using ClientObserver.Models.Servers;
+
 namespace ClientObserver.ViewModels
 {
     // Defines a message type for updating server configuration.
