@@ -5,6 +5,7 @@ using ClientObserver.Models.TopicList;
 using ClientObserver.Services;
 using ClientObserver.Managers;
 using ClientObserver.Configs;
+using ClientObserver.Models.Servers;
 
 using CommunityToolkit.Mvvm.Messaging;
 // view model respnsible for creating a custom config.
