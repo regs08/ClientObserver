@@ -1,53 +1,42 @@
-﻿using Microsoft.Maui.Controls;
-using System;
-using System.Collections.Generic;
-using ClientObserver.Configs;
-using ClientObserver.Managers;
+﻿using ClientObserver.Managers;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using ClientObserver.Views;
+using ClientObserver.Models.Servers;
+using ClientObserver.Models.Clients;
+using ClientObserver.Views.ServerConfigConnectionSetup;
 
-namespace ClientObserver.ViewModels
+namespace ClientObserver.ViewModels.ServerConfigConnectionSetup
 {
     public class ConnectionSetupViewModel
     {
-        private AppConfigManager _appConfigManager;
-        
-        public ObservableCollection<ServerConfigs> MyAvailableConfigs { get; set; }
+        private readonly AppConfigManager appConfigManager;
+        private readonly AppClientManager appClientManager;
+
+        public ObservableCollection<ServerClients> appServerClients => AppClientManager.Instance.ServerClients;
+
         public ObservableCollection<ServerConfigs> MySelectedConfigs { get; set; }
         public ICommand NavigateCommand { get; private set; }
 
-        public ConnectionSetupViewModel(AppConfigManager appConfigManager)
+        public ConnectionSetupViewModel()
         {
-            _appConfigManager = appConfigManager;
-            MyAvailableConfigs = _appConfigManager.AvailableConfigs;
-            MySelectedConfigs = _appConfigManager.SelectedConfigs; 
-            NavigateCommand = new Command<BaseConfig>(ExecuteNavigateCommand);
+            appConfigManager = AppConfigManager.Instance;
+            appClientManager = AppClientManager.Instance;
+
+            MySelectedConfigs = appConfigManager.SelectedConfigs;
+            NavigateCommand = new Command<BaseClientModel>(ExecuteNavigateCommand);
         }
 
-        private async void ExecuteNavigateCommand(BaseConfig config)
+        private async void ExecuteNavigateCommand(BaseClientModel clientModel)
         {
-            // Determine the type of config
-            Type configType = config.GetType();
 
-            // Use ConfigKeys to decide navigation based on config type
-            if (ServerConfigs.ConfigKeys.TryGetValue(configType, out string configKey))
+            // Check if clientModel is of type MqttClientModel
+            if (clientModel is MqttClientModel mqttClientModel)
             {
-                // Example of navigating based on configKey
-                // You need to adjust the navigation logic to your application's structure
-                Page targetPage = null;
-                switch (configKey)
-                {
-                    case "MqttClientConfig":
-                        targetPage = new MqttConnectionPageView(config); // Assuming you have this page and constructor
-                        break;
-                        // Add other cases for different config types
-                }
+                // Since clientModel is MqttClientModel, we can directly use mqttClientModel which is already casted.
+                MqttConnectionViewModel viewModel = new MqttConnectionViewModel(mqttClientModel);
+                var page = new MqttConnectionView(viewModel);
 
-                if (targetPage != null)
-                {
-                    await Application.Current.MainPage.Navigation.PushAsync(targetPage);
-                }
+                await Application.Current.MainPage.Navigation.PushAsync(page);
             }
         }
     }
