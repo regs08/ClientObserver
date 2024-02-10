@@ -14,7 +14,6 @@ namespace ClientObserver.Configs
         /// </summary>
     
         public string Name { get; protected set; }
-        public bool ConnectionStatus { get; set; } = false;
 
         protected BaseConfig(string name)
         {
