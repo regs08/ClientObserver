@@ -3,8 +3,7 @@
 // todo needs a further rework based on the new config rerwork 
 using System.Collections.ObjectModel;
 using ClientObserver.Models.TopicList;
-using ClientObserver.Managers;
-using ClientObserver.Configs;
+using ClientObserver.Models.Servers;
 
 namespace ClientObserver.Services
 {
