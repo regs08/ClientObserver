@@ -3,33 +3,42 @@ using System.Windows.Input;
 using ClientObserver.Views;
 using ClientObserver.Services;
 using CommunityToolkit.Mvvm.Messaging;
-using ClientObserver.Configs;
+using ClientObserver.Models.Clients;
 using ClientObserver.Managers;
+using ClientObserver.Models.Servers;
+using ClientObserver.ViewModels.ServerConfigConnectionSetup;
+
 namespace ClientObserver.ViewModels
 {
     public class MainPageViewModel
     {
         // Collection to store the selected server configurations
-        public ObservableCollection<ServerConfigs> SelectedConfigs { get; private set; } = new ObservableCollection<ServerConfigs>();
 
         // Service for configuration management
         private AppConfigManager appConfigManager;
+        private AppClientManager appClientManager;
 
-        // Collection of ViewModels for each server configuration button
-        public ObservableCollection<ServerConfigButtonViewModel> ServerConfigButtons { get; private set; } = new ObservableCollection<ServerConfigButtonViewModel>();
 
+        public ObservableCollection<ServerConfigs> SelectedConfigs => AppConfigManager.Instance.SelectedConfigs;
         // Command to select configuration view
         public ICommand SelectFromAvailableConfigsCommand { get; private set; }
         // Command to navigate to the setup ServerConfigConnection
         public ICommand SetupServerConfigConenction { get; private set; }
+        //Command to navigate to the ServerPageView
+        public ICommand ServerPageViewCommand { get; private set; }
+
         // Constructor
         public MainPageViewModel()
         {
             // Initialize command to navigate to the configuration view
             SelectFromAvailableConfigsCommand = new Command(async () => await NavigateToConfigSelection());
             SetupServerConfigConenction = new Command(async () => await NavigateToSetUpServerConfigConnection());
+            ServerPageViewCommand = new Command<ServerConfigs>(NavigateToServerPage);
+
             // Instantiate the config service. Local configs are loaded on intialization
             appConfigManager = AppConfigManager.Instance;
+            appClientManager = AppClientManager.Instance;
+
             // Register to listen for update messages for server configurations
             WeakReferenceMessenger.Default.Register<UpdateSelectedServerConfigMessage>(this, (recipient, message) =>
             {
@@ -38,54 +47,46 @@ namespace ClientObserver.ViewModels
             });
         }
 
-
         public async Task InitializeAppConfigManagerAsync()
         {
             await AppConfigManager.Instance.InitializeAsync();
             // Now AppConfigManager is initialized, and local configs are loaded once.
         }
+        // todo change method sig...doing alot more than updating selected configs
         // Updates the selected server configurations
         private void UpdateSelectedConfigs(ServerConfigs config)
         {
             // Checks if the configuration already exists and updates or adds accordingly
-            var existingConfig = SelectedConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);
+            var existingConfig = appConfigManager.SelectedConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);
             if (existingConfig != null)
             {
                 // Remove the existing configuration if found
-                SelectedConfigs.Remove(existingConfig);
+                appConfigManager.RemoveFromSelectedConfigs(existingConfig);
             }
             // Add the new or updated configuration
-            SelectedConfigs.Add(config);
+            appConfigManager.AddToSelectedConfigs(config);
 
-            // Refresh the UI for server configuration buttons
-            UpdateServerConfigButtons();
+            // Creating the models for our client models
+            // todo encapsualte this
+            // create model from config 
+            MqttClientModel mqttClientModel = new MqttClientModel(config.MqttClientConfig);
+            //mqttClientModel.ApplyConfig();
+            // create serverclients object (holds all clients for server 
+            ServerClients serverClients = new ServerClients();
+            serverClients.SetServerName(config.ServerName);
+            serverClients.AddClientModel(mqttClientModel);
+            // add to our singleton instance 
+            appClientManager.AddSeverClients(serverClients);
+
         }
 
-        // Updates the collection of server configuration buttons
-        private void UpdateServerConfigButtons()
+        private async void NavigateToServerPage(ServerConfigs serverConfigs)
         {
-            foreach (var config in SelectedConfigs)
-            {
-                // Check if a button ViewModel for the current config already exists
-                var existingVm = ServerConfigButtons.FirstOrDefault(vm => vm.ServerName == config.ServerName);
-                if (existingVm == null)
-                {
-                    // Create a new ViewModel for the server config button if it doesn't exist
-                    var newVm = new ServerConfigButtonViewModel(config, new Command(async () =>
-                    {
-                        // Define the action for the button, such as navigation to a server-specific page
-                        ServiceManager serverServices = new ServiceManager(config);
-                        var page = new ServerPageView(serverServices);
-                        await Shell.Current.Navigation.PushAsync(page);
-                    }));
-
-                    // Add the new ViewModel to the collection
-                    ServerConfigButtons.Add(newVm);
-                }
-                // If the ViewModel already exists, no action is taken to avoid duplicates
-            }
+            ServiceManager serviceManager = new ServiceManager(serverConfigs);
+            var viewModel = new ServerPageViewModel(serviceManager);
+            var serverPage = new ServerPageView(viewModel);
+            await Shell.Current.Navigation.PushAsync(serverPage);
         }
-
         // Navigates to the server configuration view
         private async Task NavigateToConfigSelection()
         {
@@ -96,7 +97,7 @@ namespace ClientObserver.ViewModels
         }
         private async Task NavigateToSetUpServerConfigConnection()
         {
-            ConnectionSetupViewModel viewModel = new ConnectionSetupViewModel(appConfigManager);
+            ConnectionSetupViewModel viewModel = new ConnectionSetupViewModel();
             var connectionSetUpPage = new ConnectionSetupView(viewModel);
             await Shell.Current.Navigation.PushAsync(connectionSetUpPage);
         }
