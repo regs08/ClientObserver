@@ -1,4 +1,5 @@
-﻿using ClientObserver.Configs;
+﻿using ClientObserver.Models.Servers;
+
 namespace ClientObserver.Views
 {
     public partial class ConfigSelectionView : ContentPage
