@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
 using ClientObserver.Services;
 using ClientObserver.Views;
-using ClientObserver.Configs;
+using ClientObserver.Views.ServerPage;
+using ClientObserver.Models.Servers;
 
 namespace ClientObserver.ViewModels
 {
@@ -59,7 +60,7 @@ namespace ClientObserver.ViewModels
         // Method for navigating to the MQTT connection view
         private async Task NavigateToMQTT()
         {
-            var mqttPage = new MqttConnectionView(_mqttClientService);
+            var mqttPage = new MqttDisplayView(_mqttClientService);
             await Shell.Current.Navigation.PushAsync(mqttPage);
         }
 
