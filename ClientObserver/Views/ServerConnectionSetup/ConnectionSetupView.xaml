@@ -14,7 +14,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <VerticalStackLayout>
-                        <Label Text="{Binding ServerName}" />
+                        <Label Text="{Binding Name}" />
                         <CollectionView ItemsSource="{Binding ClientModels}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>

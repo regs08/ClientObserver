@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ClientObserver.Models.Clients;
-using ClientObserver.Helpers.Server.Clients;
+using ClientObserver.Helpers.InstancesAndObjects.Clients;
 using System.Collections.ObjectModel;
 
 namespace ClientObserver.Models.Servers

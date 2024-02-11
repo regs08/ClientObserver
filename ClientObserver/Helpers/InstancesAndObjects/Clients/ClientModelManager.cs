@@ -1,5 +1,7 @@
 ﻿using ClientObserver.Models.Clients;
-namespace ClientObserver.Helpers.Server.Clients
+using ClientObserver.Helpers.BaseClasses;
+
+namespace ClientObserver.Helpers.InstancesAndObjects.Clients
 {
     // This concrete class inherits from AbstractModelManager<BaseClientModel>
     // and uses its implementation directly without any modification.

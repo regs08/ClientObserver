@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ClientObserver.Models.Interfaces;
 
-namespace ClientObserver.Helpers.Server
+namespace ClientObserver.Helpers.BaseClasses
 {
     /// <summary>
     /// Abstract class to manage a collection of models that implement the IIdentifiableModel interface.
@@ -89,6 +89,11 @@ namespace ClientObserver.Helpers.Server
         {
             return GetEnumerator();
         }
+        /// <summary>
+        /// Checks if our models are null or not 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public bool CheckModels()
         {
             if (Models != null)
@@ -96,6 +101,15 @@ namespace ClientObserver.Helpers.Server
                 return true;
             }
             throw new InvalidOperationException("Models are empty !! ");
+        }
+        /// <summary>
+        /// Retrieves a model by its Name property.
+        /// </summary>
+        /// <param name="name">The name of the model to retrieve.</param>
+        /// <returns>The model with the specified name if found; otherwise, null.</returns>
+        public TModel GetObjectFromName(string name)
+        {
+            return _models.FirstOrDefault(model => model.Name == name);
         }
     }
 }

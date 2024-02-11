@@ -116,6 +116,15 @@
 	  <None Remove="Helpers\" />
 	  <None Remove="Helpers\Server\" />
 	  <None Remove="Helpers\Server\Clients\" />
+	  <None Remove="Models\Servers\Configs\" />
+	  <None Remove="Models\Servers\Entity\" />
+	  <None Remove="Helpers\Server\Entity\" />
+	  <None Remove="Models\Interfaces\" />
+	  <None Remove="Helpers\Server\Configs\" />
+	  <None Remove="Helpers\InstancesAndObjects\" />
+	  <None Remove="Helpers\BaseClasses\" />
+	  <None Remove="Helpers\InstancesAndObjects\Clients\" />
+	  <None Remove="Helpers\InstancesAndObjects\Configs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -146,6 +155,15 @@
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Server\" />
 	  <Folder Include="Helpers\Server\Clients\" />
+	  <Folder Include="Models\Servers\Configs\" />
+	  <Folder Include="Models\Servers\Entity\" />
+	  <Folder Include="Helpers\Server\Entity\" />
+	  <Folder Include="Models\Interfaces\" />
+	  <Folder Include="Helpers\Server\Configs\" />
+	  <Folder Include="Helpers\InstancesAndObjects\" />
+	  <Folder Include="Helpers\BaseClasses\" />
+	  <Folder Include="Helpers\InstancesAndObjects\Clients\" />
+	  <Folder Include="Helpers\InstancesAndObjects\Configs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">

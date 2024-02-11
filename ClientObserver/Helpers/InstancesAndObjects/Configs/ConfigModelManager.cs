@@ -1,7 +1,7 @@
 ﻿using ClientObserver.Configs;
-using ClientObserver.Helpers.Server;
+using ClientObserver.Helpers.BaseClasses;
 
-namespace ClientObserver.Helpers.Server.Configs
+namespace ClientObserver.Helpers.InstancesAndObjects.Configs
 {
     // This concrete class inherits from AbstractModelManager<BaseClientModel>
     // and uses its implementation directly without any modification.
@@ -32,6 +32,11 @@ namespace ClientObserver.Helpers.Server.Configs
             }
             return false;
         }
+        /// <summary>
+        /// Calls the configs format for display method to return a readble string 
+        /// </summary>
+        /// <param name="serverName"></param>
+        /// <returns></returns>
         public string CombinedFormattedDisplay(string serverName)
         {
             if (CheckModels())

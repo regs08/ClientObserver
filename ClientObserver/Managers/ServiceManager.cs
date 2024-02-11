@@ -1,5 +1,4 @@
 ﻿using System;
-using ClientObserver.Managers;
 using ClientObserver.Configs;
 
 using ClientObserver.Models.Servers; 
