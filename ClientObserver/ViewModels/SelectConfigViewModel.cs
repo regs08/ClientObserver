@@ -69,9 +69,8 @@ namespace ClientObserver
         // Updates the list of available configurations with new or updated configurations
         private void UpdateAvailableConfigs(ServerConfigs serverConfigs)
         {
-            serverConfigs.ValidateAllConfigs();
             //Console.Write($"Message to update config received: {serverConfigs.FormattedDisplay}");
-            var existingConfig = AvailableConfigs.FirstOrDefault(c => c.ServerName == serverConfigs.ServerName);
+            var existingConfig = AvailableConfigs.FirstOrDefault(c => c.Name == serverConfigs.Name);
             if (existingConfig != null)
             {
                 _appConfigManager.RemoveFromAvailableConfigs(existingConfig);

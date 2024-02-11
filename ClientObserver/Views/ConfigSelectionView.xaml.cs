@@ -14,7 +14,7 @@ namespace ClientObserver.Views
         {
             if (e.Item != null && e.Item is ServerConfigs selectedConfig)
             {
-                bool answer = await DisplayAlert("Select Configuration", $"Do you want to select this configuration: {selectedConfig.ServerName}?", "Yes", "No");
+                bool answer = await DisplayAlert("Select Configuration", $"Do you want to select this configuration: {selectedConfig.Name}?", "Yes", "No");
                 if (answer)
                 {
                     // User selected 'Yes'
