@@ -29,8 +29,7 @@ namespace ClientObserver.Services
 
                 dynamic fullConfig = JsonConvert.DeserializeObject<dynamic>(jsonContent);
 
-                serverConfigs.ServerName = fullConfig["ServerName"];
-
+                serverConfigs.Name = fullConfig["ServerName"];
                 //iterate through our configs 
                 foreach (var configPair in ServerConfigs.ConfigKeys)
                 {
@@ -43,7 +42,8 @@ namespace ClientObserver.Services
                         BaseConfig config = JsonConvert.DeserializeObject(configJson, configType);
                         config.Validate();
 
-                        serverConfigs.GetType().GetProperty(configKey)?.SetValue(serverConfigs, config);
+                        //serverConfigs.GetType().GetProperty(configKey)?.SetValue(serverConfigs, config);
+                        serverConfigs.AddConfigModel(config);
                     }
                     catch (Newtonsoft.Json.JsonException jsonEx)
                     {
