@@ -71,6 +71,7 @@ namespace ClientObserver.ViewModels
         }
         private void ExecuteCreateConfig()
         {
+            /*
             ServerConfigs config = MyUserEntry.CreateServerConfig();
 
             if (config.ValidateAllConfigs())
@@ -79,6 +80,7 @@ namespace ClientObserver.ViewModels
                 WeakReferenceMessenger.Default.Send(new UpdateAvailableServerConfigMessage(config));
             }
             // Here you can add logic to handle the newly created config, like adding it to a list, etc.
+            */
         }
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -307,9 +309,9 @@ public class UserEntry : INotifyPropertyChanged
             // add in these methods 
             ServerConfigs serverConfigs = new ServerConfigs();
             serverConfigs.SetServerName(_selectedServerName);
-            serverConfigs.AddConfig(mqttClientConfig);
-            serverConfigs.AddConfig(videoStreamConfig);
-            serverConfigs.AddConfig(modelParamConfig);
+            serverConfigs.AddConfigModel(mqttClientConfig);
+            serverConfigs.AddConfigModel(videoStreamConfig);
+            serverConfigs.AddConfigModel(modelParamConfig);
             return serverConfigs;
 
         }
