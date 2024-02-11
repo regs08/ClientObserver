@@ -33,9 +33,10 @@ namespace ClientObserver.Services
         public AggregateConfigService(ObservableCollection<ServerConfigs> serverConfigs)
         {
             _severConfigs = serverConfigs;
-            AggregateData();
+            //AggregateData();
         }
-        // Aggregates data from the available server configs 
+        // Aggregates data from the available server configs
+        /*
         private void AggregateData()
         {
             AvailableIPs = _severConfigs?.Select(c => c.MqttClientConfig.BrokerAddress).Distinct().ToList() ?? new List<string>();
@@ -83,6 +84,6 @@ namespace ClientObserver.Services
             }
         }
 
-
+        */
     }
 }
