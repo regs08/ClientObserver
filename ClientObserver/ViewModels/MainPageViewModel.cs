@@ -7,6 +7,7 @@ using ClientObserver.Models.Clients;
 using ClientObserver.Managers;
 using ClientObserver.Models.Servers;
 using ClientObserver.ViewModels.ServerConfigConnectionSetup;
+using ClientObserver.Configs;
 
 namespace ClientObserver.ViewModels
 {
@@ -57,7 +58,7 @@ namespace ClientObserver.ViewModels
         private void UpdateSelectedConfigs(ServerConfigs config)
         {
             // Checks if the configuration already exists and updates or adds accordingly
-            var existingConfig = appConfigManager.SelectedConfigs.FirstOrDefault(c => c.ServerName == config.ServerName);
+            var existingConfig = appConfigManager.SelectedConfigs.FirstOrDefault(c => c.Name == config.Name);
             if (existingConfig != null)
             {
                 // Remove the existing configuration if found
@@ -69,11 +70,11 @@ namespace ClientObserver.ViewModels
             // Creating the models for our client models
             // todo encapsualte this
             // create model from config 
-            MqttClientModel mqttClientModel = new MqttClientModel(config.MqttClientConfig);
+            MqttClientModel mqttClientModel = new MqttClientModel(config.GetConfigModel<MqttClientConfig>());
             //mqttClientModel.ApplyConfig();
             // create serverclients object (holds all clients for server 
             ServerClients serverClients = new ServerClients();
-            serverClients.SetServerName(config.ServerName);
+            serverClients.SetServerName(config.Name);
             serverClients.AddClientModel(mqttClientModel);
             // add to our singleton instance 
             appClientManager.AddSeverClients(serverClients);
