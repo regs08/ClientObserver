@@ -1,5 +1,7 @@
 ﻿using System;
 using ClientObserver.Managers;
+using ClientObserver.Configs;
+
 using ClientObserver.Models.Servers; 
 namespace ClientObserver.Services
 {
@@ -25,14 +27,14 @@ namespace ClientObserver.Services
         private void GetServicesFromConfig()
         {
             // Creates an MQTT client service using the MQTT client configuration from the server config
-            MqttService = new MqttClientService(Config.MqttClientConfig);
+            MqttService = new MqttClientService(Config.GetConfigModel<MqttClientConfig>());
 
             // Initializes the log service (comment indicates a potential update needed for the constructor)
             // todo update the constructor for log service to not take the mqtt service 
             LogService = new LogService(MqttService);
 
             // Initializes the video stream service with the URI from the video stream configuration
-            VideoStreamService = new VideoStreamService(Config.VideoStreamConfig.VideoStreamUri);
+            VideoStreamService = new VideoStreamService(Config.GetConfigModel<VideoStreamConfig>().VideoStreamUri);
 
             // Initializes the image receiver service
             ImageReceiverService = new ImageReceiverService(MqttService);
