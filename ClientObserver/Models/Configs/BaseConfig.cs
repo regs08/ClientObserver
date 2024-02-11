@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
+using ClientObserver.Models.Interfaces;
 
 namespace ClientObserver.Configs
 {
@@ -7,13 +8,13 @@ namespace ClientObserver.Configs
     /// Represents the base class for all configuration types in the application.
     /// This abstract class provides common properties and functionality that can be inherited by specific configuration classes.
     /// </summary>
-    public abstract class BaseConfig
+    public abstract class BaseConfig : IIdentifiableModel
     {
         /// <summary>
         /// Gets or sets the name of the configuration.
         /// </summary>
     
-        public string Name { get; protected set; }
+        public string Name { get; set; }
 
         protected BaseConfig(string name)
         {
