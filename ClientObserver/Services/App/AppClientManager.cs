@@ -40,7 +40,7 @@ namespace ClientObserver.Managers
         // Method to get a client model by server name
         public ServerClients GetClientModel(string serverName)
         {
-            var serverClient = ServerClients.FirstOrDefault(sc => sc.ServerName == serverName);
+            var serverClient = ServerClients.FirstOrDefault(sc => sc.Name == serverName);
             if (serverClient != null)
             {
                 return serverClient;
@@ -52,7 +52,7 @@ namespace ClientObserver.Managers
         // Method to add a client model
         public void AddSeverClients(ServerClients serverClients)
         {
-            var existingServerClient = GetClientModel(serverClients.ServerName);
+            var existingServerClient = GetClientModel(serverClients.Name);
             if (existingServerClient == null)
             {
                 ServerClients.Add(serverClients);

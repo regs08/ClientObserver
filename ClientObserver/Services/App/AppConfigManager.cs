@@ -77,14 +77,11 @@ namespace ClientObserver.Managers
         public void AddtoAvailableConfigs(ServerConfigs serverConfigs)
         {
             if (!AvailableConfigs.Contains(serverConfigs))
-            {
-
-                if (serverConfigs.ValidateAllConfigs())
-                {
-                    AvailableConfigs.Add(serverConfigs);
-                }
+            { 
+             AvailableConfigs.Add(serverConfigs);
             }
         }
+        
 
         public void RemoveFromSelectedConfigs(ServerConfigs serverConfigs)
         {
