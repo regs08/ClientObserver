@@ -1,5 +1,5 @@
 ﻿using System;
-using ClientObserver.Models.Clients;
+using ClientObserver.Models.Server.Core.Clients;
 namespace ClientObserver.ViewModels.ServerConfigConnectionSetup
 {
 	public class MqttConnectionViewModel

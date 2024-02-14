@@ -1,11 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using ClientObserver.Configs;
-using System.IO;
-using System.Text.Json;
-using Microsoft.Maui.Storage;
-using ClientObserver.Models.Servers;
+using ClientObserver.Models.Server.Core.Configs;
+using ClientObserver.Models.Server.Managers;
+
 
 namespace ClientObserver.Services
 {

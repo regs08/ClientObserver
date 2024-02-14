@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using ClientObserver.Configs;
-using ClientObserver.Models.TopicList;
+using ClientObserver.Models.Server.Core.Configs;
+using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
 namespace ClientObserver.Models
 {
     // Mqtt client model

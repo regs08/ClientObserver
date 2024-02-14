@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using ClientObserver.Services;
-using ClientObserver.Models.Servers;
+using ClientObserver.Models.Server.Managers;
 
 // Class responsible for managing all the config manager instances of the app
 namespace ClientObserver.Managers

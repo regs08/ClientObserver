@@ -1,6 +1,6 @@
 ﻿using System;
-using ClientObserver.Models.Clients;
-using ClientObserver.Configs;
+using ClientObserver.Models.Server.Core.Clients;
+using ClientObserver.Models.Server.Core.Configs;
 
 namespace ClientObserver.Services.Clients
 {

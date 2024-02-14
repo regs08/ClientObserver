@@ -1,5 +1,6 @@
 ﻿using System;
-using ClientObserver.Configs;
+using ClientObserver.Models.Server.Core.Configs;
+using ClientObserver.Models.Server.Managers;
 
 using ClientObserver.Models.Servers; 
 namespace ClientObserver.Services

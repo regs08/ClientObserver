@@ -3,9 +3,8 @@ using System.Windows.Input;
 using ClientObserver.ViewModels;
 using ClientObserver.Views;
 using CommunityToolkit.Mvvm.Messaging;
-using ClientObserver.Configs;
+using ClientObserver.Models.Server.Managers;
 using ClientObserver.Managers;
-using ClientObserver.Models.Servers;
 
 
 namespace ClientObserver

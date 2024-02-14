@@ -2,7 +2,8 @@
 // displays the unique values of all of them and provides the user with those as default choices 
 // todo needs a further rework based on the new config rerwork 
 using System.Collections.ObjectModel;
-using ClientObserver.Models.TopicList;
+using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
+using ClientObserver.Models.Server.Managers;
 using ClientObserver.Models.Servers;
 
 namespace ClientObserver.Services

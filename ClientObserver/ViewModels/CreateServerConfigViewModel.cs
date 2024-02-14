@@ -1,13 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using ClientObserver.Models.TopicList;
+using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
 using ClientObserver.Services;
 using ClientObserver.Managers;
-using ClientObserver.Configs;
-using ClientObserver.Models.Servers;
+using ClientObserver.Models.Server.Core.Configs;
+using ClientObserver.Models.Server.Managers;
 
-using CommunityToolkit.Mvvm.Messaging;
+
 // view model respnsible for creating a custom config.
 // todo split and edit this to reflect changes in the server config 
 namespace ClientObserver.ViewModels

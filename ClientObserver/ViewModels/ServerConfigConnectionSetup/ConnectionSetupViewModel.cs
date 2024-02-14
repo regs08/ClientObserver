@@ -2,7 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ClientObserver.Models.Servers;
-using ClientObserver.Models.Clients;
+using ClientObserver.Models.Server.Core.Clients;
+using ClientObserver.Models.Server.Managers;
 using ClientObserver.Views.ServerConfigConnectionSetup;
 
 namespace ClientObserver.ViewModels.ServerConfigConnectionSetup

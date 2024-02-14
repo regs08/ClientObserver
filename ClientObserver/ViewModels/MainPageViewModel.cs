@@ -3,11 +3,12 @@ using System.Windows.Input;
 using ClientObserver.Views;
 using ClientObserver.Services;
 using CommunityToolkit.Mvvm.Messaging;
-using ClientObserver.Models.Clients;
+using ClientObserver.Models.Server.Core.Clients;
+using ClientObserver.Models.Server.Core.Configs;
+using ClientObserver.Models.Server.Managers;
 using ClientObserver.Managers;
 using ClientObserver.Models.Servers;
 using ClientObserver.ViewModels.ServerConfigConnectionSetup;
-using ClientObserver.Configs;
 
 namespace ClientObserver.ViewModels
 {

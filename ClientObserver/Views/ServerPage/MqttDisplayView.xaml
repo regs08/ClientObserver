@@ -4,11 +4,6 @@
              x:Class="ClientObserver.Views.ServerPage.MqttDisplayView"
              Title="MQTT Connection">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:BooleanToColorConverter x:Key="BoolToColorConverter"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <StackLayout Padding="20" Spacing="10">
         <!-- Connect Button -->

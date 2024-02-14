@@ -2,9 +2,8 @@
 using MQTTnet;
 using MQTTnet.Client;
 using System.Text;
-using ClientObserver.Configs;
+using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.MessageEvents;
-using System.Threading.Tasks;
 using ClientObserver.Models;
 using Newtonsoft.Json.Linq;
 // todo when navigating to and from server page the client disconnects and I no longer

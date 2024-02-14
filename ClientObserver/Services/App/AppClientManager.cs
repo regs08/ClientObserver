@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using ClientObserver.Models.Clients;
+using ClientObserver.Models.Server.Managers;
 using ClientObserver.Models.Servers;
 // todo need to rewrite how this adds client models throwing an error when it searches for a key that doesnt exist 
 namespace ClientObserver.Managers

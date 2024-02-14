@@ -2,7 +2,7 @@
 // labels etc ..
 
 //todo implement this properly
-using ClientObserver.Configs;
+using ClientObserver.Models.Server.Core.Configs;
 
 namespace ClientObserver.Models
 {
