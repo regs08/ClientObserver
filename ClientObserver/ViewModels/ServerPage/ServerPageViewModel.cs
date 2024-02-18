@@ -2,8 +2,7 @@
 using ClientObserver.Services;
 using ClientObserver.Views;
 using ClientObserver.Views.ServerPage;
-using ClientObserver.Models.Servers;
-using ClientObserver.Models.Server.Managers;
+using ClientObserver.Models.Server.Framework.Configs;
 
 namespace ClientObserver.ViewModels
 {
