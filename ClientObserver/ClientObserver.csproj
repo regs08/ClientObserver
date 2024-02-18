@@ -64,6 +64,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="Views\ConfigSelectionView.xaml" />
+	  <MauiXaml Remove="Views\CreateConfigView.xaml" />
+	</ItemGroup>
+	<ItemGroup>
 	  <MauiXaml Update="Views\ServerPage\LogView.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
@@ -77,9 +81,6 @@
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ServerPage\VideoStreamView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CreateConfigView.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ServerConfigView.xaml">
@@ -106,15 +107,27 @@
 	  <None Remove="Services\App\" />
 	  <None Remove="Helpers\" />
 	  <None Remove="Helpers\Server\" />
-	  <None Remove="Helpers\Server\Entity\" />
 	  <None Remove="Models\Interfaces\" />
 	  <None Remove="Helpers\BaseClasses\" />
-	  <None Remove="Helpers\Server\Core\" />
 	  <None Remove="Models\Server\" />
 	  <None Remove="Models\Server\Core\" />
 	  <None Remove="Models\Server\Core\Clients\" />
 	  <None Remove="Models\Server\Core\Configs\" />
 	  <None Remove="Models\Server\Core\Configs\MqttClient\TopicList\" />
+	  <None Remove="Services\App\Core\" />
+	  <None Remove="Models\App\" />
+	  <None Remove="Helpers\Server\Framework\" />
+	  <None Remove="Models\Server\Instance\" />
+	  <None Remove="Helpers\Server\Instance\" />
+	  <None Remove="Helpers\App\" />
+	  <None Remove="Services\App\Core\Configs\" />
+	  <None Remove="Models\App\Core\" />
+	  <None Remove="Models\App\Core\Configs\" />
+	  <None Remove="Helpers\App\Configs\" />
+	  <None Remove="Helpers\App\Clients\" />
+	  <None Remove="Services\App\Core\Clients\" />
+	  <None Remove="Services\App\Repos\" />
+	  <None Remove="Services\App\Repos\Configs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -135,15 +148,27 @@
 	  <Folder Include="Services\App\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Server\" />
-	  <Folder Include="Helpers\Server\Entity\" />
 	  <Folder Include="Models\Interfaces\" />
 	  <Folder Include="Helpers\BaseClasses\" />
-	  <Folder Include="Helpers\Server\Core\" />
 	  <Folder Include="Models\Server\" />
 	  <Folder Include="Models\Server\Core\" />
 	  <Folder Include="Models\Server\Core\Clients\" />
 	  <Folder Include="Models\Server\Core\Configs\" />
 	  <Folder Include="Models\Server\Core\Configs\MqttClient\TopicList\" />
+	  <Folder Include="Services\App\Core\" />
+	  <Folder Include="Models\App\" />
+	  <Folder Include="Helpers\Server\Framework\" />
+	  <Folder Include="Models\Server\Instance\" />
+	  <Folder Include="Helpers\Server\Instance\" />
+	  <Folder Include="Helpers\App\" />
+	  <Folder Include="Services\App\Core\Configs\" />
+	  <Folder Include="Models\App\Core\" />
+	  <Folder Include="Models\App\Core\Configs\" />
+	  <Folder Include="Helpers\App\Configs\" />
+	  <Folder Include="Helpers\App\Clients\" />
+	  <Folder Include="Services\App\Core\Clients\" />
+	  <Folder Include="Services\App\Repos\" />
+	  <Folder Include="Services\App\Repos\Configs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">
@@ -158,5 +183,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="ViewModels\ServerPage\StreamViewModel.cs" />
+	  <Compile Remove="Views\CreateConfigView.xaml.cs" />
+	  <Compile Remove="Views\ConfigSelectionView.xaml.cs" />
 	</ItemGroup>
 </Project>
