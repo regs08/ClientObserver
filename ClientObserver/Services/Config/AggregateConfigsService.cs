@@ -1,4 +1,5 @@
-﻿// combines all available configs to provide default values for creating configs
+﻿/*
+// combines all available configs to provide default values for creating configs
 // displays the unique values of all of them and provides the user with those as default choices 
 // todo needs a further rework based on the new config rerwork 
 using System.Collections.ObjectModel;
@@ -85,6 +86,7 @@ namespace ClientObserver.Services
             }
         }
 
-        */
+        
     }
 }
+*/
