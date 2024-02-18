@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿/*using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
@@ -67,7 +67,7 @@ namespace ClientObserver.ViewModels
             MyAvailableSubTopics = AvailableConfigData.AvailableSubTopics;
 
             CreateConfigCommand = new Command(ExecuteCreateConfig);
-            */
+            
         }
         private void ExecuteCreateConfig()
         {
@@ -80,7 +80,7 @@ namespace ClientObserver.ViewModels
                 WeakReferenceMessenger.Default.Send(new UpdateAvailableServerConfigMessage(config));
             }
             // Here you can add logic to handle the newly created config, like adding it to a list, etc.
-            */
+            
         }
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -319,3 +319,4 @@ public class UserEntry : INotifyPropertyChanged
     }
 
 }
+*/ 
