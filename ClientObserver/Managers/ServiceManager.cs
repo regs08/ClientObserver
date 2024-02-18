@@ -1,8 +1,6 @@
 ﻿using System;
 using ClientObserver.Models.Server.Core.Configs;
-using ClientObserver.Models.Server.Managers;
-
-using ClientObserver.Models.Servers; 
+using ClientObserver.Models.Server.Framework.Configs; 
 namespace ClientObserver.Services
 {
     public class ServiceManager
