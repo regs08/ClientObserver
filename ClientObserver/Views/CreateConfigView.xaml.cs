@@ -1,4 +1,5 @@
-﻿using ClientObserver.ViewModels;
+﻿/*
+using ClientObserver.ViewModels;
 namespace ClientObserver.Views;
 
 public partial class CreateConfigView : ContentPage
@@ -73,3 +74,4 @@ public partial class CreateConfigView : ContentPage
     }
 
 }
+*/
