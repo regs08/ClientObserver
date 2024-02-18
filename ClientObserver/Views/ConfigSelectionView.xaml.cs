@@ -1,4 +1,4 @@
-﻿using ClientObserver.Models.Server.Managers;
+﻿using ClientObserver.Models.Server.Framework.Configs;
 
 namespace ClientObserver.Views
 {
