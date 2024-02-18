@@ -128,7 +128,9 @@
 	  <None Remove="Services\App\Core\Clients\" />
 	  <None Remove="Services\App\Repos\" />
 	  <None Remove="Services\App\Repos\Configs\" />
-	  <None Remove="Services\Server\" />
+	  <None Remove="Services\ServerPage\" />
+	  <None Remove="Views\ServerConnectionSetup\ClientConnectionViews\" />
+	  <None Remove="Models\App\Messages\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -170,7 +172,9 @@
 	  <Folder Include="Services\App\Core\Clients\" />
 	  <Folder Include="Services\App\Repos\" />
 	  <Folder Include="Services\App\Repos\Configs\" />
-	  <Folder Include="Services\Server\" />
+	  <Folder Include="Services\ServerPage\" />
+	  <Folder Include="Views\ServerConnectionSetup\ClientConnectionViews\" />
+	  <Folder Include="Models\App\Messages\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">
