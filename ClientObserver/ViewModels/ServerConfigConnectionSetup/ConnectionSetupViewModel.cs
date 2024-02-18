@@ -1,35 +1,32 @@
-﻿using ClientObserver.Managers;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using ClientObserver.Models.Servers;
+using ClientObserver.Models.Server.Instance;
+using ClientObserver.Models.Server.Framework.Configs;
 using ClientObserver.Models.Server.Core.Clients;
-using ClientObserver.Models.Server.Managers;
+using ClientObserver.Models.Server.Core.Configs;
+using ClientObserver.Services.App;
+
+using ClientObserver.Helpers.App;
+
 using ClientObserver.Views.ServerConfigConnectionSetup;
 
 namespace ClientObserver.ViewModels.ServerConfigConnectionSetup
 {
     public class ConnectionSetupViewModel
     {
-        private readonly AppConfigManager appConfigManager;
-        private readonly AppClientManager appClientManager;
 
-        public ObservableCollection<ServerClients> appServerClients => AppClientManager.Instance.ServerClients;
 
-        public ObservableCollection<ServerConfigs> MySelectedConfigs { get; set; }
+        public ObservableCollection<ServerInstance> appServers => AppServerManager.Instance.Servers;
         public ICommand NavigateCommand { get; private set; }
 
         public ConnectionSetupViewModel()
         {
-            appConfigManager = AppConfigManager.Instance;
-            appClientManager = AppClientManager.Instance;
-
-            MySelectedConfigs = appConfigManager.SelectedConfigs;
             NavigateCommand = new Command<BaseClientModel>(ExecuteNavigateCommand);
         }
 
         private async void ExecuteNavigateCommand(BaseClientModel clientModel)
         {
-
+            Console.WriteLine(clientModel.GetType());
             // Check if clientModel is of type MqttClientModel
             if (clientModel is MqttClientModel mqttClientModel)
             {
