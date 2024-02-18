@@ -1,7 +1,5 @@
 ﻿using System;
-using ClientObserver.Managers;
-using ClientObserver.Models.Server.Managers;
-using ClientObserver.Models.Servers;
+using ClientObserver.Models.Server.Framework.Configs;
 
 namespace ClientObserver.ViewModels
 {
