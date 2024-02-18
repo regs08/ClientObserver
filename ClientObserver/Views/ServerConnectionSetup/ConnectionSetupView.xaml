@@ -10,12 +10,12 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding appServerClients}">
+        <CollectionView ItemsSource="{Binding appServers}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <VerticalStackLayout>
                         <Label Text="{Binding Name}" />
-                        <CollectionView ItemsSource="{Binding ClientModels}">
+                        <CollectionView ItemsSource="{Binding ServerClients.ClientModels}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <HorizontalStackLayout>
