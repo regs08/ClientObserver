@@ -128,6 +128,7 @@
 	  <None Remove="Services\App\Core\Clients\" />
 	  <None Remove="Services\App\Repos\" />
 	  <None Remove="Services\App\Repos\Configs\" />
+	  <None Remove="Services\Server\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -169,6 +170,7 @@
 	  <Folder Include="Services\App\Core\Clients\" />
 	  <Folder Include="Services\App\Repos\" />
 	  <Folder Include="Services\App\Repos\Configs\" />
+	  <Folder Include="Services\Server\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">

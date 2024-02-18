@@ -2,9 +2,9 @@
 
 namespace ClientObserver.Views
 {
-    public partial class ConfigSelectionView : ContentPage
+    public partial class SelectConfigView : ContentPage
     {
-        public ConfigSelectionView(SelectConfigViewModel viewModel)
+        public SelectConfigView(SelectConfigViewModel viewModel)
         {
             InitializeComponent(); 
             BindingContext = viewModel;

@@ -6,12 +6,9 @@ using CommunityToolkit.Mvvm.Messaging;
 using ClientObserver.Models.Server.Core.Clients;
 using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Server.Framework.Configs;
-using ClientObserver.Models.Server.Framework.Clients;
-using ClientObserver.Services.App.Core.Configs;
 using ClientObserver.Services.App.Repos.Configs;
 
 using ClientObserver.Services.App;
-using ClientObserver.Models.Server.Instance;
 using ClientObserver.ViewModels.ServerConfigConnectionSetup;
 
 namespace ClientObserver.ViewModels
@@ -85,7 +82,7 @@ namespace ClientObserver.ViewModels
         {
             // Create and navigate to the server configuration page
            SelectConfigViewModel viewModel = new SelectConfigViewModel();
-            var configPage = new ConfigSelectionView(viewModel);
+            var configPage = new SelectConfigView (viewModel);
             await Shell.Current.Navigation.PushAsync(configPage);
         }
         private async Task NavigateToSetUpServerConfigConnection()
