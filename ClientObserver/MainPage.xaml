@@ -4,7 +4,7 @@
 <StackLayout>
     <Button Text="Select Configs" Command="{Binding SelectFromAvailableConfigsCommand}" Margin="5"/>
 
-<CollectionView ItemsSource="{Binding SelectedConfigs}">
+<CollectionView ItemsSource="{Binding ConfigRepo.SelectedConfigs}">
     <CollectionView.ItemTemplate>
         <DataTemplate>
             <!-- Ensure the Command Binding is correctly configured -->
