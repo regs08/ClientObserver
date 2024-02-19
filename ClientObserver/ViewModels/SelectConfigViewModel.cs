@@ -7,6 +7,7 @@ using ClientObserver.Helpers.App.Configs;
 using ClientObserver.Services.App.Repos.Configs;
 using ClientObserver.Services.App;
 using ClientObserver.Models.Server.Framework.Configs;
+using ClientObserver.Models.App.Messages;
 
 namespace ClientObserver
 {

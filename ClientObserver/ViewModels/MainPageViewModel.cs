@@ -7,9 +7,10 @@ using ClientObserver.Models.Server.Core.Clients;
 using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Server.Framework.Configs;
 using ClientObserver.Services.App.Repos.Configs;
-
+using ClientObserver.Models.App.Messages;
 using ClientObserver.Services.App;
 using ClientObserver.ViewModels.ServerConfigConnectionSetup;
+using ClientObserver.Services.Server.Core.Clients;
 
 namespace ClientObserver.ViewModels
 {
@@ -22,7 +23,6 @@ namespace ClientObserver.ViewModels
         //private AppClientManager appClientManager;
         private AppServerManager appServerManager;
         public ConfigurationRepository ConfigRepo => AppServerManager.Instance.ConfigRepo;
-        public ObservableCollection<ServerConfigs> SelectedConfigs => AppServerManager.Instance.ConfigRepo.SelectedConfigs;
         // Command to select configuration view
         public ICommand SelectFromAvailableConfigsCommand { get; private set; }
         // Command to navigate to the setup ServerConfigConnection
@@ -59,15 +59,17 @@ namespace ClientObserver.ViewModels
         {
             
             // Add the new or updated configuration
+            'wed like to have other methods that our subscrived to AddToSelected Configs or Update Selected Configs
+                'to devour this config and make our clients _> serverClients and configs -> serverConfgis -> serverinsatnce
+                ' first we will need to seperate the logic from the loader and then use those configs to first make a serverconfigs,
+                ' thgen iterate through serverconfigs and with a newly created dictionary mapping we can map the configs to the clients
+                ' will need to look into using generaics maybe? '
             ConfigRepo.AddToSelectedConfigs(config);
             // todo encapsualte this would be nice to do this all from a config 
-
             string serverName = config.Name;
             appServerManager.CreateAndAddServer(serverName);
             MqttClientModel mqttClientModel = new MqttClientModel(config.GetConfigModel<MqttClientConfig>());
             appServerManager.AddClientToServer(serverName: serverName, mqttClientModel);
-
-
         }
 
         private async void NavigateToServerPage(ServerConfigs serverConfigs)
