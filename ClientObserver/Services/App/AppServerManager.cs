@@ -64,6 +64,16 @@ namespace ClientObserver.Services.App
         {
             appServerManagerHelper.AddEntity(server);
         }
+        /// <summary>
+        /// Adds a collection of server clients to a specified server.
+        /// </summary>
+        /// <param name="serverName">Name of the server.</param>
+        /// <param name="serverClients">Server clients to add.</param>
+        public void AddServerClientsToServer(string serverName, ServerClients serverClients)
+        {
+            var server = GetServer(serverName);
+            server?.AddServerClients(serverClients);
+        }
 
         /// <summary>
         /// Associates a client model with a specified server.
@@ -77,14 +87,14 @@ namespace ClientObserver.Services.App
         }
 
         /// <summary>
-        /// Adds a collection of server clients to a specified server.
+        /// Adds server configurations to a specified server.
         /// </summary>
         /// <param name="serverName">Name of the server.</param>
-        /// <param name="serverClients">Server clients to add.</param>
-        public void AddServerClientsToServer(string serverName, ServerClients serverClients)
+        /// <param name="configs">Server configurations to add.</param>
+        public void AddServerConfigsToServer(string serverName, ServerConfigs configs)
         {
             var server = GetServer(serverName);
-            server?.AddServerClients(serverClients);
+            server?.AddServerConfig(configs);
         }
 
         /// <summary>
@@ -96,17 +106,6 @@ namespace ClientObserver.Services.App
         {
             var server = GetServer(serverName);
             server?.AddConfig(config);
-        }
-
-        /// <summary>
-        /// Adds server configurations to a specified server.
-        /// </summary>
-        /// <param name="serverName">Name of the server.</param>
-        /// <param name="configs">Server configurations to add.</param>
-        public void AddServerConfigsToServer(string serverName, ServerConfigs configs)
-        {
-            var server = GetServer(serverName);
-            server?.AddServerConfig(configs);
         }
 
         // --- Removers ---
