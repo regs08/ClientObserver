@@ -1,7 +1,7 @@
 ﻿using System;
 using ClientObserver.Models.Server.Framework.Configs;
 
-namespace ClientObserver.ViewModels
+namespace ClientObserver.Models.App.Messages
 {
     // Defines a message type for updating server configuration.
     // It carries a new instance of ServerConfig as payload.
