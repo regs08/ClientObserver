@@ -1,27 +1,37 @@
 ﻿using ClientObserver.Models.Server.Core.Configs;
-using ClientObserver.Models.Interfaces;
+using ClientObserver.Models.Interfaces.Clients;
+using ClientObserver.Services.Server.Core.Clients;
 
 namespace ClientObserver.Models.Server.Core.Clients
 {
-    public abstract class BaseClientModel : IIdentifiableModel
+    public abstract class BaseClientModel : IClientModel
     {
-        // Implement the Name property from IIdentifiableModel
-        // Adjusted to have a protected set to allow modification within subclasses or assembly
-        public string Name { get;  set; }
-
+        public string Name { get; set; }
         public bool ConnectionStatus { get; set; } = false;
         public BaseConfig Config { get; protected set; }
+        protected IClientService ClientService { get; set; }
 
-        // Constructor to initialize Name, ConnectionStatus, and Config
-        public BaseClientModel(BaseConfig config, string name = "BaseClientModel")
+        protected BaseClientModel(BaseConfig config, string name = "BaseClientModel")
         {
             Name = name;
             Config = config;
         }
 
-        // Method to assign properties from config
-        public abstract void ApplyConfig();
+        public void InitializeWithConfig()
+        {
+            ClientService.ApplyConfig(Config);
+        }
 
-        // Additional methods or properties as needed
+        public void Connect()
+        {
+            ClientService.Connect();
+        }
+
+        protected void SetClientService(IClientService service)
+        {
+            ClientService = service;
+        }
     }
+
+
 }

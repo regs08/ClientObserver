@@ -1,11 +1,13 @@
 ﻿using System;
 using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
+using ClientObserver.Services.Server.Core.Clients;
 
 namespace ClientObserver.Models.Server.Core.Clients
 {
-	public class MqttClientModel: BaseClientModel
+    public class MqttClientModel : BaseClientModel
     {
+
         public string BrokerAddress { get;  set; }
         public int BrokerPort { get;  set; }
         public SubTopicList SubscriptionTopics { get;  set; }
@@ -17,28 +19,15 @@ namespace ClientObserver.Models.Server.Core.Clients
         public bool CleanSession { get;  set; }
         public int KeepAlivePeriod { get;  set; }
 
-        public MqttClientConfig Config { get; set; }
-
-        public MqttClientModel(MqttClientConfig  config): base(config, name: "MqttClientModel")
-		{
-            if (config!= null)
-            {
-                Config = config;
-                ApplyConfig();
-            }
-        }
-        // todo look at why the config is losing its value once 
-        public override void ApplyConfig()
+        public MqttClientModel(BaseConfig config) : base(config, "MqttClientModel")
         {
-            
-            BrokerAddress = Config.BrokerAddress;
-            BrokerPort = int.TryParse(Config.PortNumber, out int port) ? port : 1883;
-            SubscriptionTopics = Config.SubscriptionTopics;
-            PubTopics = Config.PublishTopics;
-            Username = Config.Username;
-            Password = Config.Password;
+            Config = config;
+            SetClientService(new MqttClientService(this));
+            InitializeWithConfig(); 
+
         }
     }
 }
+
 
 
