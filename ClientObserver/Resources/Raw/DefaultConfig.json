@@ -18,5 +18,8 @@
     "SelectedLabels": [ "person", "couch", "dog" ],
     "AvailableLabels": [ "person", "couch", "dog", "cellphone" ],
     "ConfidenceThreshold": 0.2
+  },
+  "CloudClientConfig": {
+    "CloudKey": "abc"
   }
 }

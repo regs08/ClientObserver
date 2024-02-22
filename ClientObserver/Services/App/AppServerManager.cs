@@ -45,7 +45,17 @@ namespace ClientObserver.Services.App
 
         // Maintains a collection of server instances.
         public ObservableCollection<ServerInstance> Servers => appServerManagerHelper.Entities;
-
+        /// <summary>
+        /// Creates a server from a passed in server config 
+        /// </summary>
+        /// <param name="config"></param>
+        public void CreateServerFromConfig(ServerConfigs config)
+        {
+            ServerInstance server = new(name: config.Name);
+            server.AddServerConfig(config);
+            server.GetClientsFromConfig();
+            appServerManagerHelper.AddEntity(server);
+        }
         // --- Adders ---
         /// <summary>
         /// Creates and adds a server with just a name 

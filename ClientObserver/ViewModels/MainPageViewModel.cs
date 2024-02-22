@@ -44,7 +44,12 @@ namespace ClientObserver.ViewModels
             WeakReferenceMessenger.Default.Register<UpdateSelectedServerConfigMessage>(this, (recipient, message) =>
             {
                 // Update the selected configurations when a message is received
-                UpdateSelectedConfigs(message.NewConfig);
+                ServerConfigs config = message.NewConfig;
+
+                ConfigRepo.AddToSelectedConfigs(config);
+                appServerManager.CreateServerFromConfig(config);
+
+
             });
         }
 
@@ -53,24 +58,7 @@ namespace ClientObserver.ViewModels
             await appServerManager.appConfigService.InitializeAsync();
             // Now AppConfigManager is initialized, and local configs are loaded once.
         }
-        // todo change method sig...doing alot more than updating selected configs
-        // Updates the selected server configurations
-        private void UpdateSelectedConfigs(ServerConfigs config)
-        {
-            
-            // Add the new or updated configuration
-            'wed like to have other methods that our subscrived to AddToSelected Configs or Update Selected Configs
-                'to devour this config and make our clients _> serverClients and configs -> serverConfgis -> serverinsatnce
-                ' first we will need to seperate the logic from the loader and then use those configs to first make a serverconfigs,
-                ' thgen iterate through serverconfigs and with a newly created dictionary mapping we can map the configs to the clients
-                ' will need to look into using generaics maybe? '
-            ConfigRepo.AddToSelectedConfigs(config);
-            // todo encapsualte this would be nice to do this all from a config 
-            string serverName = config.Name;
-            appServerManager.CreateAndAddServer(serverName);
-            MqttClientModel mqttClientModel = new MqttClientModel(config.GetConfigModel<MqttClientConfig>());
-            appServerManager.AddClientToServer(serverName: serverName, mqttClientModel);
-        }
+
 
         private async void NavigateToServerPage(ServerConfigs serverConfigs)
         {

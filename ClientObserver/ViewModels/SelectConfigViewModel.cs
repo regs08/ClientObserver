@@ -15,7 +15,6 @@ namespace ClientObserver
     public class SelectConfigViewModel
     {
         // Service for configuration management
-        private AppServerManager appServerManager;
         public ConfigurationRepository ConfigRepo => AppServerManager.Instance.ConfigRepo;
 
         // Holds the list of available server configurations

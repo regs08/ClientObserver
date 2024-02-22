@@ -11,7 +11,7 @@ namespace ClientObserver.Services.App.Core.Configs
         {
 
         }
-        "Need to split this up so we can devour these configs and make them into models then to our server framework and then.... "
+        //todo will need to split this logic up eventually into load and read from json 
         // loads and validates configs from a json file 
         public async Task<ServerConfigs> LoadConfigsFromJson(string jsonFile)
         {
