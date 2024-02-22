@@ -58,12 +58,6 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 	</ItemGroup>
 	<ItemGroup>
-  		<Content Include="Resources\Raw\GrapeModelConfig.json">
-   		 <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Remove="Views\ConfigSelectionView.xaml" />
 	  <MauiXaml Remove="Views\CreateConfigView.xaml" />
 	</ItemGroup>
@@ -98,12 +92,8 @@
 	  <None Remove="Models\Events\MessageEvents\Args\" />
 	  <None Remove="Models\Utils\" />
 	  <None Remove="Managers\" />
-	  <None Remove="Services\Config\" />
-	  <None Remove="ViewModels\ServerConfigConnectionSetup\" />
 	  <None Remove="Views\ServerConnectionSetup\" />
 	  <None Remove="Converters\" />
-	  <None Remove="Services\Clients\" />
-	  <None Remove="Services\Clients\MqtttClientService\" />
 	  <None Remove="Services\App\" />
 	  <None Remove="Helpers\" />
 	  <None Remove="Helpers\Server\" />
@@ -128,9 +118,22 @@
 	  <None Remove="Services\App\Core\Clients\" />
 	  <None Remove="Services\App\Repos\" />
 	  <None Remove="Services\App\Repos\Configs\" />
-	  <None Remove="Services\ServerPage\" />
 	  <None Remove="Views\ServerConnectionSetup\ClientConnectionViews\" />
 	  <None Remove="Models\App\Messages\" />
+	  <None Remove="ViewModels\ServerConnectionSetup\" />
+	  <None Remove="ViewModels\ServerConnectionSetup\ClientConnectonViewModels\" />
+	  <None Remove="Services\Server\" />
+	  <None Remove="Services\Server\Core\" />
+	  <None Remove="Services\Server\Core\Clients\" />
+	  <None Remove="Services\Server\Core\Config\" />
+	  <None Remove="Services\Server\ServerPage\" />
+	  <None Remove="Models\Interfaces\Clients\" />
+	  <None Remove="Models\Server\Core\Clients\VideoStreamClient\" />
+	  <None Remove="Services\Server\Core\Clients\VideoStreamClientService\" />
+	  <None Remove="Models\Server\Core\Clients\ModelParamClient\" />
+	  <None Remove="Models\Server\Core\Clients\CloudClient\" />
+	  <None Remove="Services\Server\Core\Clients\CloudClientService\" />
+	  <None Remove="Services\Server\Core\Clients\ModelParamClientService\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -142,12 +145,8 @@
 	  <Folder Include="Models\Events\MessageEvents\Args\" />
 	  <Folder Include="Models\Utils\" />
 	  <Folder Include="Managers\" />
-	  <Folder Include="Services\Config\" />
-	  <Folder Include="ViewModels\ServerConfigConnectionSetup\" />
 	  <Folder Include="Views\ServerConnectionSetup\" />
 	  <Folder Include="Converters\" />
-	  <Folder Include="Services\Clients\" />
-	  <Folder Include="Services\Clients\MqtttClientService\" />
 	  <Folder Include="Services\App\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Server\" />
@@ -172,9 +171,22 @@
 	  <Folder Include="Services\App\Core\Clients\" />
 	  <Folder Include="Services\App\Repos\" />
 	  <Folder Include="Services\App\Repos\Configs\" />
-	  <Folder Include="Services\ServerPage\" />
 	  <Folder Include="Views\ServerConnectionSetup\ClientConnectionViews\" />
 	  <Folder Include="Models\App\Messages\" />
+	  <Folder Include="ViewModels\ServerConnectionSetup\" />
+	  <Folder Include="ViewModels\ServerConnectionSetup\ClientConnectonViewModels\" />
+	  <Folder Include="Services\Server\" />
+	  <Folder Include="Services\Server\Core\" />
+	  <Folder Include="Services\Server\Core\Clients\" />
+	  <Folder Include="Services\Server\Core\Config\" />
+	  <Folder Include="Services\Server\ServerPage\" />
+	  <Folder Include="Models\Interfaces\Clients\" />
+	  <Folder Include="Models\Server\Core\Clients\VideoStreamClient\" />
+	  <Folder Include="Services\Server\Core\Clients\VideoStreamClientService\" />
+	  <Folder Include="Models\Server\Core\Clients\ModelParamClient\" />
+	  <Folder Include="Models\Server\Core\Clients\CloudClient\" />
+	  <Folder Include="Services\Server\Core\Clients\CloudClientService\" />
+	  <Folder Include="Services\Server\Core\Clients\ModelParamClientService\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">
@@ -186,10 +198,16 @@
 	    <SubType></SubType>
 	    <Generator></Generator>
 	  </AndroidResource>
+	  <AndroidResource Include="Resources\Raw\GrapeModelConfig.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <SubType></SubType>
+	    <Generator></Generator>
+	  </AndroidResource>
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="ViewModels\ServerPage\StreamViewModel.cs" />
 	  <Compile Remove="Views\CreateConfigView.xaml.cs" />
 	  <Compile Remove="Views\ConfigSelectionView.xaml.cs" />
+	  <Compile Remove="Services\Server\Core\Config\ConfigLoaderService.cs" />
 	</ItemGroup>
 </Project>

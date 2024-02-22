@@ -10527,6 +10527,9 @@ namespace ClientObserver
 			// aapt resource value: 0x7F0F0000
 			public const int defaultconfig = 2131689472;
 			
+			// aapt resource value: 0x7F0F0001
+			public const int grapemodelconfig = 2131689473;
+			
 			static Raw()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
