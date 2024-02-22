@@ -4,7 +4,7 @@ using ClientObserver.Services.Server.Core.Clients;
 
 namespace ClientObserver.Models.Server.Core.Clients
 {
-    public abstract class BaseClientModel : IClientModel
+    public abstract class BaseClientModel : IClient
     {
         public string Name { get; set; }
         public bool ConnectionStatus { get; set; } = false;
