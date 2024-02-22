@@ -19,7 +19,7 @@ namespace ClientObserver.Models.Server.Core.Clients
         public bool CleanSession { get;  set; }
         public int KeepAlivePeriod { get;  set; }
 
-        public MqttClientModel(BaseConfig config) : base(config, "MqttClientModel")
+        public MqttClientModel(MqttClientConfig config) : base(config, "MqttClientModel")
         {
             Config = config;
             SetClientService(new MqttClientService(this));
