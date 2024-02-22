@@ -102,6 +102,15 @@ namespace ClientObserver.Helpers.BaseClasses
             }
             throw new InvalidOperationException("Models are empty !! ");
         }
+        public virtual bool CheckModel<T>() where T : class, TModel
+        {
+            if (GetModel<T> != null)
+            {
+                return true;
+            }
+            throw new InvalidOperationException("Model is empty !! ");
+
+        }
         /// <summary>
         /// Retrieves a model by its Name property.
         /// </summary>
