@@ -1,7 +1,8 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 using ClientObserver.Models.Interfaces;
-
+// todo big one lets have a interface that the config classes and clients can derive from. then we can just have one client/config object
+// with a method create config and CreateClient. so we just need to call this into the constructor 
 namespace ClientObserver.Models.Server.Core.Configs
 {
     /// <summary>
