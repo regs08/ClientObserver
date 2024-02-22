@@ -1,5 +1,9 @@
 ﻿using ClientObserver.Models.Server.Core.Clients;
+using ClientObserver.Models.Server.Framework.Configs;
+using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Helpers.Server.Framework.Clients;
+using ClientObserver.Models.Interfaces.Clients;
+using ClientObserver.Services.Server.Core.Clients;
 using System.Collections.ObjectModel;
 
 namespace ClientObserver.Models.Server.Framework.Clients 
@@ -10,7 +14,19 @@ namespace ClientObserver.Models.Server.Framework.Clients
         private ClientModelManager clientModelManager = new ClientModelManager();
         public ObservableCollection<BaseClientModel> ClientModels => clientModelManager.Models;
 
+        public void GetClientsFromConfig(ServerConfigs configs)
+        {
+            foreach (BaseConfig config in configs.GetConfigs())
+            {
 
+                //'look here to go over how its adding.. as of now doesn't app
+                BaseClientModel client = ClientFactory.CreateClientFromConfig(config);
+                client.InitializeWithConfig();
+                ClientModels.Add(client); 
+                  
+            }
+
+        }
         // Method to add or update a client model. Only one instance per type is allowed.
         public void AddClientModel(BaseClientModel clientModel)
         {

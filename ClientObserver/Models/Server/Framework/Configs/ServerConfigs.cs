@@ -15,7 +15,7 @@ namespace ClientObserver.Models.Server.Framework.Configs
         { typeof(MqttClientConfig), "MqttClientConfig" },
         { typeof(VideoStreamConfig), "VideoStreamConfig" },
         { typeof(ModelParamConfig), "ModelParamConfig" },
-        { typeof(CloudConfig), "CloudConfig" }
+        { typeof(CloudConfig), "CloudClientConfig" }
     };
         public ServerConfigs()
         {
@@ -30,7 +30,7 @@ namespace ClientObserver.Models.Server.Framework.Configs
         }
 
         // Method to return non-null instances of BaseClientModel
-        public IEnumerable<BaseConfig> GetNonNullModels()
+        public IEnumerable<BaseConfig> GetConfigs()
         {
             // Leverage the ObservableCollection directly for binding or convert it to a list for other purposes
             return configModelManager.Models;

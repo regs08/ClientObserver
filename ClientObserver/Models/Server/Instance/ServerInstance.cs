@@ -17,23 +17,46 @@ namespace ClientObserver.Models.Server.Instance
         // Can only have type of ServerEntityManager. ServerEntityManager has two types. Model Managers can only add one of each type
 
         public string Name { get;  set; }
-        public ServerClients ServerClients { get; set; } = new ServerClients();
-        public ServerConfigs ServerConfigs { get; set; } = new ServerConfigs();
+        public ServerClients ServerClients { get; set; } = new();
+        public ServerConfigs ServerConfigs { get; set; } 
         private readonly ServerFrameworkManager serverFrameworkManager = new();
         public ObservableCollection<ServerFrameworkEntity> serverCoreEntities => serverFrameworkManager.Models; // where the seperate configs are stored 
-
+        public bool AreClientsSet => ServerClients != null;
+        public bool AreConfigsSet => ServerConfigs != null;
         public ServerInstance(string name)
         {
             Name = name;
         }
-        public void AddConfig(BaseConfig config)
+        public bool GetClientsFromConfig()
         {
-            ServerConfigs.AddConfigModel(config);
+            if (AreConfigsSet)
+            {
+                ServerClients.GetClientsFromConfig(ServerConfigs);
+                return true;
+            }
+            throw new NullReferenceException($"Server Configs or Clients are not Set!");
+
+        }
+        public bool AddConfig(BaseConfig config)
+        {
+            if (AreConfigsSet)
+            {
+                ServerConfigs.AddConfigModel(config);
+                return true;
+            }
+            throw new NullReferenceException($"Server Configsare not Set!");
+
         }
 
-        public void AddClient(BaseClientModel clientModel)
+        public bool AddClient(BaseClientModel clientModel)
         {
-            ServerClients.AddClientModel(clientModel);
+            if (AreClientsSet)
+            {
+                ServerClients.AddClientModel(clientModel);
+                return true;
+            }
+            throw new NullReferenceException($"Server Configs or Clients are not Set!");
+
         }
 
         // Adds a ServerConfigs instance to the manager
@@ -43,6 +66,7 @@ namespace ClientObserver.Models.Server.Instance
             {
                 // Ensure only one instance of each server type is added
                 serverFrameworkManager.AddModel(serverConfig);
+                ServerConfigs = serverConfig;
             }
         }
 
@@ -53,6 +77,7 @@ namespace ClientObserver.Models.Server.Instance
             {
                 // Ensure only one instance of each server type is added
                 serverFrameworkManager.AddModel(serverClients);
+                ServerClients = serverClients; 
             }
 
         }
