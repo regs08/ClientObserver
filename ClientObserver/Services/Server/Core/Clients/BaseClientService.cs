@@ -1,6 +1,9 @@
 ﻿using ClientObserver.Models.Server.Core.Clients;
 using ClientObserver.Models.Server.Core.Configs;
-using ClientObserver.Models.Interfaces.Clients; 
+using ClientObserver.Models.Interfaces.Clients;
+using ClientObserver.Models.Events.ObservableProperties;
+
+
 namespace ClientObserver.Services.Server.Core.Clients
 {
     // BaseClientService without the direct generic constraint to a model
@@ -10,7 +13,7 @@ namespace ClientObserver.Services.Server.Core.Clients
         /// <summary>
         /// Delegate definition for a connection step. Must return a boolean indicating the success of the step.
         /// </summary>
-        protected delegate bool ConnectionStep();
+        protected delegate Task<bool> ConnectionStep();
 
 
         /// <summary>
@@ -23,17 +26,17 @@ namespace ClientObserver.Services.Server.Core.Clients
         /// Initiates the connection process by sequentially executing each defined connection step.
         /// Updates the client model's connection status based on the outcome of the steps.
         /// </summary>
-        public void Connect()
+        public async Task ConnectAsync()
         {
             foreach (var step in ConnectionSteps)
             {
-                if (!step()) // If any step fails,
+                if (!await step()) // Await the async operation and check the result
                 {
-                    ClientModel.ConnectionStatus = false; // indicate failure and exit the loop.
+                    //ClientModel.ConnectionStatus = false;
                     return;
                 }
             }
-            ClientModel.ConnectionStatus = true; // If all steps succeed, indicate success.
+            //ClientModel.ConnectionStatus = true;
         }
 
         public abstract void ApplyConfig(BaseConfig config);
