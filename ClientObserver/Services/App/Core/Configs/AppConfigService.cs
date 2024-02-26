@@ -28,7 +28,7 @@ namespace ClientObserver.Services.App.Core.Configs
         {
             if (!_isInitialized)
             {
-                await LoadLocalConfigs();
+                 await LoadLocalConfigs();
                 _isInitialized = true;
             }
         }
@@ -38,7 +38,7 @@ namespace ClientObserver.Services.App.Core.Configs
             Console.WriteLine("Loading local configs");
             foreach (var jsonPath in ConfigLoader.LocalConfigPaths)
             {
-                ServerConfigs serverConfigs = await ConfigLoader.LoadConfigurationAsync(jsonPath);
+                ServerConfigs serverConfigs = await ConfigLoader.LoadLocalConfigurations(jsonPath);
                 ConfigRepo.AddToAvailableConfigs(serverConfigs);
             }
         }
