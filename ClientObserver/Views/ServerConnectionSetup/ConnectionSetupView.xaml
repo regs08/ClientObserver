@@ -10,7 +10,7 @@
     </ContentPage.Resources>
 
     <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding appServers}">
+        <CollectionView ItemsSource="{Binding AppServers}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <VerticalStackLayout>
