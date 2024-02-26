@@ -18,7 +18,7 @@ namespace ClientObserver.Services.App
     {
         private static AppServerManager _instance;
         private AppServerManagerHelper appServerManagerHelper = new();
-        public AppConfigService appConfigService = new();
+        public AppConfigService AppConfigService = new();
 
         private AppServerManager()
         {
@@ -41,7 +41,7 @@ namespace ClientObserver.Services.App
         }
 
         // Provides access to configuration repository.
-        public ConfigurationRepository ConfigRepo => appConfigService.ConfigRepo;
+        public ConfigurationRepository ConfigRepo => AppConfigService.ConfigRepo;
 
         // Maintains a collection of server instances.
         public ObservableCollection<ServerInstance> Servers => appServerManagerHelper.Entities;

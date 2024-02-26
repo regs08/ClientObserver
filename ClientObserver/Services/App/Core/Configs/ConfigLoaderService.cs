@@ -34,9 +34,10 @@ namespace ClientObserver.Services.App.Core.Configs
         {
             try
             {
-                // File system access logic here, assuming FileSystem.OpenAppPackageFileAsync is a placeholder
-                // for actual file access method, as it's not defined in this context.
-                dynamic fullConfig = JsonConvert.DeserializeObject<dynamic>("{}"); // Example deserialization
+                using var stream = await FileSystem.OpenAppPackageFileAsync(jsonFile);
+                using var reader = new StreamReader(stream);
+                var jsonContent = await reader.ReadToEndAsync();
+                dynamic fullConfig = JsonConvert.DeserializeObject<dynamic>(jsonContent);
                 return fullConfig;
             }
             catch (Exception ex)
@@ -55,16 +56,43 @@ namespace ClientObserver.Services.App.Core.Configs
         {
             // Implementation of converting dynamic JSON to ServerConfigs
             ServerConfigs serverConfigs = new();
-            // Example population of serverConfigs from dynamic fullConfig
+
+            serverConfigs.Name = fullConfig["ServerName"];
+            //iterate through our configs 
+            foreach (var configPair in ConfigMaps.configToNameMap)
+            {
+                var configType = configPair.Key;
+                var configKey = configPair.Value;
+                var configJson = Convert.ToString(fullConfig[configKey]);
+
+                try
+                {
+                    BaseConfig config = JsonConvert.DeserializeObject(configJson, configType);
+                    config.Validate();
+
+                    //serverConfigs.GetType().GetProperty(configKey)?.SetValue(serverConfigs, config);
+                    serverConfigs.AddConfigModel(config);
+                }
+                catch (Newtonsoft.Json.JsonException jsonEx)
+                {
+                    // Handle JSON-related errors (e.g., deserialization issues)
+                    Console.WriteLine($"Error deserializing config for '{configKey}': {jsonEx.Message}");
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    Console.WriteLine($"Error setting config for '{configKey}': {ex.Message}");
+                }
+            }
             return serverConfigs;
         }
 
-        /// <summary>
-        /// [Placeholder] Asynchronously loads JSON content from an external source.
-        /// </summary>
-        /// <param name="source">The source from which to load the JSON content.</param>
-        /// <returns>A dynamic object representing the deserialized JSON content.</returns>
-        private static async Task<dynamic> GetJsonContentFromSource(string source)
+            /// <summary>
+            /// [Placeholder] Asynchronously loads JSON content from an external source.
+            /// </summary>
+            /// <param name="source">The source from which to load the JSON content.</param>
+            /// <returns>A dynamic object representing the deserialized JSON content.</returns>
+            private static async Task<dynamic> GetJsonContentFromSource(string source)
         {
             // Placeholder for actual implementation
             return null;
