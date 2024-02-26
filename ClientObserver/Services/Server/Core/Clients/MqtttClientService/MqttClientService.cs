@@ -80,12 +80,20 @@ namespace ClientObserver.Services.Server.Core.Clients.MqttClientService
         {
             if (config is MqttClientConfig mqttConfig)
             {
-                mqttClientModel.BrokerAddress = mqttConfig.BrokerAddress;
-                mqttClientModel.BrokerPort = int.TryParse(mqttConfig.PortNumber, out int port) ? port : 1883;
-                mqttClientModel.SubscriptionTopics = mqttConfig.SubscriptionTopics;
-                mqttClientModel.PubTopics = mqttConfig.PublishTopics;
-                mqttClientModel.Username = mqttConfig.Username;
-                mqttClientModel.Password = mqttConfig.Password;
+                if (ClientModel is MqttClientModel mqttClientModel)
+                {
+                    // Now that we've safely casted it, we can access MQTT-specific properties.
+                    mqttClientModel.BrokerAddress = mqttConfig.BrokerAddress;
+                    mqttClientModel.BrokerPort = int.TryParse(mqttConfig.PortNumber, out int port) ? port : 1883;
+                    mqttClientModel.SubscriptionTopics = mqttConfig.SubscriptionTopics;
+                    mqttClientModel.PubTopics = mqttConfig.PublishTopics;
+                    mqttClientModel.Username = mqttConfig.Username;
+                    mqttClientModel.Password = mqttConfig.Password;
+                }
+                else
+                {
+                    throw new InvalidCastException("ClientModel is not of type MqttClientModel");
+                }
             }
             else
             {
