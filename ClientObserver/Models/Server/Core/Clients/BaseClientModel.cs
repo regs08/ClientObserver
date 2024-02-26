@@ -1,13 +1,13 @@
 ﻿using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Interfaces.Clients;
-using ClientObserver.Services.Server.Core.Clients;
+using ClientObserver.Models.Events.ObservableProperties;
 
 namespace ClientObserver.Models.Server.Core.Clients
 {
     public abstract class BaseClientModel : IClient
     {
         public string Name { get; set; }
-        public bool ConnectionStatus { get; set; } = false;
+        public ObservableProperty<bool> IsConnected { get; } = new ObservableProperty<bool>();
         public BaseConfig Config { get; protected set; }
         protected IClientService ClientService { get; set; }
 
@@ -22,9 +22,9 @@ namespace ClientObserver.Models.Server.Core.Clients
             ClientService.ApplyConfig(Config);
         }
 
-        public void Connect()
+        public async Task Connect()
         {
-            ClientService.Connect();
+            await ClientService.ConnectAsync();
         }
 
         protected void SetClientService(IClientService service)
