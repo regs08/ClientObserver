@@ -14,7 +14,7 @@
         </DataTemplate>
     </CollectionView.ItemTemplate>
 </CollectionView>
-    <Button Text="Connection Setup" Command="{Binding SetupServerConfigConenction}" Margin="5"/>
+    <Button Text="Connection Setup" Command="{Binding SetupServerConfigConnection}" Margin="5"/>
 </StackLayout>
 
 
