@@ -1,4 +1,4 @@
-﻿using ClientObserver.ViewModels.ServerConfigConnectionSetup;
+﻿using ClientObserver.ViewModels.ServerConnectionSetup;
 namespace ClientObserver.Views;
 
 public partial class ConnectionSetupView : ContentPage

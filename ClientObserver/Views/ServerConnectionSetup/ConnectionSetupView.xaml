@@ -22,7 +22,7 @@
                                         <Button Text="{Binding Name}"
                                                 CommandParameter="{Binding }"
                                                 Command="{Binding Path=BindingContext.NavigateCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}" />
-                                        <Label Text="{Binding ConnectionStatus, 
+                                        <Label Text="{Binding IsConnected, 
                                                 Converter={StaticResource BoolToStatusTextConverter}}" />
                                     </HorizontalStackLayout>
                                 </DataTemplate>

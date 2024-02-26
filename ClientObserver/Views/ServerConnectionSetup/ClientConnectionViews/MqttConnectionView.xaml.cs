@@ -1,6 +1,6 @@
-﻿using ClientObserver.ViewModels.ServerConfigConnectionSetup;
+﻿using ClientObserver.ViewModels.ServerConnectionSetup.ClientConnectionViewModels;
 
-namespace ClientObserver.Views.ServerConfigConnectionSetup
+namespace ClientObserver.Views.ServerConnectionSetup.ClientConnectionViews
 {
 
 public partial class MqttConnectionView : ContentPage
