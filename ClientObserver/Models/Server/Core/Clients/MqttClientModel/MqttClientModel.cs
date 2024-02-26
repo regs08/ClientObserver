@@ -1,8 +1,7 @@
 ﻿using System;
 using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
-using ClientObserver.Services.Server.Core.Clients;
-
+using ClientObserver.Services.Server.Core.Clients.MqtttClientService;
 namespace ClientObserver.Models.Server.Core.Clients
 {
     public class MqttClientModel : BaseClientModel
@@ -22,9 +21,10 @@ namespace ClientObserver.Models.Server.Core.Clients
         public MqttClientModel(MqttClientConfig config) : base(config, "MqttClientModel")
         {
             Config = config;
+            CleanSession = true;
             SetClientService(new MqttClientService(this));
-            InitializeWithConfig(); 
-
+            InitializeWithConfig();
+            //ConnectionStatus 
         }
     }
 }
