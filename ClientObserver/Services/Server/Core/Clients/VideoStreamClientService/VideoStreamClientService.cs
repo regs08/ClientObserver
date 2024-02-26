@@ -1,86 +1,103 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ClientObserver.Models.Server.Core.Clients;
 using ClientObserver.Models.Server.Core.Configs;
 
 namespace ClientObserver.Services.Server.Core.Clients
 {
     /// <summary>
-    /// Represents a service for managing MQTT client connections, extending the base functionality
-    /// to include MQTT-specific connection steps.
+    /// Represents a service for managing video stream client connections, extending the base functionality
+    /// to include video stream-specific connection steps.
     /// </summary>
     public class VideoStreamClientService : BaseClientService
     {
-
+        /// <summary>
+        /// Initializes a new instance of the VideoStreamClientService with the specified video stream client model.
+        /// </summary>
+        /// <param name="clientModel">The video stream client model to be managed by this service.</param>
         public VideoStreamClientService(VideoStreamClient clientModel)
         {
             ClientModel = clientModel;
-
         }
+
+        /// <summary>
+        /// Gets the sequence of connection steps to be executed for establishing a video stream connection.
+        /// </summary>
         protected override ConnectionStep[] ConnectionSteps
         {
             get
             {
                 return new ConnectionStep[]
                 {
-            InitializeConnection, // No need to await here, just reference the method
-            //AuthenticateAsync, // Assuming this is also an async method now
-            //FinalizeConnectionAsync // Assuming this is converted to async as well
+                    InitializeConnection,
+                    Authenticate,
+                    FinalizeConnection
                 };
             }
         }
 
+        /// <summary>
+        /// Initializes the connection for the video stream client.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation, containing a boolean value indicating success or failure.</returns>
         private async Task<bool> InitializeConnection()
         {
             try
             {
-                //await ConnectAsync();
-                return true; // Assuming connection is successful
+                // Simulated initialization logic
+                return true; // Assuming initialization is successful
             }
-            catch (Exception ex) // Catch specific exceptions as needed
+            catch (Exception ex)
             {
-                Console.Write($"Exception caught! {ex.Message}");
-                return false; // Return false if connection fails
+                Console.WriteLine($"Exception caught during initialization: {ex.Message}");
+                return false; // Return false if initialization fails
             }
         }
-
-        private async Task<bool> Authenticate()
-        {
-            // Implementation for authentication
-            return true; // Return true if successful, false otherwise
-        }
-
-        private async Task<bool> FinalizeConnection()
-        {
-            // Implementation for finalizing the connection
-            return true; // Return true if successful, false otherwise
-        }
-
-
 
         /// <summary>
-        /// Applies configuration settings to the MQTT client model.
+        /// Authenticates the video stream client.
         /// </summary>
-        /// <param name="config">The configuration to apply. Expected to be of type MqttClientConfig.</param>
+        /// <returns>A task that represents the asynchronous operation, containing a boolean value indicating success or failure.</returns>
+        private async Task<bool> Authenticate()
+        {
+            // Simulated authentication logic
+            return true; // Assuming authentication is successful
+        }
+
+        /// <summary>
+        /// Finalizes the connection setup for the video stream client.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation, containing a boolean value indicating success or failure.</returns>
+        private async Task<bool> FinalizeConnection()
+        {
+            // Simulated finalization logic
+            return true; // Assuming finalization is successful
+        }
+
+        /// <summary>
+        /// Applies configuration settings to the video stream client model.
+        /// </summary>
+        /// <param name="config">The configuration to apply. Expected to be of type VideoStreamConfig.</param>
+        /// <exception cref="InvalidCastException">Thrown if the client model is not of the expected video stream client type.</exception>
+        /// <exception cref="ArgumentException">Thrown if the provided configuration is not of the expected video stream configuration type.</exception>
         public override void ApplyConfig(BaseConfig config)
         {
             if (config is VideoStreamConfig videoStreamConfig)
             {
-                // Ensure ClientModel is of the expected type before attempting to use MQTT-specific properties.
                 if (ClientModel is VideoStreamClient videoStreamClient)
                 {
                     videoStreamClient.StreamIP = videoStreamConfig.StreamIP;
                     videoStreamClient.StreamPortNumber = videoStreamConfig.StreamPortNumber;
                     videoStreamClient.VideoStreamUri = videoStreamConfig.VideoStreamUri;
-
                 }
                 else
                 {
-                    throw new InvalidCastException("ClientModel is not of type MqttClientModel");
+                    throw new InvalidCastException("ClientModel is not of type VideoStreamClient");
                 }
             }
             else
             {
-                throw new ArgumentException("Config must be of type MqttClientConfig", nameof(config));
+                throw new ArgumentException("Config must be of type VideoStreamConfig", nameof(config));
             }
         }
     }

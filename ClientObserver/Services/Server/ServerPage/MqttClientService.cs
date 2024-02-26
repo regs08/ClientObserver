@@ -6,15 +6,13 @@ using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.MessageEvents;
 using ClientObserver.Models;
 using Newtonsoft.Json.Linq;
-// todo when navigating to and from server page the client disconnects and I no longer
-// receiving logs and photos. waiting sometimes helps and other times it reconnects by itself?
-//todo update how we classify mqtt messages 
+
 namespace ClientObserver.Services
 {
     public class MqttClientService
     {
-        private IMqttClient _mqttClient;
-        private MqttClientModel _mqttClientModel;
+        private IMqttClient mqttNetworkClient;
+        private MqttClientModel mqttClientParameters;
         public MqttClientConfig Config;
 
 
@@ -28,11 +26,11 @@ namespace ClientObserver.Services
         {
             Config = config;
             var factory = new MqttFactory();
-            _mqttClientModel = new MqttClientModel(Config); 
-            _mqttClient = factory.CreateMqttClient();
+            mqttClientParameters = new MqttClientModel(Config); 
+            mqttNetworkClient = factory.CreateMqttClient();
 
             // Set up the message received handler
-            _mqttClient.ApplicationMessageReceivedAsync += HandleReceivedApplicationMessage;
+            mqttNetworkClient.ApplicationMessageReceivedAsync += HandleReceivedApplicationMessage;
 
         }
 
@@ -46,47 +44,48 @@ namespace ClientObserver.Services
         }
         public async Task ConnectAsync()
         { 
-            if (_mqttClient.IsConnected)
+            if (mqttNetworkClient.IsConnected)
             {
                 Console.WriteLine("Client already connected");
                 return;
             }
             var options = new MqttClientOptionsBuilder()
-                .WithClientId(_mqttClientModel.ClientId)
-                .WithTcpServer(_mqttClientModel.BrokerAddress, _mqttClientModel.BrokerPort)
-                .WithCleanSession(_mqttClientModel.CleanSession)
+                .WithClientId(mqttClientParameters.ClientId)
+                .WithTcpServer(mqttClientParameters.BrokerAddress, mqttClientParameters.BrokerPort)
+                .WithCleanSession(mqttClientParameters.CleanSession)
                 .Build();
 
             // Connect to the broker
-            await _mqttClient.ConnectAsync(options);
+            Console.WriteLine("Client already connected");
+            await mqttNetworkClient.ConnectAsync(options);
             await SubscribeToConfiguredTopicsAsync();
 
         }
 
         public async Task DisconnectAsync()
         {
-            await _mqttClient.DisconnectAsync();
+            await mqttNetworkClient.DisconnectAsync();
         }
 
         public async Task SubscribeAsync(string topic)
         {
-            if (_mqttClient == null || !_mqttClient.IsConnected)
+            if (mqttNetworkClient == null || !mqttNetworkClient.IsConnected)
             {
                 throw new InvalidOperationException("MQTT client is not connected.");
             }
 
             // Subscribe to the topic
-            await _mqttClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(topic).Build());
+            await mqttNetworkClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic(topic).Build());
         }
 
         public async Task SubscribeToConfiguredTopicsAsync()
         {
-            if (_mqttClient == null || !_mqttClient.IsConnected)
+            if (mqttNetworkClient == null || !mqttNetworkClient.IsConnected)
             {
                 throw new InvalidOperationException("MQTT client is not connected.");
             }
 
-            foreach (var topic in _mqttClientModel.SubscriptionTopics.Topics)
+            foreach (var topic in mqttClientParameters.SubscriptionTopics.Topics)
             {
                 await SubscribeAsync(topic);
                 Console.WriteLine(topic);
@@ -96,7 +95,7 @@ namespace ClientObserver.Services
 
         public async Task<MqttClientPublishResult> PublishAsync(string topic, string payload)
         {
-            if (_mqttClient == null || !_mqttClient.IsConnected)
+            if (mqttNetworkClient == null || !mqttNetworkClient.IsConnected)
             {
                 throw new InvalidOperationException("MQTT client is not connected.");
             }
@@ -108,7 +107,7 @@ namespace ClientObserver.Services
                 .WithRetainFlag(false)
                 .Build();
 
-            return await _mqttClient.PublishAsync(message);
+            return await mqttNetworkClient.PublishAsync(message);
         }
         // i think all messages should be sent as 'logs'
         // before categorizing the message into text, log, image we should first parse it. get relevent info from the
