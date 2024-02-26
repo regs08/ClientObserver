@@ -1,7 +1,5 @@
-﻿using ClientObserver.Models.Server.Core.Clients;
-using ClientObserver.Models.Server.Core.Configs;
+﻿using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Interfaces.Clients;
-using ClientObserver.Models.Events.ObservableProperties;
 
 
 namespace ClientObserver.Services.Server.Core.Clients
@@ -32,11 +30,9 @@ namespace ClientObserver.Services.Server.Core.Clients
             {
                 if (!await step()) // Await the async operation and check the result
                 {
-                    //ClientModel.ConnectionStatus = false;
                     return;
                 }
             }
-            //ClientModel.ConnectionStatus = true;
         }
 
         public abstract void ApplyConfig(BaseConfig config);
