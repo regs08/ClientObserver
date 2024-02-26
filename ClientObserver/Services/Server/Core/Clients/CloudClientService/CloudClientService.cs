@@ -22,34 +22,37 @@ namespace ClientObserver.Services.Server.Core.Clients
             {
                 return new ConnectionStep[]
                 {
-                // Define the steps necessary for connecting an MQTT client.
-                // Example:
-                InitializeConnection,
-                Authenticate,
-                FinalizeConnection
+            InitializeConnection, // No need to await here, just reference the method
+            //AuthenticateAsync, // Assuming this is also an async method now
+            //FinalizeConnectionAsync // Assuming this is converted to async as well
                 };
             }
         }
 
-        private bool InitializeConnection()
+        private async Task<bool> InitializeConnection()
         {
-            // Implementation for initializing the connection
-            return true; // Return true if successful, false otherwise
+            try
+            {
+                return true; // Assuming connection is successful
+            }
+            catch (Exception ex) // Catch specific exceptions as needed
+            {
+                Console.Write($"Exception caught! {ex.Message}");
+                return false; // Return false if connection fails
+            }
         }
 
-        private bool Authenticate()
+        private async Task<bool> Authenticate()
         {
             // Implementation for authentication
             return true; // Return true if successful, false otherwise
         }
 
-        private bool FinalizeConnection()
+        private async Task<bool> FinalizeConnection()
         {
             // Implementation for finalizing the connection
             return true; // Return true if successful, false otherwise
         }
-
-
 
         /// <summary>
         /// Applies configuration settings to the MQTT client model.
