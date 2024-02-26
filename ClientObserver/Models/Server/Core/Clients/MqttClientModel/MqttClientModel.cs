@@ -1,7 +1,7 @@
 ﻿using System;
 using ClientObserver.Models.Server.Core.Configs;
 using ClientObserver.Models.Server.Core.Clients;
-using ClientObserver.Services.Server.Core.Clients.MqtttClientService;
+using ClientObserver.Services.Server.Core.Clients.MqttClientService;
 using ClientObserver.Models.Server.Core.Configs.MqttClient.TopicList;
 
 namespace ClientObserver.Models.Server.Core.Clients
