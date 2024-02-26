@@ -46,11 +46,29 @@ build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Selec
 build_metadata.AdditionalFiles.TargetPath = Views/SelectConfigView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/SelectConfigView.xaml
 
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/ClientConnectionViews/CloudClientConnectionView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConnectionSetup.ClientConnectionViews.CloudClientConnectionView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerConnectionSetup/ClientConnectionViews/CloudClientConnectionView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerConnectionSetup/ClientConnectionViews/CloudClientConnectionView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/ClientConnectionViews/ModelParamConnectionView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConnectionSetup.ClientConnectionViews.ModelParamConnectionView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerConnectionSetup/ClientConnectionViews/ModelParamConnectionView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerConnectionSetup/ClientConnectionViews/ModelParamConnectionView.xaml
+
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/ClientConnectionViews/MqttConnectionView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConnectionSetup.ClientConnectionViews.MqttConnectionView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/ServerConnectionSetup/ClientConnectionViews/MqttConnectionView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/ServerConnectionSetup/ClientConnectionViews/MqttConnectionView.xaml
+
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/ClientConnectionViews/VideoStreamConnectionView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerConnectionSetup.ClientConnectionViews.VideoStreamConnectionView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/ServerConnectionSetup/ClientConnectionViews/VideoStreamConnectionView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/ServerConnectionSetup/ClientConnectionViews/VideoStreamConnectionView.xaml
 
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerConnectionSetup/ConnectionSetupView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
