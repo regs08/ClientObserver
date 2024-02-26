@@ -7,7 +7,6 @@ namespace ClientObserver.Helpers.Server.Framework.Configs
     // and uses its implementation directly without any modification.
     public class ConfigModelManager : AbstractModelManager<BaseConfig>
     {
-        // No additional logic is required here for now.
         // You can use the inherited AddModel, GetModel, and RemoveModel methods as they are.
         /// <summary>
         /// Formats server and configuration details for display.

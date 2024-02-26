@@ -1,12 +1,12 @@
-﻿using ClientObserver.Models.Server.Core.Configs;
-using ClientObserver.Models.Interfaces;
+﻿using ClientObserver.Models.Events.ObservableProperties;
+
 namespace ClientObserver.Models.Interfaces.Clients
 {
     // IClientModel interface
     public interface IClient : IIdentifiableModel
     {
-        bool ConnectionStatus { get; set; }
-        void Connect();
+        public ObservableProperty<bool> IsConnected { get; } 
+        Task Connect();
     }
 
 }
