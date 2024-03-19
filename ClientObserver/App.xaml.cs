@@ -2,7 +2,9 @@
 
 public partial class App : Application
 {
-	public App()
+    public static IServiceProvider ServiceProvider { get; set; }
+
+    public App()
 	{
 		InitializeComponent();
 
