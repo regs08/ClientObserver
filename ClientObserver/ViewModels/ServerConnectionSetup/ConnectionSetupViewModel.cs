@@ -15,15 +15,19 @@ namespace ClientObserver.ViewModels.ServerConnectionSetup
     /// </summary>
     public class ConnectionSetupViewModel
     {
-        public ObservableCollection<ServerInstance> AppServers => AppServerManager.Instance.Servers;
+        private readonly AppServerManager appServerManager;
+
+        public ObservableCollection<ServerInstance> AppServers;
 
         /// <summary>
         /// Command to navigate to the detailed configuration view for a selected server instance.
         /// </summary>
         public ICommand NavigateCommand { get; private set; }
 
-        public ConnectionSetupViewModel()
+        public ConnectionSetupViewModel(AppServerManager appServerManager)
         {
+            this.appServerManager = appServerManager;
+            AppServers = appServerManager.Servers;
             NavigateCommand = new Command<BaseClientModel>(ExecuteNavigateCommand);
         }
 
