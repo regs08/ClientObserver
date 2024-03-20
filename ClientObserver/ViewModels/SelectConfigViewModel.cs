@@ -14,8 +14,10 @@ namespace ClientObserver
     // Manages server configurations, including listing available configurations and handling selection.
     public class SelectConfigViewModel
     {
+        private readonly AppServerManager appServerManager;
+
         // Service for configuration management
-        public ConfigurationRepository ConfigRepo => AppServerManager.Instance.ConfigRepo;
+        public ConfigurationRepository ConfigRepo;
 
         // Holds the list of available server configurations
         public ObservableCollection<ServerConfigs> AvailableConfigs { get; set; }
@@ -27,8 +29,10 @@ namespace ClientObserver
         public ICommand CreateConfigCommand { get; private set; }
 
         // Constructor initializes the ViewModel with a configuration service
-        public SelectConfigViewModel()
+        public SelectConfigViewModel(AppServerManager appServerManager)
         {
+            this.appServerManager = appServerManager;
+            ConfigRepo = appServerManager.ConfigRepo;
             try
             {
                 // Ensures the config service has initialized its list of available configurations
