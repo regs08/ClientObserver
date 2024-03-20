@@ -1,0 +1,13 @@
+﻿Todo stuff
+
+* Get the conneciton to the RPI with updated code
+* Seperate the device clients/configs and the server configs.
+    Update naming and files accodingly
+
+    Device: Mqtt,
+    Server: Mqtt, CloudClient, VideoStream
+    Shared: Model param, CloudClient?, VideoStream?
+
+* Double check functionaliuty for removing server/devices from the app
+
+* Delete unwanted and unused code 
