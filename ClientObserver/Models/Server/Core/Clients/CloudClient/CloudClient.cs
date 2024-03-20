@@ -10,7 +10,7 @@ namespace ClientObserver.Models.Server.Core.Clients
         public CloudClient(CloudConfig config) : base(config, "CloudClient")
         {
             Config = config;
-            SetClientService(new CloudClientService(this));
+            SetClientService(new CloudService(this));
             InitializeWithConfig();
 
         }
