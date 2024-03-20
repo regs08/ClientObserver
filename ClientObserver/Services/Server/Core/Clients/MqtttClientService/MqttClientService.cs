@@ -11,64 +11,25 @@ namespace ClientObserver.Services.Server.Core.Clients.MqttClientService
     /// </summary>
     public class MqttClientService : BaseClientService
     {
-        private MqttNetworkService mqttNetworkService;
-        private MqttClientModel ClientModel;
+        public MqttConnectionService mqttConnectionService => (MqttConnectionService)ConnectionService;
+        public MqttClientModel MqttClientModel => ClientModel as MqttClientModel;
 
         /// <summary>
         /// Initializes a new instance of the MqttClientService with the specified MQTT client model.
         /// </summary>
         /// <param name="clientModel">The client model containing MQTT connection configurations.</param>
         public MqttClientService(MqttClientModel clientModel)
+            : base(clientModel, new MqttConnectionService(clientModel))
         {
-            ClientModel = clientModel;
-            mqttNetworkService = new MqttNetworkService(ClientModel);
 
             // Register event handler for MQTT client connection
-            mqttNetworkService.mqttNetworkClient.ConnectedAsync += args =>
+            mqttConnectionService.mqttNetworkClient.ConnectedAsync += args =>
             {
                 ClientModel.IsConnected.Value = true;
                 return Task.CompletedTask;
             };
         }
 
-        protected override ConnectionStep[] ConnectionSteps
-        {
-            get
-            {
-                return new ConnectionStep[]
-                {
-                    InitializeConnection,
-                    Authenticate,
-                    FinalizeConnection
-                };
-            }
-        }
-
-        private async Task<bool> InitializeConnection()
-        {
-            try
-            {
-                await mqttNetworkService.ConnectToMqttAsync();
-                return true; // Connection assumed successful
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception caught during connection: {ex.Message}");
-                return false; // Return false if connection fails
-            }
-        }
-
-        private async Task<bool> Authenticate()
-        {
-            // Simulated authentication logic
-            return true; // Return true if authentication is successful
-        }
-
-        private async Task<bool> FinalizeConnection()
-        {
-            // Simulated finalization logic
-            return true; // Return true if finalization is successful
-        }
 
         /// <summary>
         /// Applies configuration settings to the MQTT client model.
