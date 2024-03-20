@@ -62,19 +62,7 @@
 	  <MauiXaml Remove="Views\CreateConfigView.xaml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <MauiXaml Update="Views\ServerPage\LogView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\ServerPage\MqttConnectionView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ServerPage\PhotoView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ServerPage\ServerPageView.xaml">
-	    <SubType></SubType>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ServerPage\VideoStreamView.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ServerConfigView.xaml">
@@ -82,8 +70,6 @@
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
-	  <None Remove="Views\" />
-	  <None Remove="Views\ServerPage\" />
 	  <None Remove="Resources\xml\" />
 	  <None Remove="Resources\xml\network_security_config.xml" />
 	  <None Remove="Models\Events\" />
@@ -92,8 +78,6 @@
 	  <None Remove="Models\Events\MessageEvents\Args\" />
 	  <None Remove="Models\Utils\" />
 	  <None Remove="Managers\" />
-	  <None Remove="Views\ServerConnectionSetup\" />
-	  <None Remove="Converters\" />
 	  <None Remove="Services\App\" />
 	  <None Remove="Helpers\" />
 	  <None Remove="Helpers\Server\" />
@@ -118,7 +102,6 @@
 	  <None Remove="Services\App\Core\Clients\" />
 	  <None Remove="Services\App\Repos\" />
 	  <None Remove="Services\App\Repos\Configs\" />
-	  <None Remove="Views\ServerConnectionSetup\ClientConnectionViews\" />
 	  <None Remove="Models\App\Messages\" />
 	  <None Remove="ViewModels\ServerConnectionSetup\" />
 	  <None Remove="Services\Server\" />
@@ -139,10 +122,45 @@
 	  <None Remove="ViewModels\ServerConnectionSetup\ClientConnectionViewModels\Mqtt\" />
 	  <None Remove="Services\Server\Core\Clients\MqtttClientService\Core\" />
 	  <None Remove="Models\Events\ObservableProperties\" />
+	  <None Remove="Helpers\Exceptions\" />
+	  <None Remove="Services\Server\Core\Clients\VideoStreamClientService\Core\" />
+	  <None Remove="ViewModels\ServerConnectionSetup\ClientConnectionViewModels\VideoStream\" />
+	  <None Remove="Views\ServerConnectionSetup\ClientConnectionViews\" />
+	  <None Remove="Views\ServerPage1\" />
+	  <None Remove="Views\Templates\" />
+	  <None Remove="Views\Templates\ServerConnectionSetup\" />
+	  <None Remove="Views\Templates\ServerConnectionSetup\ClientConnectionViews\" />
+	  <None Remove="Services\Server\Core\Base\" />
+	  <None Remove="Services\Server\Core\Base\Core\" />
+	  <None Remove="Models\Interfaces\Clients\ClientService\" />
+	  <None Remove="Models\Interfaces\Clients\ClientService\Core\" />
+	  <None Remove="Services\Server\Core\Clients\ModelParamClientService\Core\" />
+	  <None Remove="Services\Server\Core\Clients\CloudClientService\Core\" />
+	  <None Remove="Models\Interfaces\Messaging\" />
+	  <None Remove="Services\App\Messaging\" />
+	  <None Remove="Views\ServerConnectionSetup\LoadFromExternalSource\" />
+	  <None Remove="Views\Display\" />
+	  <None Remove="Views\Display\Server\" />
+	  <None Remove="Views\Display\Server\Core\" />
+	  <None Remove="Services\App\ServiceLocator\" />
+	  <None Remove="Models\Interfaces\Navigation\" />
+	  <None Remove="Models\Interfaces\ViewModel\" />
+	  <None Remove="Helpers\DI\" />
+	  <None Remove="Services\Navigation\" />
+	  <None Remove="ViewModels\Base\" />
+	  <None Remove="Models\Interfaces\ServiceProvider\" />
+	  <None Remove="Factories\" />
+	  <None Remove="Factories\ViewModel\" />
+	  <None Remove="Services\Server\Framework\" />
+	  <None Remove="Services\Server\Framework\Base\" />
+	  <None Remove="Services\Server\Framework\RPI\" />
+	  <None Remove="Models\Interfaces\Connection\" />
+	  <None Remove="Devices\" />
+	  <None Remove="Devices\RPI\" />
+	  <None Remove="Devices\RPI\Instance\" />
+	  <None Remove="ViewModels\DeviceDisplay\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Views\" />
-	  <Folder Include="Views\ServerPage\" />
 	  <Folder Include="Resources\xml\" />
 	  <Folder Include="Models\Events\" />
 	  <Folder Include="Models\Events\MessageEvents\" />
@@ -150,8 +168,6 @@
 	  <Folder Include="Models\Events\MessageEvents\Args\" />
 	  <Folder Include="Models\Utils\" />
 	  <Folder Include="Managers\" />
-	  <Folder Include="Views\ServerConnectionSetup\" />
-	  <Folder Include="Converters\" />
 	  <Folder Include="Services\App\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Helpers\Server\" />
@@ -176,7 +192,6 @@
 	  <Folder Include="Services\App\Core\Clients\" />
 	  <Folder Include="Services\App\Repos\" />
 	  <Folder Include="Services\App\Repos\Configs\" />
-	  <Folder Include="Views\ServerConnectionSetup\ClientConnectionViews\" />
 	  <Folder Include="Models\App\Messages\" />
 	  <Folder Include="ViewModels\ServerConnectionSetup\" />
 	  <Folder Include="Services\Server\" />
@@ -197,6 +212,45 @@
 	  <Folder Include="ViewModels\ServerConnectionSetup\ClientConnectionViewModels\Mqtt\" />
 	  <Folder Include="Services\Server\Core\Clients\MqtttClientService\Core\" />
 	  <Folder Include="Models\Events\ObservableProperties\" />
+	  <Folder Include="Helpers\Exceptions\" />
+	  <Folder Include="Services\Server\Core\Clients\VideoStreamClientService\Core\" />
+	  <Folder Include="ViewModels\ServerConnectionSetup\ClientConnectionViewModels\VideoStream\" />
+	  <Folder Include="Views\ServerConnectionSetup\ClientConnectionViews\" />
+	  <Folder Include="Views\ServerConnectionSetup\ClientConnectionViews\" />
+	  <Folder Include="Views\ServerConnectionSetup\ClientConnectionViews\" />
+	  <Folder Include="Views\ServerPage1\" />
+	  <Folder Include="Views\Templates\" />
+	  <Folder Include="Views\Templates\ServerConnectionSetup\" />
+	  <Folder Include="Views\Templates\ServerConnectionSetup\ClientConnectionViews\" />
+	  <Folder Include="Services\Server\Core\Base\" />
+	  <Folder Include="Services\Server\Core\Base\Core\" />
+	  <Folder Include="Models\Interfaces\Clients\ClientService\" />
+	  <Folder Include="Models\Interfaces\Clients\ClientService\Core\" />
+	  <Folder Include="Services\Server\Core\Clients\ModelParamClientService\Core\" />
+	  <Folder Include="Services\Server\Core\Clients\CloudClientService\Core\" />
+	  <Folder Include="Models\Interfaces\Messaging\" />
+	  <Folder Include="Services\App\Messaging\" />
+	  <Folder Include="Views\ServerConnectionSetup\LoadFromExternalSource\" />
+	  <Folder Include="Views\Display\" />
+	  <Folder Include="Views\Display\Server\" />
+	  <Folder Include="Views\Display\Server\Core\" />
+	  <Folder Include="Services\App\ServiceLocator\" />
+	  <Folder Include="Models\Interfaces\Navigation\" />
+	  <Folder Include="Models\Interfaces\ViewModel\" />
+	  <Folder Include="Helpers\DI\" />
+	  <Folder Include="Services\Navigation\" />
+	  <Folder Include="ViewModels\Base\" />
+	  <Folder Include="Models\Interfaces\ServiceProvider\" />
+	  <Folder Include="Factories\" />
+	  <Folder Include="Factories\ViewModel\" />
+	  <Folder Include="Services\Server\Framework\" />
+	  <Folder Include="Services\Server\Framework\Base\" />
+	  <Folder Include="Services\Server\Framework\RPI\" />
+	  <Folder Include="Models\Interfaces\Connection\" />
+	  <Folder Include="Devices\" />
+	  <Folder Include="Devices\RPI\" />
+	  <Folder Include="Devices\RPI\Instance\" />
+	  <Folder Include="ViewModels\DeviceDisplay\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">
