@@ -67,5 +67,9 @@ namespace ClientObserver.Models.Server.Core.Clients
         {
             ClientService = service;
         }
+        public async Task Disconnect()
+        {
+            await ClientService.DisconnectAsync();
+        }
     }
 }
