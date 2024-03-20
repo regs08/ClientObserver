@@ -1,5 +1,5 @@
 ﻿{
-  "ServerName": "DefaultServer",
+  "ServerName": "RasPiRemoteServer",
   "VideoStreamConfig": {
     "StreamIP": "192.168.0.69",
     "StreamPortNumber": "8000"

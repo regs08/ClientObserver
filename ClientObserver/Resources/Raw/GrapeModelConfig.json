@@ -1,5 +1,5 @@
 ﻿{
-  "ServerName": "LocalAddress",
+  "ServerName": "RasPiLocalServer",
   "VideoStreamConfig": {
     "StreamIP": "10.0.2.2",
     "StreamPortNumber": "8000"
