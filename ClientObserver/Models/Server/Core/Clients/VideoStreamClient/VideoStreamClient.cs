@@ -1,6 +1,6 @@
 ﻿using System;
 using ClientObserver.Models.Server.Core.Configs;
-using ClientObserver.Services.Server.Core.Clients;
+using ClientObserver.Services.Server.Core.Clients.VideoStreamClientService;
 
 namespace ClientObserver.Models.Server.Core.Clients
 {
@@ -16,6 +16,9 @@ namespace ClientObserver.Models.Server.Core.Clients
         /// Generates the full URI for the video stream based on the IP and port.
         /// </summary>
         public Uri VideoStreamUri { get; set; }
+
+        // HTTP client used for connecting to the video stream
+        public HttpClient HttpClient;
 
         public VideoStreamClient(VideoStreamConfig config) : base(config, "VideoStreamClient")
         {
