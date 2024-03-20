@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:ClientObserver.Converters"
+             x:Class="ClientObserver.Views.Templates.ServerConnectionSetup.ClientConnectionViews.ClientConnectionTemplate"
+             >
+        
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:BoolToStatusTextConverter x:Key="BoolToStatusTextConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <VerticalStackLayout>
+        <Button Text="{Binding ClientModel.Name}" Command="{Binding ConnectCommand}" />
+        <Label Text="{Binding IsConnected, Converter={StaticResource BoolToStatusTextConverter}, StringFormat='Status: {0}'}" />
+    </VerticalStackLayout>
+</ContentView>
