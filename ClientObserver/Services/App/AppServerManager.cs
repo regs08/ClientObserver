@@ -16,14 +16,19 @@ namespace ClientObserver.Services.App
     /// </summary>
     public class AppServerManager
     {
-        private static AppServerManager _instance;
+        //private static AppServerManager _instance;
         private AppServerManagerHelper appServerManagerHelper = new();
-        public AppConfigService AppConfigService = new();
-
-        private AppServerManager()
+        public AppConfigService AppConfigService { get; }
+        public ConfigurationRepository ConfigRepo => AppConfigService.ConfigRepo;
+        // Maintains a collection of server instances.
+        public ObservableCollection<ServerInstance> Servers => appServerManagerHelper.Entities;        
+        public AppServerManager(AppConfigService appConfigService)
         {
+            AppConfigService = appConfigService ?? throw new ArgumentNullException(nameof(appConfigService));
+            // Initialize other fields as necessary
         }
 
+        /*
         /// <summary>
         /// Singleton instance of AppServerManager.
         /// Ensures that only one instance of AppServerManager exists throughout the application lifecycle.
@@ -39,22 +44,22 @@ namespace ClientObserver.Services.App
                 return _instance;
             }
         }
-
+        */
         // Provides access to configuration repository.
-        public ConfigurationRepository ConfigRepo => AppConfigService.ConfigRepo;
 
-        // Maintains a collection of server instances.
-        public ObservableCollection<ServerInstance> Servers => appServerManagerHelper.Entities;
+      
         /// <summary>
         /// Creates a server from a passed in server config 
         /// </summary>
         /// <param name="config"></param>
-        public void CreateServerFromConfig(ServerConfigs config)
+        public ServerInstance CreateServerFromConfig(ServerConfigs config)
         {
             ServerInstance server = new(name: config.Name);
             server.AddServerConfig(config);
-            server.GetClientsFromConfig();
+            server.SetClientsFromConfig();
+            //todo do we want to store all the servers here or create/destroy as we go? 
             appServerManagerHelper.AddEntity(server);
+            return server;
         }
         // --- Adders ---
         /// <summary>
