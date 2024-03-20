@@ -1,98 +1,87 @@
-﻿using System.Windows.Input;
-using ClientObserver.Views;
-using ClientObserver.Services;
-using CommunityToolkit.Mvvm.Messaging;
-
-using ClientObserver.Models.Server.Framework.Configs;
-using ClientObserver.Services.App.Repos.Configs;
-using ClientObserver.Models.App.Messages;
+﻿using System;
+using System.Windows.Input;
 using ClientObserver.Services.App;
-using ClientObserver.ViewModels.ServerConnectionSetup;
+using CommunityToolkit.Mvvm.Input;
+using ClientObserver.Models.Interfaces.Messaging;
+using ClientObserver.Models.Server.Framework.Configs;
+using ClientObserver.Models.App.Messages;
+using ClientObserver.Services.App.Repos.Configs;
+using ClientObserver.Models.Interfaces.Navigation;
+using ClientObserver.Models.Interfaces.ViewModel;
+using ClientObserver.ViewModels.ServerDisplay;
+using ClientObserver.ViewModels.DeviceDisplay;
+
 
 namespace ClientObserver.ViewModels
 {
-    /// <summary>
-    /// ViewModel for the main page, handling navigation and server configuration management.
-    /// </summary>
-    public class MainPageViewModel
+    public class MainPageViewModel : IViewModel
     {
-        private AppServerManager appServerManager;
+        private readonly INavigationService navigationService;
+        private readonly IMessagingService messagingService;
+        private readonly AppServerManager appServerManager;
+        public string Name { get; set; }
 
-        /// <summary>
-        /// Gets the ConfigurationRepository from the AppServerManager to manage server configurations.
-        /// </summary>
-        public ConfigurationRepository ConfigRepo => AppServerManager.Instance.ConfigRepo;
+        public ConfigurationRepository ConfigRepo => appServerManager.ConfigRepo;
 
-        /// <summary>
-        /// Command to navigate to the configuration selection view.
-        /// </summary>
-        public ICommand SelectFromAvailableConfigsCommand { get; private set; }
+        // Commands are now of type AsyncCommand (from CommunityToolkit.Mvvm.Input)
+        public ICommand LoadServersFromExternalSourceCommand { get; set; }
+        public ICommand ServersDisplayViewCommand { get; set; }
 
-        /// <summary>
-        /// Command to navigate to the setup for ServerConfigConnection.
-        /// </summary>
-        public ICommand SetupServerConfigConnection { get; private set; }
 
-        /// <summary>
-        /// Command to navigate to the ServerPageView.
-        /// </summary>
-        public ICommand ServerPageViewCommand { get; private set; }
-
-        /// <summary>
-        /// Constructs the MainPageViewModel and initializes navigation commands and configuration management.
-        /// </summary>
-        public MainPageViewModel()
+        public MainPageViewModel(AppServerManager appServerManager,
+            INavigationService navigationService,
+            IMessagingService messagingService)
         {
+            this.appServerManager = appServerManager;
+            this.navigationService = navigationService;
+            this.messagingService = messagingService ?? throw new ArgumentNullException(nameof(messagingService));
+
             InitializeCommands();
-            appServerManager = AppServerManager.Instance;
             RegisterMessages();
+
+        }
+        public void InitializeCommands()
+        {
+            ServersDisplayViewCommand = new AsyncRelayCommand<ServerConfigs>(async (serverConfigs) =>
+            {
+                // Assuming ServerConfigs has a ServerName property you wish to pass
+                var serverName = serverConfigs.Name;
+
+                // Pass serverName as a parameter
+                await navigationService.NavigateAsync<DeviceDisplayViewModel>(new Dictionary<string, object>
+        {
+                { "ServerName", serverName }
+            });
+            });
+
+
+            LoadServersFromExternalSourceCommand = new AsyncRelayCommand(async () =>
+            {
+                // No parameters required for navigating to LoadServerFromExternalSourceView
+                await navigationService.NavigateAsync<LoadServerFromExternalSourceViewModel>();
+            });
         }
 
-        /// <summary>
-        /// Initializes the application's configuration manager and loads local configurations.
-        /// </summary>
-        public async Task InitializeAppConfigManagerAsync()
-        {
-            await appServerManager.AppConfigService.InitializeAsync();
-        }
 
-        private void InitializeCommands()
+        public void RegisterMessages()
         {
-            SelectFromAvailableConfigsCommand = new Command(async () => await NavigateToConfigSelection());
-            SetupServerConfigConnection = new Command(async () => await NavigateToSetUpServerConfigConnection());
-            ServerPageViewCommand = new Command<ServerConfigs>(NavigateToServerPage);
-        }
-
-        private void RegisterMessages()
-        {
-            WeakReferenceMessenger.Default.Register<UpdateSelectedServerConfigMessage>(this, (recipient, message) =>
+            messagingService.Register<MainPageViewModel, UpdateSelectedServerConfigMessage>(this, (recipient, message) =>
             {
                 ServerConfigs config = message.NewConfig;
-                ConfigRepo.AddToSelectedConfigs(config);
+                appServerManager.ConfigRepo.AddToSelectedConfigs(config);
                 appServerManager.CreateServerFromConfig(config);
             });
         }
 
-        private async Task NavigateToConfigSelection()
+        public void Dispose()
         {
-            var viewModel = new SelectConfigViewModel();
-            var configPage = new SelectConfigView(viewModel);
-            await Shell.Current.Navigation.PushAsync(configPage);
+            messagingService.UnregisterAll(this);
+        }
+        public async void InitializeAppConfigManagerAsync()
+        {
+            await appServerManager.AppConfigService.InitializeAsync();
         }
 
-        private async Task NavigateToSetUpServerConfigConnection()
-        {
-            var viewModel = new ConnectionSetupViewModel();
-            var connectionSetUpPage = new ConnectionSetupView(viewModel);
-            await Shell.Current.Navigation.PushAsync(connectionSetUpPage);
-        }
-
-        private async void NavigateToServerPage(ServerConfigs serverConfigs)
-        {
-            var serviceManager = new ServiceManager(serverConfigs);
-            var viewModel = new ServerPageViewModel(serviceManager);
-            var serverPage = new ServerPageView(viewModel);
-            await Shell.Current.Navigation.PushAsync(serverPage);
-        }
     }
 }
+
