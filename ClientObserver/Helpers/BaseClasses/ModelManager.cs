@@ -104,13 +104,13 @@ namespace ClientObserver.Helpers.BaseClasses
         }
         public virtual bool CheckModel<T>() where T : class, TModel
         {
-            if (GetModel<T> != null)
+            if (GetModel<T>() != null) // Added parentheses to make it a method call
             {
                 return true;
             }
             throw new InvalidOperationException("Model is empty !! ");
-
         }
+
         /// <summary>
         /// Retrieves a model by its Name property.
         /// </summary>
