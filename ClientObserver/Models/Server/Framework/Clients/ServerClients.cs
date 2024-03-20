@@ -14,15 +14,15 @@ namespace ClientObserver.Models.Server.Framework.Clients
         private ClientModelManager clientModelManager = new ClientModelManager();
         public ObservableCollection<BaseClientModel> ClientModels => clientModelManager.Models;
 
-        public void GetClientsFromConfig(ServerConfigs configs)
+        public void SetClientsFromConfig(ServerConfigs configs)
         {
             foreach (BaseConfig config in configs.GetConfigs())
             {
 
                 //'look here to go over how its adding.. as of now doesn't app
-                BaseClientModel client = ClientFactory.CreateClientFromConfig(config);
+                var client = ClientFactory.CreateClientFromConfig(config);
                 client.InitializeWithConfig();
-                ClientModels.Add(client); 
+                AddClientModel(client);
                   
             }
 

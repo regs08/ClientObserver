@@ -27,11 +27,13 @@ namespace ClientObserver.Models.Server.Instance
         {
             Name = name;
         }
-        public bool GetClientsFromConfig()
+        public bool SetClientsFromConfig()
         {
             if (AreConfigsSet)
             {
-                ServerClients.GetClientsFromConfig(ServerConfigs);
+                ServerClients.SetClientsFromConfig(ServerConfigs);
+                ServerClients.SetServerName(ServerConfigs.Name);
+                AddServerClients(ServerClients);
                 return true;
             }
             throw new NullReferenceException($"Server Configs or Clients are not Set!");
