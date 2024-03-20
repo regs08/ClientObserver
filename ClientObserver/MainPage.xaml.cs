@@ -1,26 +1,27 @@
-﻿using ClientObserver.Views;
-using ClientObserver.ViewModels;
-using ClientObserver.Services;
-using Microsoft.Maui.Controls;
-namespace ClientObserver
+﻿using ClientObserver.ViewModels;
+using ClientObserver.Helpers.DI;
+using ClientObserver.Factories.ViewModel;
+namespace ClientObserver;
+
+public partial class MainPage : ContentPage
 {
+    MainPageViewModel viewModel;
 
-    public partial class MainPage : ContentPage
+    public MainPage(ViewModelFactory viewModelFactory)
     {
-        private MainPageViewModel _viewModel;
+        InitializeComponent();
+        viewModel = viewModelFactory.CreateMainPageViewModel();
+        BindingContext = viewModel;
 
-        public MainPage()
-        {
-            InitializeComponent();
-            _viewModel = new MainPageViewModel();
-            BindingContext = _viewModel;
-        }
+    }
 
-        protected override async void OnAppearing()
+
+
+    protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await _viewModel.InitializeAppConfigManagerAsync();
+            viewModel.InitializeAppConfigManagerAsync();
         }
     }
 
-}
+    

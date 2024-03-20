@@ -1,21 +1,25 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ClientObserver.MainPage">
+             x:Class="ClientObserver.MainPage"
+             Title="MainPage">
 <StackLayout>
-    <Button Text="Select Configs" Command="{Binding SelectFromAvailableConfigsCommand}" Margin="5"/>
-
-<CollectionView ItemsSource="{Binding ConfigRepo.SelectedConfigs}">
+    <Button Text="Load Servers From External Storage" Margin="5"/>
+        <!-- Label for the CollectionView header -->
+    <Label Text="View Data From Available Servers" 
+            HorizontalOptions="Center" 
+            FontAttributes="Bold" 
+            Margin="5"/>
+<CollectionView ItemsSource="{Binding ConfigRepo.AvailableConfigs}">
     <CollectionView.ItemTemplate>
         <DataTemplate>
             <!-- Ensure the Command Binding is correctly configured -->
-            <Button Text="{Binding Name}"
-                    Command="{Binding Path=BindingContext.ServerPageViewCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
-                    CommandParameter="{Binding}" />
+    <Button Text="{Binding Name}"
+            Command="{Binding Path=BindingContext.ServersDisplayViewCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+            CommandParameter="{Binding .}" />
+
         </DataTemplate>
     </CollectionView.ItemTemplate>
 </CollectionView>
-    <Button Text="Connection Setup" Command="{Binding SetupServerConfigConnection}" Margin="5"/>
 </StackLayout>
-
-
 </ContentPage>
