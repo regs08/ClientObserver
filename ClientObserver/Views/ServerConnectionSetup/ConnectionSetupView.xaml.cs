@@ -1,5 +1,5 @@
 ﻿using ClientObserver.ViewModels.ServerConnectionSetup;
-namespace ClientObserver.Views;
+namespace ClientObserver.Views.ServerConnectionSetup;
 
 public partial class ConnectionSetupView : ContentPage
 {
