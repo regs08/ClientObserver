@@ -23,6 +23,7 @@ namespace ClientObserver.Models.Server.Core.Clients
         public VideoStreamClient(VideoStreamConfig config) : base(config, "VideoStreamClient")
         {
             Config = config;
+            HttpClient = new HttpClient();
             SetClientService(new VideoStreamClientService(this));
             InitializeWithConfig();
 

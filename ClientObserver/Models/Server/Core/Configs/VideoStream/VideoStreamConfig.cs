@@ -25,8 +25,9 @@ namespace ClientObserver.Models.Server.Core.Configs
         {
             get
             {
+                //Note as of now removing the video suffiz from the address since were using templates 
                 // Constructs the URI using the StreamIP and StreamPortNumber
-                return new Uri($"http://{StreamIP}:{StreamPortNumber}/video");
+                return new Uri($"http://{StreamIP}:{StreamPortNumber}");
             }
         }
         public VideoStreamConfig() : base("VideoStreamConfig")

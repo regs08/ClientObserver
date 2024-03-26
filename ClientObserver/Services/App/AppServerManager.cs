@@ -28,26 +28,18 @@ namespace ClientObserver.Services.App
             // Initialize other fields as necessary
         }
 
-        /*
         /// <summary>
-        /// Singleton instance of AppServerManager.
-        /// Ensures that only one instance of AppServerManager exists throughout the application lifecycle.
+        /// Checks if a server with the specified name exists.
         /// </summary>
-        public static AppServerManager Instance
+        /// <param name="serverName">The name of the server to check for existence.</param>
+        /// <returns>True if the server exists; otherwise, false.</returns>
+        public bool ServerExists(string serverName)
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new AppServerManager();
-                }
-                return _instance;
-            }
+            // Use the appServerManagerHelper to check if an entity with the given name exists.
+            var server = appServerManagerHelper.GetEntityByName(serverName);
+            return server != null;
         }
-        */
-        // Provides access to configuration repository.
 
-      
         /// <summary>
         /// Creates a server from a passed in server config 
         /// </summary>
