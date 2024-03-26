@@ -15,7 +15,6 @@ namespace ClientObserver.Models.Server.Core.Clients
         /// Gets or sets the name of the client model.
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
         /// An observable property that tracks the client's connection status.
         /// </summary>
@@ -40,6 +39,7 @@ namespace ClientObserver.Models.Server.Core.Clients
         {
             Name = name;
             Config = config;
+            IsConnected.Value = false;  
         }
 
         /// <summary>
@@ -54,9 +54,10 @@ namespace ClientObserver.Models.Server.Core.Clients
         /// Initiates an asynchronous connection attempt using the client service.
         /// </summary>
         /// <returns>A task representing the asynchronous operation.</returns>
-        public async Task Connect()
+        public async Task<bool> Connect()
         {
-            await ClientService.ConnectAsync();
+            IsConnected.Value =  await ClientService.ConnectAsync();
+            return IsConnected.Value; 
         }
 
         /// <summary>
