@@ -1,7 +1,8 @@
 ﻿Todo stuff
-
+* Create base classes for view models 
+* Get loggs/flagged detections on display. Going to make a sperate page for now, ideally it will be integrated somewhere (stream page?) 
 * Get the conneciton to the RPI with updated code
-* Seperate the device clients/configs and the server configs.
+* Seperate the device clients/configs and the server configs classes .
     Update naming and files accodingly
 
     Device: Mqtt,
@@ -9,5 +10,6 @@
     Shared: Model param, CloudClient?, VideoStream?
 
 * Double check functionaliuty for removing server/devices from the app
-
-* Delete unwanted and unused code 
+* Delete unwanted and unused code
+DONE connect to a stream (just runnign the looping stream for now) 
+DONE  Mqtt connection is done however navigating to and from the page resetes the connection. 
