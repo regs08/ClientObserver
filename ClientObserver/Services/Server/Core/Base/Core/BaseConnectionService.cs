@@ -39,7 +39,7 @@ namespace ClientObserver.Services.Core.Server.Core.Base
         /// Initiates the connection process by sequentially executing each defined connection step.
         /// Updates the client model's connection status based on the outcome of the steps.
         /// </summary>
-        public async Task ConnectAsync()
+        public async Task<bool> ConnectAsync()
         {
             foreach (var step in ConnectionSteps)
             {
@@ -52,13 +52,17 @@ namespace ClientObserver.Services.Core.Server.Core.Base
                 {
                     // Optionally log the exception details here
                     Console.WriteLine($"Failed to execute connection step. Details: {ex.Message}");
+                    return false;
                 }
 
                 if (!result)
                 {
                     Console.WriteLine($"Failed to execute connection step");
+                    return false;
                 }
             }
+            return true;
+
         }
 
         public async Task DisconnectAsync()

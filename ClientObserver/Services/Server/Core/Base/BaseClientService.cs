@@ -18,9 +18,9 @@ namespace ClientObserver.Services.Server.Core.Clients
             ClientModel = clientModel ?? throw new ArgumentNullException(nameof(clientModel));
             ConnectionService = connectionService ?? throw new ArgumentNullException(nameof(connectionService));
         }
-        public async Task ConnectAsync()
+        public async Task<bool> ConnectAsync()
         {
-            await ConnectionService.ConnectAsync();
+            return await ConnectionService.ConnectAsync();
         }
 
         public async Task DisconnectAsync()
