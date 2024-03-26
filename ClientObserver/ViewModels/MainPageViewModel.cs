@@ -8,9 +8,8 @@ using ClientObserver.Models.App.Messages;
 using ClientObserver.Services.App.Repos.Configs;
 using ClientObserver.Models.Interfaces.Navigation;
 using ClientObserver.Models.Interfaces.ViewModel;
-using ClientObserver.ViewModels.ServerDisplay;
 using ClientObserver.ViewModels.DeviceDisplay;
-
+using ClientObserver.Views.Display.Server;
 
 namespace ClientObserver.ViewModels
 {
@@ -24,7 +23,6 @@ namespace ClientObserver.ViewModels
         public ConfigurationRepository ConfigRepo => appServerManager.ConfigRepo;
 
         // Commands are now of type AsyncCommand (from CommunityToolkit.Mvvm.Input)
-        public ICommand LoadServersFromExternalSourceCommand { get; set; }
         public ICommand ServersDisplayViewCommand { get; set; }
 
 
@@ -44,6 +42,19 @@ namespace ClientObserver.ViewModels
         {
             ServersDisplayViewCommand = new AsyncRelayCommand<ServerConfigs>(async (serverConfigs) =>
             {
+                var serverName = serverConfigs.Name;
+                // Direct navigation to DeviceDisplayView with parameters
+                // For hierarchical navigation, you would need a way to construct a path that reflects the hierarchy
+                // This is a conceptual example:
+                var navigationPath = $"//MainPage/DeviceDisplayView?ServerName={Uri.EscapeDataString(serverName)}";
+                await Shell.Current.GoToAsync(navigationPath);
+                //await Shell.Current.GoToAsync(nameof(DeviceDisplayView));
+
+
+            });
+            /*
+            ServersDisplayViewCommand = new AsyncRelayCommand<ServerConfigs>(async (serverConfigs) =>
+            {
                 // Assuming ServerConfigs has a ServerName property you wish to pass
                 var serverName = serverConfigs.Name;
 
@@ -53,13 +64,7 @@ namespace ClientObserver.ViewModels
                 { "ServerName", serverName }
             });
             });
-
-
-            LoadServersFromExternalSourceCommand = new AsyncRelayCommand(async () =>
-            {
-                // No parameters required for navigating to LoadServerFromExternalSourceView
-                await navigationService.NavigateAsync<LoadServerFromExternalSourceViewModel>();
-            });
+            */
         }
 
 
