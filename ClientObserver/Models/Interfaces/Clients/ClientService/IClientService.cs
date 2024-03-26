@@ -16,7 +16,7 @@ namespace ClientObserver.Models.Interfaces.Clients
         /// </summary>
         /// <param name="config">The configuration to apply to the client service.</param>
         void ApplyConfig(BaseConfig config);
-        Task ConnectAsync();
+        Task<bool> ConnectAsync();
         Task DisconnectAsync();
 
     }

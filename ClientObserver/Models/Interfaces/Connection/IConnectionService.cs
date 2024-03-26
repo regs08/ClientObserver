@@ -21,7 +21,7 @@ public interface IConnectionService
 
     Task<bool> DisconnectFromClient();
 
-    Task ConnectAsync();
+    Task<bool> ConnectAsync();
     Task DisconnectAsync();
 
     // Use these methods or properties to expose the steps.

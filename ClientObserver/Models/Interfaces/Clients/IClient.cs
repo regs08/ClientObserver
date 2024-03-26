@@ -19,6 +19,6 @@ namespace ClientObserver.Models.Interfaces.Clients
         /// Initiates a connection for the client. The specific implementation of this method should handle the logic required to establish the client's connection to its respective server or service.
         /// </summary>
         /// <returns>A Task representing the asynchronous operation of connecting the client.</returns>
-        Task Connect();
+        Task<bool> Connect();
     }
 }
