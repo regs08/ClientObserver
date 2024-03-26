@@ -35,6 +35,7 @@ namespace ClientObserver.Services.Server.Core.Clients.VideoStreamClientService
             {
                 var response = await videoStreamClient.HttpClient.GetAsync(videoStreamClient.VideoStreamUri, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
+                Console.WriteLine("Successfully Connected to Http");
                 return true;
             }
             catch (Exception ex)
