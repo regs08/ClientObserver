@@ -30,14 +30,14 @@ public static class MauiProgram
             });
 
         // Register your services
+        // Navigation
+        builder.Services.AddTransient<NavigationServiceMain>();
+
         builder.Services.AddSingleton<AppConfigService>();
         builder.Services.AddSingleton<AppServerManager>();
         builder.Services.AddSingleton<IMessagingService, MessagingService>();
-        builder.Services.AddSingleton<NavigationServiceMain>();
-        builder.Services.AddSingleton<MainPageViewModelTest>();
-        builder.Services.AddSingleton<MainPageTestView>();
+        builder.Services.AddTransient<MainPage>();
         builder.Services.AddSingleton<MainPageViewModel>();
-        builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<ViewModelFactory>();
 
 #if DEBUG
