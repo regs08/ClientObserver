@@ -46,17 +46,23 @@ build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Displ
 build_metadata.AdditionalFiles.TargetPath = Views/Display/Server/Core/ConfigureConnectionView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/Display/Server/Core/ConfigureConnectionView.xaml
 
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/Display/Server/Core/DataStreamView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Display.Server.Core.DataStreamView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/Display/Server/Core/DataStreamView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/Display/Server/Core/DataStreamView.xaml
+
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/Display/Server/Core/ServerConfigView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Display.Server.Core.ServerConfigView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/Display/Server/Core/ServerConfigView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/Display/Server/Core/ServerConfigView.xaml
 
-[/Users/cole/Projects/ClientObserver/ClientObserver/Views/Display/Server/ServerDisplayView.xaml]
+[/Users/cole/Projects/ClientObserver/ClientObserver/Views/Display/Server/DeviceDisplayView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Display.Server.ServerDisplayView.xaml
-build_metadata.AdditionalFiles.TargetPath = Views/Display/Server/ServerDisplayView.xaml
-build_metadata.AdditionalFiles.RelativePath = Views/Display/Server/ServerDisplayView.xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Display.Server.DeviceDisplayView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/Display/Server/DeviceDisplayView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/Display/Server/DeviceDisplayView.xaml
 
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/SelectConfigView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
@@ -106,12 +112,6 @@ build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.Serve
 build_metadata.AdditionalFiles.TargetPath = Views/ServerPage1/LogView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/ServerPage1/LogView.xaml
 
-[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage1/MqttDisplayView.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage1.MqttDisplayView.xaml
-build_metadata.AdditionalFiles.TargetPath = Views/ServerPage1/MqttDisplayView.xaml
-build_metadata.AdditionalFiles.RelativePath = Views/ServerPage1/MqttDisplayView.xaml
-
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage1/PhotoView.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage1.PhotoView.xaml
@@ -123,12 +123,6 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage1.ServerPageView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/ServerPage1/ServerPageView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/ServerPage1/ServerPageView.xaml
-
-[/Users/cole/Projects/ClientObserver/ClientObserver/Views/ServerPage1/VideoStreamView.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = ClientObserver.Views.ServerPage1.VideoStreamView.xaml
-build_metadata.AdditionalFiles.TargetPath = Views/ServerPage1/VideoStreamView.xaml
-build_metadata.AdditionalFiles.RelativePath = Views/ServerPage1/VideoStreamView.xaml
 
 [/Users/cole/Projects/ClientObserver/ClientObserver/Views/Templates/ServerConnectionSetup/ClientConnectionViews/ClientConnectionTemplate.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

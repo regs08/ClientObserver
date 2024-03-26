@@ -1,3 +1,11 @@
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/ClientObserver.runtimeconfig.json
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/ClientObserver.dll
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/ClientObserver.pdb
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver.apk
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver.aab
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver-Signed.aab
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver-Signed.apk
+/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver-Signed.apk.idsig
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/build.props
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/adb.props
@@ -99,14 +107,6 @@
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/ClientObserver.AssemblyInfoInputs.cache
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/ClientObserver.AssemblyInfo.cs
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/ClientObserver.csproj.CoreCompileInputs.cache
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/ClientObserver.runtimeconfig.json
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/ClientObserver.dll
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/ClientObserver.pdb
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver.apk
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver.aab
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver-Signed.aab
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver-Signed.apk
-/Users/cole/Projects/ClientObserver/ClientObserver/bin/Debug/net7.0-android/com.companyname.clientobserver-Signed.apk.idsig
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/XamlC.stamp
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/ClientObserver.dll
 /Users/cole/Projects/ClientObserver/ClientObserver/obj/Debug/net7.0-android/ClientObserver.pdb
