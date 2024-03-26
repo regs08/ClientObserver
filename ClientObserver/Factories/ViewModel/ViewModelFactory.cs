@@ -1,5 +1,6 @@
 ﻿using System;
 using ClientObserver.ViewModels;
+using ClientObserver.ViewModels.DeviceDisplay.Core;
 using ClientObserver.Models.Interfaces.Messaging;
 using ClientObserver.Services.Navigation;
 using ClientObserver.Services.App;
@@ -31,10 +32,14 @@ namespace ClientObserver.Factories.ViewModel
 
         public DeviceDisplayViewModel DeviceDisplayViewModel()
         {
+            var navigationService = _serviceProvider.GetRequiredService<NavigationServiceMain>();
 
-            return new DeviceDisplayViewModel(appServerManager);
+            return new DeviceDisplayViewModel(appServerManager:appServerManager, navigationService: navigationService);
         }
-        // Method to create other view models
+        public DataStreamViewModel CreateDataStreamViewModel()
+        {
+            return new DataStreamViewModel(appServerManager: appServerManager);
+        }
     }
 
 }
