@@ -6,9 +6,7 @@
              >
         
     <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:BoolToStatusTextConverter x:Key="BoolToStatusTextConverter"/>
-        </ResourceDictionary>
+
     </ContentView.Resources>
     <VerticalStackLayout>
         <Button Text="{Binding ClientModel.Name}" Command="{Binding ConnectCommand}" />
