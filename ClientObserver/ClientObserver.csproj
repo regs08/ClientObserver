@@ -159,6 +159,8 @@
 	  <None Remove="Devices\RPI\" />
 	  <None Remove="Devices\RPI\Instance\" />
 	  <None Remove="ViewModels\DeviceDisplay\" />
+	  <None Remove="Converters\" />
+	  <None Remove="ViewModels\DeviceDisplay\Core\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Resources\xml\" />
@@ -251,6 +253,8 @@
 	  <Folder Include="Devices\RPI\" />
 	  <Folder Include="Devices\RPI\Instance\" />
 	  <Folder Include="ViewModels\DeviceDisplay\" />
+	  <Folder Include="Converters\" />
+	  <Folder Include="ViewModels\DeviceDisplay\Core\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <AndroidResource Include="Resources\xml\network_security_config.xml">
